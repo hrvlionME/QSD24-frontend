@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export default function ForgotPassowrdPage() {
 
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
 
   function handleEmailChange(event: any) {
     setEmail(event.target.value);
@@ -16,14 +17,24 @@ export default function ForgotPassowrdPage() {
     return /\S+@\S+\.\S+/.test(email);
   }
   
+  function handleSubmit(event: any){
+    console.log(email);
+    if (!isValidEmail(event.target.value)) {
+      setError("Required field, invalid email format.");
+    } else {
+      setError("");
+    }
+  }
+  
 
   return (
     <>
       <div className={styles.root}>
         <Link  to="/login" className={styles.backArrow}><FiArrowLeftCircle/></Link>
         <img src={image} alt="" className={styles.img} />
-        <input type="text" className={styles.emailInput} placeholder="Email address" value={email} onChange={handleEmailChange} />
-        <button className={styles.btn} disabled={!isValidEmail(email)}>Send email</button>
+        <input type="text" className={`${styles.emailInput} ${error && styles.errorInput}`} placeholder="Email address" value={email} onChange={handleEmailChange} />
+        {error && <p className={styles.errorText}>{error}</p>}
+        <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>Send email</button>
       </div>
     </>
   );
