@@ -3,6 +3,8 @@ import styles from './ForgotPasswordPage.module.css';
 import image from '../../assets/images/forgotPassword.png'
 import { FiArrowLeftCircle } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 
 export default function ForgotPassowrdPage() {
 
@@ -24,8 +26,18 @@ export default function ForgotPassowrdPage() {
     } else {
       setError("");
     }
+    //const response = await sendData();    
   }
-  
+
+  /*
+  async function sendData(){
+    axios.post()
+    .then((data) => {
+        console.log(data)
+    })
+    .catch()
+  }
+  */
 
   return (
     <>
