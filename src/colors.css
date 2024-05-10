@@ -1,0 +1,184 @@
+:root {
+  --white: rgb(255, 255, 255);
+  --primary-text: rgb(40, 40, 40);
+  --primary-color: rgb(255, 255, 255);
+  --primary-color-1: rgb(40, 40, 40);
+  --primary-color-2: rgb(246, 246, 246);
+  --primary-color-3: rgb(255, 255, 255);
+  --secondary-color-1: rgb(255, 255, 255);
+  --logo-purple: rgb(108, 99, 255, 1);
+  --logo-purple-with-dark-mode: rgba(108, 99, 255, 1);
+  --logo-purple-disabled: rgba(108, 99, 255, 0.7);
+  --admin-dark-blue: rgb(29, 30, 66);
+  --admin-dark-blue-disabled: rgba(29, 30, 66, 0.7);
+  --dark-transparent-1: rgba(0, 0, 0, 0.7);
+  --dark-transparent-2: rgba(0, 0, 0, 0.5);
+  --dark-transparent-3: rgba(0, 0, 0, 0.2);
+  --light-blue: rgb(37, 115, 231);
+  --light-blue-disabled: rgb(37, 115, 231, 0.7);
+  --red: rgb(209, 15, 15);
+  --red-disabled: rgba(209, 15, 15, 0.6);
+  --green: rgb(46, 125, 46);
+  --green-disabled: rgb(46, 125, 46, 0.7);
+  --border-bottom: rgb(203, 203, 203);
+  --chatbot-purple: #6e48aa;
+  --chatbot-bg: #f5f8fb;
+  --order-pending: rgba(0, 153, 255, 0.701);
+  --order-processing: rgba(255, 221, 0, 0.704);
+  --order-shipped: rgba(103, 222, 97, 0.709);
+  --order-canceled: rgba(255, 0, 0, 0.703);
+
+  /* Auth */
+  --auth-bg-color: rgba(0, 0, 0, 0);
+  --auth-input: rgb(255, 255, 255);
+  --auth-input-border: rgb(219, 218, 255);
+  --auth-input-focus: rgb(246, 245, 255);
+  --auth-submit-btn-color: rgb(255, 255, 255);
+  --auth-error-primary: rgb(255, 0, 0);
+  --auth-error-bg: rgb(255, 207, 207);
+  --auth-sendcode-text: rgb(0, 0, 0);
+  --auth-sendcode-circle: rgb(212, 239, 246);
+
+  /* Navigation */
+  --super-nav-bg: rgb(77, 77, 77);
+  --nav-bg: rgb(255, 255, 255);
+  --navbar-shadow: rgba(40, 40, 40, 0.2);
+  --search-border-bottom: rgb(205, 205, 205);
+  --nav-collapsed-list-hover: rgba(246, 245, 255);
+  --dropdown-header-text: rgb(145, 145, 145);
+  --dropdown-hover: rgba(145, 145, 145, 0.236);
+
+  /* Home */
+  --home-bg: rgb(255, 255, 255);
+  --home-image-bg: rgba(40, 40, 40, 0);
+  --gender-card: rgba(255, 255, 255, 0.5);
+  --parallex-bg: rgba(40, 40, 40, 0);
+  --parallex-card: rgba(255, 255, 255, 0.951);
+  --parallex-text: rgb(91, 91, 91);
+  --sale-card-text: rgb(108, 99, 255, 1);
+
+  /* Shop */
+  --shop-card-text: rgb(158, 158, 158);
+  --side-filter-item-selected: rgba(205, 202, 255, 0.356);
+  --shop-paginate-active-button: rgba(205, 202, 255, 0.499);
+  --shop-btn: transparent;
+  --size-guide-modal: rgb(255, 255, 255);
+  --size-guide-border: rgb(202, 202, 202);
+
+  /* Cart */
+  --cart-bg: rgb(246, 246, 246);
+  --delivery-options: rgb(200, 200, 200);
+  ---selected-delivery-options: rgb(255, 255, 255);
+
+  /* Profile */
+  --profile-bg: rgb(246, 246, 246);
+
+  /* Product */
+  --product-arrow-bg: rgba(255, 255, 255);
+  --go-back: rgba(0, 0, 0, 0.7);
+  --rating-date-text: rgb(116, 116, 116);
+
+  /* Payment */
+  --payment-text: rgb(107, 124, 147);
+  --payment-background: rgb(224, 224, 224);
+  --guest-modal-background: rgba(255, 255, 255);
+
+  /* Edit modal */
+  --modal-bg: rgb(255, 255, 255);
+
+  /* Table */
+  --button-border: rgb(180, 180, 180);
+  --button-disabled: rgba(0, 0, 0, 0.081);
+
+  /*FAQ*/
+  --selected-tab: rgba(107, 99, 255, 0.345);
+  --selected-tab-icon: rgba(108, 99, 255, 1);
+}
+
+/* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
+
+[data-theme='dark'] {
+  --white: rgb(255, 255, 255);
+  --primary-text: rgb(224, 221, 221);
+  --primary-color: rgb(40, 40, 40);
+  --primary-color-1: rgb(255, 255, 255);
+  --primary-color-2: rgb(224, 224, 224);
+  --primary-color-3: rgb(137, 137, 137);
+  --logo-purple: rgb(205, 202, 255);
+  --light-blue: rgb(40, 40, 40);
+  --border-bottom: rgb(230, 229, 229);
+  --secondary-color-1: rgb(231, 227, 227);
+  --logo-purple: rgba(108, 99, 255, 1);
+  --logo-purple-with-dark-mode: rgba(255, 255, 255, 1);
+  --chatbot-purple: #6e48aa;
+  --chatbot-bg: #f5f8fb;
+
+  --logo-purple-disabled: rgb(108, 99, 255, 0.6);
+
+  /* Auth */
+  --auth-bg-color: rgba(0, 0, 0, 0.7);
+  --auth-input: rgba(95, 95, 95, 0.368);
+  --auth-input-border: rgb(95, 95, 95);
+  --auth-input-focus: rgb(95, 95, 95, 0.7);
+  --auth-submit-btn-color: rgba(rgb(255, 255, 255, 0));
+  --auth-error-primary: rgb(254, 97, 97);
+  --auth-error-bg: rgb(255, 227, 227);
+  --auth-sendcode-text: rgb(172, 172, 172);
+  --auth-sendcode-circle: rgb(172, 172, 172);
+
+  /* Navigation */
+  --super-nav-bg: rgb(35, 35, 35);
+  --nav-bg: rgb(55, 55, 55);
+  --navbar-shadow: rgba(40, 40, 40);
+  --nav-collapsed-list-hover: rgba(246, 245, 255, 0.157);
+  --search-border-bottom: rgb(205, 205, 205);
+  --dropdown-header-text: rgb(224, 224, 224);
+  --dropdown-hover: rgba(145, 145, 145, 0.236);
+
+  /* Home */
+  --home-bg: rgb(77, 77, 77);
+  --home-image-bg: rgba(40, 40, 40, 0.368);
+  --gender-card: rgba(0, 0, 0, 0.5);
+  --parallex-bg: rgba(40, 40, 40, 0.368);
+  --parallex-card: rgba(40, 40, 40, 0.951);
+  --parallex-text: rgb(101, 101, 101);
+  --sale-card-text: rgb(224, 221, 221);
+
+  /* Shop */
+  --shop-card-text: rgb(255, 255, 255);
+  --side-filter-item-selected: rgba(255, 255, 255, 0.3);
+  --shop-paginate-active-button: rgba(40, 40, 40, 0.559);
+  --shop-btn: rgba(255, 255, 255, 0.2);
+  --size-guide-modal: rgb(74, 74, 74);
+  --size-guide-border: rgb(96, 96, 96);
+
+  /* Cart */
+  --cart-bg: rgb(77, 77, 77);
+  --delivery-options: rgb(155, 155, 155);
+  ---selected-delivery-options: rgb(110, 110, 110);
+
+  /* Profile */
+  --profile-bg: rgb(77, 77, 77);
+
+  /* Product */
+  --product-arrow-bg: rgb(77, 77, 77);
+  --go-back: rgb(255, 255, 255);
+  --rating-date-text: rgb(133, 133, 133);
+
+  /* Payment */
+  --payment-text: rgb(255, 255, 255);
+  --payment-background: rgb(137, 137, 137);
+  --guest-modal-background: rgb(74, 74, 74);
+
+  /* Edit modal */
+  --modal-bg: rgb(171, 171, 171);
+
+  /* Table */
+  --button-border: transparent;
+  --button-disabled: rgba(255, 255, 255, 0.079);
+
+  /*FAQ*/
+  --selected-tab: rgba(181, 177, 255, 0.771);
+  --selected-tab-icon: rgba(108, 99, 255, 1);
+}
