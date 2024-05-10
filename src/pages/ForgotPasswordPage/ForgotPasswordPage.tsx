@@ -1,5 +1,15 @@
-export default function ForgotPasswordPage() {
+import React from 'react';
+import styles from './ForgotPassword.module.css';
+
+export default function ForgotPassowrdPage() {
   return (
-    <div>ForgotPasswordPage</div>
-  )
+    <>
+        <div>
+            <button></button>
+            <img src="" alt="" />
+            <input type="text" />
+            <button></button>
+        </div>
+    </>
+  );
 }
