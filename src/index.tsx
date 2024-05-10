@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import NavbarPage from "./pages/NavbarPage/NavbarPage";
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignupPage/SignupPage';
@@ -37,7 +38,26 @@ function App() {
   )
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+function Main() {
+  // Custom hook to get the current location
+  const location = useLocation();
+
+  // Determine if the current page is one of the auth pages
+  const isAuthPage = ["/login", "/signup", "/forgot-password"].includes(
+    location.pathname
+  );
+
+  return (
+    <>
+      {!isAuthPage && <NavbarPage />}
+      <HomePage />
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 root.render(
 

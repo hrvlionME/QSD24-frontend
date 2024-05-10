@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--nav-bg); /* Change background color as needed */
+  height: 60px;
+  padding: 0.5rem 0;
+  box-shadow: var(--navbar-shadow) 0 10px 10px -10px;
+  position: relative;
+  transition: all 0.5s ease;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor; /* Change icon color as needed */
+}
+
+/* Hide the symbols from direct view */
+svg {
+  display: none;
+}
