@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ForgotPasswordPage.module.css';
+import bg from '../../assets/images/auth_bg.jpg';
 import image from '../../assets/images/forgotPassword.png'
 import { FiArrowLeftCircle } from "react-icons/fi";
 import { Link } from 'react-router-dom';
@@ -41,12 +42,14 @@ export default function ForgotPassowrdPage() {
 
   return (
     <>
-      <div className={styles.root}>
-        <Link  to="/login" className={styles.backArrow}><FiArrowLeftCircle/></Link>
-        <img src={image} alt="" className={styles.img} />
-        <input type="text" className={`${styles.emailInput} ${error && styles.errorInput}`} placeholder="Email address" value={email} onChange={handleEmailChange} />
-        {error && <p className={styles.errorText}>{error}</p>}
-        <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>Send email</button>
+      <div  style={{ backgroundImage: `url(${bg})`}} className={styles.background}>
+        <div className={styles.root}>
+          <Link  to="/login" className={styles.backArrow}><FiArrowLeftCircle/></Link>
+          <img src={image} alt="" className={styles.img} />
+          <input type="text" className={`${styles.emailInput} ${error && styles.errorInput}`} placeholder="Email address" value={email} onChange={handleEmailChange} />
+          {error && <p className={styles.errorText}>{error}</p>}
+          <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>Send email</button>
+        </div>
       </div>
     </>
   );
