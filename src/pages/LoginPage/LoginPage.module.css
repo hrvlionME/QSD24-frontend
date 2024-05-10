@@ -1,0 +1,42 @@
+:root {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 50px;
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 0 15px;
+}
+.image {
+    width: 100%;
+}
+.input {
+    padding: 7px 10px;
+    margin: 5px -10px;
+    border: 1px solid #B5B1FF;
+    width: 100%;
+    border-radius: 5px;
+}
+.input:focus {
+    outline: none;
+    background-color: #f6f5ff;
+}
+.button {
+    padding: 7px 20px;
+    margin: 5px -10px;
+    width: calc(100% + 20px);
+    background-color: #B5B1FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.link {
+    text-decoration: none;
+}
