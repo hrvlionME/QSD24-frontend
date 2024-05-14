@@ -4,6 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import womenImg from "../../assets/images/women.webp";
 import menImg from "../../assets/images/men.webp";
 import childrenImg from "../../assets/images/children.webp";
+import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
 
 export default function HomePage() {
   return (
@@ -52,6 +53,7 @@ export default function HomePage() {
         </div>
       </div>
       <Footer />
+      <NewInThisWeek></NewInThisWeek>
     </>
   );
 }
