@@ -1,5 +1,9 @@
+import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
+
 export default function HomePage() {
   return (
-    <div>HomePage</div>
+    <>
+      <NewInThisWeek></NewInThisWeek>
+    </>
   )
 }

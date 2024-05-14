@@ -7,7 +7,6 @@ import SignUpPage from './pages/SignupPage/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage/ForgotPasswordPage';
 import './colors.css';
 
-
 import './index.css';
 import './colors.css'
 
