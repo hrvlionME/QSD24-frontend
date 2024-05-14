@@ -1,11 +1,21 @@
 .main {
     background-color: var(--sale-card-text);
     color: white;
+<<<<<<< HEAD
+=======
+    margin-top: 50px;
+>>>>>>> f4ccf06 (Added footer)
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
 }
+<<<<<<< HEAD
+=======
+div {
+    margin: 4px 0;
+}
+>>>>>>> f4ccf06 (Added footer)
 .align {
     display: flex;
     align-items: center;
@@ -39,9 +49,12 @@ hr {
 }
 .infoColumn {
     width: 270px;
+<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     gap: 2px;
+=======
+>>>>>>> f4ccf06 (Added footer)
 }
 .link {
     color: white;
