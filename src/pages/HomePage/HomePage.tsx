@@ -54,7 +54,6 @@ export default function HomePage() {
       </div>
       <Footer />
       <NewInThisWeek></NewInThisWeek>
-      <Footer />
     </>
   );
 }
