@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignupPage/SignupPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage/ForgotPasswordPage';
+import './colors.css';
 import './index.css';
 import './colors.css'
 import Faq from './pages/FAQ/Faq';
