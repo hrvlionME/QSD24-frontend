@@ -10,6 +10,7 @@ import './colors.css';
 
 import './index.css';
 import './colors.css'
+import ContactUs from './pages/ContactUsPage/ContactUs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={ <LoginPage /> } />
         <Route path="/signup" element={ <SignUpPage /> } />
         <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
+        <Route path="/contact-us" element={ <ContactUs/> } />
       </Routes>
     </BrowserRouter>
   )
