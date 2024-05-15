@@ -14,8 +14,10 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage/ForgotPasswordPage";
 
-import "./index.css";
-import "./colors.css";
+
+import './index.css';
+import './colors.css'
+import Faq from './pages/FAQ/Faq';
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/faq" element={ <Faq /> } />
           <Route path="/shop/:category/:id" element={<ShopPage />} />
         </Route>
       </Routes>
