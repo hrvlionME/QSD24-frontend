@@ -74,7 +74,6 @@
 .cardImageWrapper:hover .buttonOnImage {
     display: block;
 }
-
 .cardImageWrapper:hover .cardImage {
     filter: brightness(0.6);
 }
