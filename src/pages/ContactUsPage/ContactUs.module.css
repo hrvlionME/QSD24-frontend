@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap');
+
+.container{
+
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: var(--cart-bg);
+}
+
+.formBox {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.formBox h3 {
+    color: var(--primary-text);
+    text-align: center;
+    font-family: "Glory", sans-serif;
+    font-weight: 200px;
+    font-size: 24px;
+    padding-top: 24px;
+}
+
+
+.formBox input {
+    border: 1px solid var(--border-bottom);
+    border-radius: 5px;
+    font-family: "Glory", sans-serif;
+    padding: 5px;
+}
+
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../assets/images/home-hero-banner-large.502adf9883d2d28f6968.jpeg');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.formBox input {
+    width: calc(100% - 10px);
+}
+
+.formBox label {
+    color: var(--primary-text);
+    display: block;
+    font-family: Glory, sans-serif;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.formBox textarea{
+    max-height: 150px;
+    min-height: 50px;
+    min-width: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+}
+.btnBox {
+    display: flex;
+    justify-content: start;
+}
+.btn{
+    margin-top: 10px;
+    padding: 10px 15px;
+    width: 150px;
+    background-color: var(--logo-purple);
+    color: var(--auth-submit-btn-color);
+    border: none;
+    border-radius: 5px;
+}
+.btn:disabled{
+    opacity: 0.5;
+}
+.btn:hover{
+    opacity: 0.5;
+    transform: scale(1.01);
+    cursor: pointer;
+}

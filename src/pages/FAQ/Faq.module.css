@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap');
+
+.container{
+
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: var(--cart-bg);
+}
+
+.heading{
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    width: 80%;
+}
+
+.headingItem{
+    align-items: center;
+    background-color: var(--dark-transparent-3);
+    color: var(--primary-text);
+    cursor: pointer;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    font-family: "Glory", sans-serif;
+    font-size: 20px;
+    gap: 5px;
+    justify-content: space-around;
+    min-width: 200px;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+.headingItemSelected{
+    align-items: center;
+    background-color: var(--selected-tab);
+    color: var(--selected-tab-icon);
+    cursor: pointer;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    font-family: Glory, sans-serif;
+    font-size: 20px;
+    gap: 5px;
+    justify-content: space-around;
+    min-width: 200px;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+
+.items {
+    width: 80%;
+}
+
+.title {
+    color: var(--primary-text);
+    margin: 30px 0;
+    font-size: 22px;
+    font-family: 'Glory', sans-serif;
+    font-weight:600;
+}
+
+.headingItem svg {
+    height:30px;
+    width:30px;
+}
+
+.headingItem h4 {
+    display: block;
+    margin: 0;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+
+.headingItemSelected svg {
+    height:30px;
+    width:30px;
+}
+
+.headingItemSelected h4 {
+    color: var(--primary-text);
+    display: block;
+    margin: 0;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+
+.question {
+    gap: 10px;
+    color: var(--primary-text);
+}
+
+
+.questionExpanded {
+    color: var(--logo-purple);   
+}
+
+.answer {
+    margin-left: 20px;
+}
+
+.item {
+    border: 1px solid var(--primary-text);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 25px 15px;
+    transition: height .5s ease-in;
+    
+}
+
+.link {
+    text-decoration: none;
+    color: var(--logo-purple);
+}
+
+.footer {
+    width: 80%;
+    background-color: var(--search-border-bottom);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 40px 20px;
+
+}

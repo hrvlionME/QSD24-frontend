@@ -1,0 +1,53 @@
+.main {
+    background-color: var(--sale-card-text);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+.align {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    font-size: 1.8rem;
+}
+.icon {
+    color: white;
+}
+.icon:hover {
+    color: white;
+    scale: 1.2;
+    transition: 0.2s;
+    cursor: pointer;
+}
+hr {
+    height: 1px;
+    background-color: white;
+    width: calc(60% + 50px);
+    border-radius: 5px;
+}
+.info {
+    text-align: center;
+    margin: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: 100%;
+}
+.infoColumn {
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.link {
+    color: white;
+    text-decoration: none;
+}
+.link:hover {
+    scale: 1.1;
+    font-weight: 500;
+}

@@ -1,0 +1,101 @@
+.section {
+    margin: 60px 0 90px 0;
+}
+.title {
+    text-align: center;
+    margin-bottom: 70px;
+    font-size: 3.5rem;
+    font-weight: 600;
+    font-family: "Train One", cursive;
+}
+.cardsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.card {
+    flex: 0 0 250px;
+    border-radius: 15px;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.cardImage {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    height: 350px;
+    cursor: pointer;
+}
+.cardContent {
+    padding: 15px;
+    margin-top: -42px;
+}
+.productPrice {
+    background-color: var(--sale-card-text);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.productName {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 10px 0 5px 0;
+}
+.productDescription {
+    font-size: 0.8rem;
+    color: var(--sale-card-text);
+    margin: 0;
+}
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: var(--sale-card-text);
+    margin: 20px 5px 0 5px;
+}
+.buttonOnImage {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+}
+.cardImageWrapper:hover .buttonOnImage {
+    display: block;
+}
+.cardImageWrapper:hover .cardImage {
+    filter: brightness(0.6);
+}
+.dots {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    gap: 10px;
+}
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: var(--size-guide-border);
+    cursor: pointer;
+}
+.activeDot {
+    background-color: var(--sale-card-text);
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+}
