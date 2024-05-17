@@ -1,0 +1,155 @@
+.heroSection, .misionVisionSection {
+    position: relative;
+}
+.heroImage {
+    background-image: url("../../assets/images/web_shop1.webp");
+    background-size: cover;
+    background-position: center top 35%;
+    width: 100%;
+    height: 500px;
+}
+.heroContent {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    transform: translateY(-50%);
+    width: 70%;
+}
+.heroSmText {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+.heroLgText {
+    color: white;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+}
+.heroButton {
+    display: block;
+    font-weight: 700;
+    margin-top: 20px;
+    width: 170px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 18px;
+    border-radius: 5px;
+    text-align: center;
+}
+.heroButton:hover {
+    scale: 1.05;
+}
+.categorySection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.categoryLink {
+    width: 100%;
+    height: 150px;
+    text-decoration: none;
+    background-size: cover;
+    background-position: center top 50%;
+    position: relative;
+    opacity: 0.7;
+}
+.categoryLinkText {
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 500;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.categoryLink:hover {
+    opacity: 1;
+}
+.categoryLink:hover .categoryLinkText {
+    display: block;
+}
+.misionVisionImage {
+    background-image: url("../../assets/images/parallexBg.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 700px;
+}
+.misionVisionBoxWrapper {
+    width: 570px;
+    text-align: center;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 25px 0;
+    opacity: 0.95;
+}
+.misionVisionBox {
+    border: 3px solid var(--sale-card-text);
+    padding: 35px 40px;
+    border-radius: 25px 0;
+}
+.misionVisionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    color: var(--sale-card-text);
+    font-weight: 500;
+}
+.misionVisionText {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 18px;
+}
+.heroSection:hover .heroImage, .misionVisionSection:hover .misionVisionImage {
+    filter: brightness(0.8);
+}
+
+@media (max-width: 768px) {
+    .heroContent {
+        left: 50px;
+    }
+    .heroLgText {
+        font-size: 4rem;
+    }
+    .heroSmText {
+        font-size: 1.2rem;
+    }
+    .heroButton {
+        font-size: 0.8rem;
+        width: 150px;
+        padding: 16px;
+    }
+    .categorySection {
+        flex-direction: column;
+        width: 90%;
+    }
+    .categoryLink {
+        opacity: 1;
+    }
+    .categoryLinkText {
+        display: block;
+    }
+    .misionVisionBoxWrapper {
+        width: 80%;
+    }
+    .misionVisionBox {
+        padding: 25px 40px;
+    }
+    .misionVisionText {
+        font-size: 0.75rem;
+        margin-bottom: 15px;
+    }
+}
