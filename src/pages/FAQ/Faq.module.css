@@ -100,12 +100,17 @@
 .question {
     gap: 10px;
     color: var(--primary-text);
+    margin-left: 2px;
 }
+
+
 
 
 .questionExpanded {
     color: var(--logo-purple);   
+    margin-left: 2px;
 }
+
 
 .answer {
     margin-left: 20px;
