@@ -28,16 +28,18 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <HomePage /> } />
-          <Route path="/login" element={ <LoginPage /> } />
-          <Route path="/signup" element={ <SignUpPage /> } />
-          <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
-          <Route path="/sendCode" element={ <TwoFA /> } />
-          <Route path="/contact-us" element={ <ContactUs /> }></Route>
-          <Route path="/faq" element={ <Faq /> } />
-          <Route path="/shop/favorites/:id" element={ <FavoritesPage /> } />
-          <Route path="/profile" element={ <UPUserDataPage /> } />
-          <Route path="/profile/favorites" element={ <UPFavoritesPage /> } />
+          <Route path="/" element={<Main />}>
+            <Route path="/" element={ <HomePage /> } />
+            <Route path="/login" element={ <LoginPage /> } />
+            <Route path="/signup" element={ <SignUpPage /> } />
+            <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
+            <Route path="/sendCode" element={ <TwoFA /> } />
+            <Route path="/contact-us" element={ <ContactUs /> }></Route>
+            <Route path="/faq" element={ <Faq /> } />
+            <Route path="/shop/favorites/:id" element={ <FavoritesPage /> } />
+            <Route path="/profile" element={ <UPUserDataPage /> } />
+            <Route path="/profile/favorites" element={ <UPFavoritesPage /> } />
+          </Route>
         </Routes>
       </BrowserRouter>
     </Provider>
