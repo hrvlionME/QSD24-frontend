@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap');
+
 .container{
 
     padding: 30px;
@@ -17,8 +19,10 @@
 }
 
 .formBox h3 {
+    color: var(--primary-text);
     text-align: center;
-    font-family: Glory, sans-serif;
+    font-family: "Glory", sans-serif;
+    font-weight: 200px;
     font-size: 24px;
     padding-top: 24px;
 }
@@ -27,7 +31,7 @@
 .formBox input {
     border: 1px solid var(--border-bottom);
     border-radius: 5px;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: "Glory", sans-serif;
     padding: 5px;
 }
 
