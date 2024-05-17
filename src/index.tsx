@@ -19,9 +19,12 @@ import './index.css';
 import './colors.css'
 import Faq from './pages/FAQ/Faq';
 import ContactUs from './pages/ContactUsPage/ContactUs';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
   return (
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}>
@@ -35,6 +38,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+  </Provider>
   );
 }
 
