@@ -1,0 +1,129 @@
+/* Navbar section */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--nav-bg); /* Change background color as needed */
+  height: 60px;
+  padding: 0.5rem 0;
+  box-shadow: var(--navbar-shadow) 0 10px 10px -10px;
+  position: relative;
+  transition: all 0.5s ease;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Navbar section left part */
+.nav_left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav_left_logo {
+  height: 40px;
+  margin-left: 16px;
+}
+
+.nav_left_logo_container {
+  align-items: center;
+  display: flex;
+  font-family: Glory, sans-serif;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.nav_left_text {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.nav_left_text a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav_left_text_container {
+  display: flex;
+}
+
+.nav_left_text_selected {
+  border-bottom: 2px solid var(--bg-color);
+  padding-bottom: 2px;
+}
+
+/* Navbar section right part */
+.nav_right {
+  display: flex;
+  gap: 1rem;
+  margin-right: 10px;
+}
+
+.nav_right_icon {
+  align-items: center;
+  background-color: initial;
+  border: none;
+  color: var(--logo-purple);
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  padding: 0;
+  width: 20px;
+}
+
+.nav_right_icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav_right_icon svg:hover {
+  transform: scale(1.2);
+}
+
+.nav_right_img {
+  display: flex;
+  align-items: center;
+}
+
+.nav_right_img:hover {
+  transform: scale(1.05);
+}
+
+.nav_right_searchContainer {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-color-1);
+  padding: 5px;
+  width: 200px;
+  margin: 20px auto;
+}
+
+.nav_right_searchIcon {
+  font-size: 20px;
+  color: var(--primary-color-1);
+  margin-right: 10px;
+}
+
+.nav_right_searchInput {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 14px;
+  color: var(--primary-color-1);
+}
+
+.nav_right_searchInput::placeholder {
+  color: var(--primary-color-1);
+}
+
+ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+
+.nav_right img {
+  zoom: 0.8;
+  height: 40px;
+  width: 40px;
+}

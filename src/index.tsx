@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Outlet,
+} from "react-router-dom";
 import NavbarPage from "./pages/NavbarPage/NavbarPage";
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -50,7 +56,7 @@ function Main() {
   return (
     <>
       {!isAuthPage && <NavbarPage />}
-      <HomePage />
+      <Outlet />
     </>
   );
 }
