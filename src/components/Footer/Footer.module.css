@@ -44,9 +44,6 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 .link {
   color: white;
