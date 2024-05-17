@@ -9,6 +9,7 @@ import './index.css';
 import './colors.css'
 import Faq from './pages/FAQ/Faq';
 import ContactUs from './pages/ContactUsPage/ContactUs';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Route path="/login" element={ <LoginPage /> } />
         <Route path="/signup" element={ <SignUpPage /> } />
         <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
-        <Route path="/contact-us" element={ <ContactUs /> }></Route>
+        <Route path="/contact-us" element={ <ContactUs /> } />
         <Route path="/faq" element={ <Faq /> } />
+        <Route path="/shop/favorites/:id" element={ <FavoritesPage /> } />
       </Routes>
     </BrowserRouter>
   )
