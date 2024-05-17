@@ -7,9 +7,6 @@
     align-items: center;
     padding: 30px;
 }
-div {
-    margin: 4px 0;
-}
 .align {
     display: flex;
     align-items: center;
@@ -43,6 +40,9 @@ hr {
 }
 .infoColumn {
     width: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 .link {
     color: white;
