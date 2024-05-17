@@ -106,6 +106,7 @@
     margin-bottom: 18px;
     color: var(--sale-card-text);
     font-weight: 500;
+    font-family: "Train One", system-ui;
 }
 .misionVisionText {
     display: flex;
