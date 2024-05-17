@@ -3,6 +3,7 @@ import styles from './Faq.module.css';
 import { Link } from 'react-router-dom';
 import { FiPlus } from "react-icons/fi";
 import { FiMinus} from "react-icons/fi"
+import Footer from '../../components/Footer/Footer';
 
 export default function Faq() {
   const [questions, setQuestions] = useState([
@@ -131,7 +132,9 @@ export default function Faq() {
             <Link to='/contact-us' className={styles.link}> Or contact us directly here.</Link>
             </span>
        </div>
+       
     </div>
+    <Footer/>
   </>
   );
 }
