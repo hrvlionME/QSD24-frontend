@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap');
+
 .container{
 
     padding: 30px;
@@ -29,7 +31,7 @@
     display: flex;
     flex: 1 1;
     flex-direction: column;
-    font-family: Glory, sans-serif;
+    font-family: "Glory", sans-serif;
     font-size: 20px;
     gap: 5px;
     justify-content: space-around;
@@ -64,6 +66,8 @@
     color: var(--primary-text);
     margin: 30px 0;
     font-size: 22px;
+    font-family: 'Glory', sans-serif;
+    font-weight:600;
 }
 
 .headingItem svg {
@@ -125,7 +129,7 @@
 }
 
 .footer {
-    width: 78%;
+    width: 80%;
     background-color: var(--search-border-bottom);
     display: flex;
     flex-direction: column;
