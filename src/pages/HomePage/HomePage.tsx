@@ -5,6 +5,7 @@ import womenImg from "../../assets/images/women.webp";
 import menImg from "../../assets/images/men.webp";
 import childrenImg from "../../assets/images/children.webp";
 import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
+import ChatComponent from "../../components/ChatComponent/ChatComponent";
 
 export default function HomePage() {
   return (
@@ -54,6 +55,7 @@ export default function HomePage() {
       </div>
       <Footer />
       <NewInThisWeek></NewInThisWeek>
+      <ChatComponent />
     </>
   );
 }
