@@ -9,6 +9,7 @@ import './index.css';
 import './colors.css'
 import Faq from './pages/FAQ/Faq';
 import ContactUs from './pages/ContactUsPage/ContactUs';
+import TwoFA from './pages/TwoFA/TwoFA';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <HomePage /> } />
         <Route path="/login" element={ <LoginPage /> } />
+        <Route path="/sendCode" element={ <TwoFA /> } />
         <Route path="/signup" element={ <SignUpPage /> } />
         <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
         <Route path="/contact-us" element={ <ContactUs /> }></Route>
