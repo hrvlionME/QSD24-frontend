@@ -12,6 +12,7 @@ import ContactUs from './pages/ContactUsPage/ContactUs';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
+import TwoFA from './pages/TwoFA/TwoFA';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/signup" element={ <SignUpPage /> } />
           <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
+          <Route path="/sendCode" element={ <TwoFA /> } />
           <Route path="/contact-us" element={ <ContactUs /> }></Route>
           <Route path="/faq" element={ <Faq /> } />
           <Route path="/favorites/shop/:id" element={ <FavoritesPage /> } />
