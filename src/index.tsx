@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import TwoFA from './pages/TwoFA/TwoFA';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
 function App() {
   return (

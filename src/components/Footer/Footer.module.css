@@ -7,10 +7,6 @@
     padding: 30px;
 }
 
-div {
-    margin: 4px 0;
-}
-
 .align {
     display: flex;
     align-items: center;
