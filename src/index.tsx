@@ -14,7 +14,7 @@ import store from './redux/store';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import TwoFA from './pages/TwoFA/TwoFA';
 import UPFavoritesPage from './pages/UserPanel/UPFavoritesPage/UPFavoritesPage';
-import UserPanel from './pages/UserPanel/UserPanel';
+import UPUserDataPage from './pages/UserPanel/UPUserDataPage/UPUserDataPage';
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
           <Route path="/contact-us" element={ <ContactUs /> }></Route>
           <Route path="/faq" element={ <Faq /> } />
           <Route path="/shop/favorites/:id" element={ <FavoritesPage /> } />
+          <Route path="/profile" element={ <UPUserDataPage /> } />
           <Route path="/profile/favorites" element={ <UPFavoritesPage /> } />
         </Routes>
       </BrowserRouter>
