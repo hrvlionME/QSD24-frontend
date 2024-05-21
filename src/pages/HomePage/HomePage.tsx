@@ -7,6 +7,7 @@ import womenImg from '../../assets/images/women.webp'
 import menImg from '../../assets/images/men.webp'
 import childrenImg from '../../assets/images/children.webp'
 import ChatComponent from '../../components/ChatComponent/ChatComponent';
+import MenSizeGuide from '../../components/SizeInfo/Men/MenSizeGuide';
 
 export default function HomePage() {
   return (
@@ -45,6 +46,7 @@ export default function HomePage() {
       <NewInThisWeek></NewInThisWeek>
       <Footer />
       <ChatComponent />
+      <MenSizeGuide/>
     </>
   )
 }
