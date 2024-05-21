@@ -7,7 +7,7 @@ import {
   useLocation,
   Outlet,
 } from "react-router-dom";
-import NavbarPage from "./pages/NavbarPage/NavbarPage";
+import NavbarPage from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
