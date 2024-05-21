@@ -11,6 +11,7 @@ import Faq from './pages/FAQ/Faq';
 import ContactUs from './pages/ContactUsPage/ContactUs';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/forgot-password" element={ <ForgotPasswordPage /> } />
           <Route path="/contact-us" element={ <ContactUs /> }></Route>
           <Route path="/faq" element={ <Faq /> } />
+          <Route path="/favorites/shop/:id" element={ <FavoritesPage /> } />
         </Routes>
       </BrowserRouter>
     </Provider>
