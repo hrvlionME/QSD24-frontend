@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom'
 import styles from './HomePage.module.css'
 import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
