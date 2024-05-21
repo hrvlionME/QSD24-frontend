@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap');
 
-=======
->>>>>>> 8bbe104 (Added "new in this week" section)
-* {
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
