@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './TwoFA.module.css';
 import image from '../../assets/images/forgotPassword.png'
 import { FiArrowLeftCircle } from "react-icons/fi";
@@ -10,6 +10,7 @@ export default function TwoFA() {
   const [code, setCode] = useState(Array(6).fill(""));
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [error, setError] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   function handleCodeChange(event: React.ChangeEvent<HTMLInputElement>, index: number) {
     const { value } = event.target;
@@ -47,6 +48,12 @@ export default function TwoFA() {
   }
   */
 
+
+  useEffect(() => {
+    const allFieldsFilled = code.every(digit => digit !== "");
+    setIsButtonDisabled(!allFieldsFilled);
+  }, [code]);
+
   return (
     <>
         <div className={styles.root}>
@@ -72,7 +79,7 @@ export default function TwoFA() {
             ))}
           </div>
           <p className={styles.message}>Enter 6-digit code that has been sent to your mail.</p>
-          <button className={styles.btn} onClick={handleSubmit}>CONFIRM</button>
+          <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>CONFIRM</button>
         </div>
     </>
   );
