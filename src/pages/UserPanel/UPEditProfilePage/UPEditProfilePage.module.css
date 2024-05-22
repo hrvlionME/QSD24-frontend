@@ -8,35 +8,10 @@
 }
 .content {
     width: calc(95% - 180px);
-}
-.buttonsSection {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 50px 0;
-    border-bottom: 2px solid var(--border-bottom);
-}
-.button {
-    border: none;
-    border: 1px solid var(--border-bottom);
-    color: var(--light-blue);
-    padding: 45px 45px 35px 45px;
-    font-size: 2.7rem;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: var(--primary-color-2);
-}
-.button:hover {
-    border-color: var(--light-blue);
-    scale: 1.02;
-}
-.buttonText {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1.5rem;
-    font-weight: 500;
+    margin-top: 50px;
 }
 .dataSection {
-    padding: 20px 0 40px 0; 
+    padding: 40px 0;
 }
 .data {
     display: flex;
@@ -53,6 +28,24 @@
     padding: 4px 7px 5px 7px;
     border: 1px solid var(--border-bottom);
     border-radius: 3px;
+    color: grey;
+    outline: none;
+}
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 60px;
+}
+.button {
+    border: none;
+    background-color: var(--logo-purple);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Glory, sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
@@ -61,11 +54,15 @@
     }
     .content {
         width: 100%;
+        margin-top: 30px;
     }
-    .buttonsSection {
-        padding: 30px 0 50px 0;
+    .dataSection {
+        padding: 30px 0;
     }
     .data input {
         width: 100%;
+    }
+    .buttonWrapper {
+        margin-right: 15px;
     }
 }
