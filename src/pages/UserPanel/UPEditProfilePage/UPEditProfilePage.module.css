@@ -47,6 +47,9 @@
     font-weight: 600;
     letter-spacing: 1px;
 }
+.button:hover {
+    opacity: 0.9;
+}
 
 @media (max-width: 768px) {
     .page {
