@@ -46,7 +46,6 @@ export default function HomePage() {
       <NewInThisWeek></NewInThisWeek>
       <Footer />
       <ChatComponent />
-      <Footer />
     </>
   )
 }
