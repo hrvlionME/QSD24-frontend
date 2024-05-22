@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import styles from './HomePage.module.css'
+import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
 import Footer from "../../components/Footer/Footer";
 import womenImg from "../../assets/images/women.webp";
 import menImg from "../../assets/images/men.webp";
@@ -58,5 +59,5 @@ export default function HomePage() {
       <ChatComponent />
       <Footer />
     </>
-  );
+  )
 }
