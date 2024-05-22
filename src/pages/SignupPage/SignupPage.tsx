@@ -50,7 +50,7 @@ export default function SignupPage() {
         </div>
         {!isValidPassword && <p className={styles.errorMessage}>Password must have at least 8 characters, one capital letter, one small letter, one number, and one special character.</p>}
         <div style={{ position: "relative" }}>
-          <input type={showPasswordConfirm ? "text" : "password"} onChange={validatePasswordConfirm} className={`${styles.input} ${isValidPasswordConfirm ? styles.validInput : styles.invalidInput}`} placeholder="Password" autoComplete="off" spellCheck="false" required />
+          <input type={showPasswordConfirm ? "text" : "password"} onChange={validatePasswordConfirm} className={`${styles.input} ${isValidPasswordConfirm ? styles.validInput : styles.invalidInput}`} placeholder="Confirm password" autoComplete="off" spellCheck="false" required />
           {showPasswordConfirm ?
             <AiFillEyeInvisible onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} /> :
             <AiFillEye onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} />
