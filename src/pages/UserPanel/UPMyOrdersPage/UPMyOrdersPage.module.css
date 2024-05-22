@@ -1,0 +1,35 @@
+.page {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 600px;
+}
+.content {
+    text-align: center;
+    width: 80%;
+    margin: 80px 0;
+}
+.button {
+    border: none;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    margin-top: 25px;
+    background-color: rgb(225, 224, 250);
+    color: var(--logo-purple);
+    font-family: Glory, sans-serif;
+    font-size: 1.01rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .page {
+        flex-direction: column;
+        justify-content: start;
+    }
+    .content {
+        margin: 30px auto 100px auto;
+    }
+}
