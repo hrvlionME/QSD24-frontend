@@ -1,0 +1,26 @@
+.nav {
+    margin: 55px 0 0 20px;
+    font-family: Glory, sans-serif;
+    width: 160px;
+}
+.listTitle {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.list {
+    margin: 25px 0 50px -40px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+.link {
+    text-decoration: none;
+    color: black;
+    padding: 0 1px;
+}
+.active {
+    border-bottom: 2px solid var(--light-blue);
+}

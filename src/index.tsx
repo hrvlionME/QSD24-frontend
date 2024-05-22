@@ -21,7 +21,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
 import UPFavoritesPage from './pages/UserPanel/UPFavoritesPage/UPFavoritesPage';
-import UserPanel from './pages/UserPanel/UserPanel';
+import UPUserDataPage from './pages/UserPanel/UPUserDataPage/UPUserDataPage';
 import TwoFA from './pages/TwoFA/TwoFA';
 
 function App() {
@@ -38,6 +38,7 @@ function App() {
           <Route path="/contact-us" element={ <ContactUs /> }></Route>
           <Route path="/faq" element={ <Faq /> } />
           <Route path="/shop/:category/:id" element={<ShopPage />} />
+          <Route path="/profile" element={ <UPUserDataPage /> } />
           <Route path="/profile/favorites" element={ <UPFavoritesPage /> } />
         </Route>
       </Routes>
