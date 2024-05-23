@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { LuXCircle } from "react-icons/lu";
-import styles from './MenSizeGuide.module.css';
+import styles from '../SizeGuide.module.css';
 import image1 from './../../../assets/images/men2.ca0ea170ba9cde809262.png';
 import image2 from './../../../assets/images/men1.9ca3c6bd9512dc4c88c2.png';
-
-
-
+import { TbRuler } from "react-icons/tb";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 
 Modal.setAppElement('#root');
 
 
-const SizeGuideModal: React.FC = () => {
+export default function MenSizeGuide()  {
   const [modalIsOpen, setModalIsOpen] = useState(false); 
 
   const openModal = () => {
@@ -26,7 +29,7 @@ const SizeGuideModal: React.FC = () => {
 
   return (
     <div>
-      <button onClick={openModal}>Size Guide</button>
+      <div onClick={openModal}><TbRuler className={styles.icon}/>Size Guide</div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -34,7 +37,16 @@ const SizeGuideModal: React.FC = () => {
         className={styles.sizeGuideModal}
         overlayClassName="sizeGuideOverlay"
       >
-        {/* Slide 1
+         <Swiper
+      modules={[Navigation, Pagination]}
+      spaceBetween={50}
+      slidesPerView={1}
+      navigation
+      pagination={{ clickable: true }}
+      onSwiper={(swiper : any) => console.log(swiper)}
+      onSlideChange={() => console.log('slide change')}
+    >
+      <SwiperSlide>
         <button onClick={closeModal} className={styles.closeButton}><LuXCircle/></button>
         <div className={styles.sizeGuideContent}>
           <h2>Size Guide</h2>
@@ -153,7 +165,8 @@ const SizeGuideModal: React.FC = () => {
             </div>
         </div>
         </div>
-      */}
+        </SwiperSlide>
+        <SwiperSlide>
         <button onClick={closeModal} className={styles.closeButton}><LuXCircle/></button>
         <div className={styles.sizeGuideContent}>
           <h2>Size Guide</h2>
@@ -241,10 +254,9 @@ const SizeGuideModal: React.FC = () => {
             </div>
         </div>
         </div>
-       
+        </SwiperSlide>
+       </Swiper>
       </Modal>
     </div>
   );
 };
-
-export default SizeGuideModal;

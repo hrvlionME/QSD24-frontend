@@ -51,6 +51,13 @@
     z-index: 100;
   }
   
+  .openButton {
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: 'Glory', sans-serif;
+  }
   .closeButton {
     position: absolute;
     top: 10px;
@@ -60,6 +67,10 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
+
+  .icon{
+    font-size: 1.2rem;
+  }
   
   .sizeGuideContent {
     text-align: center;
@@ -67,6 +78,7 @@
   
   .sizeGuideContent h2 {
     text-align: left;
+    font-size: 1.2rem;
   }
   
   .sizeGuideContainer img {
