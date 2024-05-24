@@ -1,0 +1,10 @@
+.title {
+    padding: 30px 0;
+    font-size: 1.9rem;
+    font-weight: 550;
+    border-bottom: 2px solid var(--border-bottom);
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Glory, sans-serif;
+}
