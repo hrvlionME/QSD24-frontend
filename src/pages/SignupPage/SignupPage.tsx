@@ -17,6 +17,7 @@ export default function SignupPage() {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidPasswordConfirm, setIsValidPasswordConfirm] = useState(true);
+  const [error, setError] = useState(null);
 
   function validateEmail(event: any) {
     setEmail(event.target.value);
@@ -35,15 +36,21 @@ export default function SignupPage() {
     setIsValidPasswordConfirm(password === event.target.value);
   }
 
-  function formSubmit() {
+  async function formSubmit() {
     const requestBody = {
       first_name: firstName,
       last_name: lastName,
       email: email,
       password: password,
-      password_confirm: passwordConfirm
+      confirm_password: passwordConfirm
     };
-    register(requestBody);
+   
+    try {
+      await register(requestBody);
+   
+    } catch (error : any) {
+      setError(error.response ? error.response.data.message : 'Registration failed');
+    }
   }
 
   return (
