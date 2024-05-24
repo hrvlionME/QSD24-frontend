@@ -1,5 +1,5 @@
 .section {
-    margin: 60px 0 90px 0;
+    margin: 60px 0 100px 0;
 }
 .title {
     text-align: center;
@@ -8,23 +8,13 @@
     font-weight: 600;
     font-family: "Train One", cursive;
 }
-.cardsContainer {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
 .card {
-    flex: 0 0 250px;
-    border-radius: 15px;
-    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
-    flex-wrap: wrap;
-    gap: 50px;
-}
-.card {
-    border-radius: 15px;
-    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
-    width: 250px;
+    width: 245px !important;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     position: relative;
+    margin-bottom: 40px;
+    font-family: Glory, sans-serif;
 }
 .cardImage {
     width: 100%;
@@ -40,33 +30,33 @@
     background-color: var(--sale-card-text);
     color: white;
     border: none;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    font-weight: 600;
     width: 100%;
     text-align: center;
     padding: 7px;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
+    font-family: Glory, sans-serif;
 }
 .productName {
-    font-size: 1.4rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 550;
     margin: 10px 0 5px 0;
 }
 .productDescription {
-    font-size: 0.8rem;
-    color: var(--sale-card-text);
+    font-size: 0.9rem;
     margin: 0;
+    color: var(--sale-card-text);
 }
 .cardFooter {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
     font-size: 1.1rem;
+    margin: 25px 5px 0 5px;
     color: var(--sale-card-text);
-    margin: 20px 5px 0 5px;
 }
 .buttonOnImage {
     display: none;
@@ -83,22 +73,6 @@
 }
 .cardImageWrapper:hover .cardImage {
     filter: brightness(0.6);
-}
-.dots {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-    gap: 10px;
-}
-.dot {
-    height: 8px;
-    width: 8px;
-    border-radius: 50%;
-    background-color: var(--size-guide-border);
-    cursor: pointer;
-}
-.activeDot {
-    background-color: var(--sale-card-text);
 }
 
 @media screen and (max-width: 768px) {

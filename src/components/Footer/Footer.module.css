@@ -40,13 +40,10 @@ hr {
   width: 100%;
 }
 .infoColumn {
-    width: 270px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .link {
   color: white;

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import styles from './NewInThisWeek.module.css';
 import { FaRegHeart } from "react-icons/fa";
 
 export default function NewInThisWeek() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [activeDot, setActiveDot] = useState(0);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -12,44 +15,39 @@ export default function NewInThisWeek() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const cards = [
-        { id: 1, price: "100$", name: "Product", description: "Description" },
-        { id: 2, price: "100$", name: "Product", description: "Description" },
-        { id: 3, price: "100$", name: "Product", description: "Description" },
-        { id: 4, price: "100$", name: "Product", description: "Description" },
-        { id: 5, price: "100$", name: "Product", description: "Description" },
-        { id: 6, price: "100$", name: "Product", description: "Description" }
-    ];
-
     const cardsPerRow = Math.floor(windowWidth / 300);
-    const totalDots = cards.length - cardsPerRow + 1;
 
     return (
         <div className={styles.section}>
             <div className={styles.title}>• NEW IN THIS WEEK •</div>
             <div className={styles.cardsContainer}>
-                {cards.slice(activeDot, activeDot + cardsPerRow).map(card => (
-                    <div key={card.id} className={styles.card}>
+                <Swiper
+                    style={{ width: cardsPerRow * 245 + (cardsPerRow - 1) * 30, padding: "10px" }}
+                    modules={[Pagination, Autoplay]}
+                    pagination={{ clickable: true }}
+                    spaceBetween={30}
+                    slidesPerView={cardsPerRow}
+                    autoplay={{ delay: 5000, disableOnInteraction: false }}
+                >
+                {[1,2,3,4,5,6,7,8,9,0].map(() => (
+                    <SwiperSlide className={styles.card}>
                         <div className={styles.cardImageWrapper}>
-                            <img src={`https://picsum.photos/200/300?random=${card.id}`} className={styles.cardImage} alt="product" />
+                            <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
                             <button className={styles.buttonOnImage}>BUY</button>
                         </div>
                         <div className={styles.cardContent}>
-                            <button className={styles.productPrice}>{card.price}</button>
-                            <div className={styles.productName}>{card.name}</div>
-                            <div className={styles.productDescription}>{card.description}</div>
+                            <button className={styles.productPrice}>100$</button>
+                            <div className={styles.productName}>Title</div>
+                            <div className={styles.productDescription}>Description</div>
+                            <div className={styles.productDescription}>Brand: Description</div>
                             <div className={styles.cardFooter}>
                                 <FaRegHeart style={{ cursor: "pointer" }} />
                                 <div style={{ cursor: "pointer" }}>BUY</div>
                             </div>
                         </div>
-                    </div>
+                    </SwiperSlide>
                 ))}
-            </div>
-            <div className={styles.dots}>
-                {[...Array(totalDots)].map((_, index) => (
-                    <div key={index} className={`${styles.dot} ${(index === activeDot) && styles.activeDot}`} onClick={() => setActiveDot(index)}></div>
-                ))}
+                </Swiper>
             </div>
         </div>
     )
