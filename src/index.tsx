@@ -26,7 +26,7 @@ import TwoFA from './pages/TwoFA/TwoFA';
 import UPChangePasswordPage from "./pages/UserPanel/UPChangePasswordPage/UPChangePasswordPage";
 import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import ProductDetailsPage from "./pages/HomePage/ProductDetailsPage/ProductDetailsPage";
+
 
 function App() {
   return (
