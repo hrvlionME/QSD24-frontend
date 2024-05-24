@@ -1,0 +1,19 @@
+.page {
+    margin: 50px 7%;
+}
+.titleWrapper {
+    width: 100%;
+    border-bottom: 2px solid var(--logo-purple);
+    padding: 7px;
+    margin-bottom: 30px;
+}
+.title {
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: Glory, sans-serif;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
