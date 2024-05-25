@@ -4,10 +4,11 @@ import ImageProduct from '../../components/ImageProduct/ImageProduct';
 import SizeGuide from '../../components/SizeGuide/SizeGuide';
 import Footer from '../../components/Footer/Footer';
 import { FiPlus, FiMinus, FiHeart } from "react-icons/fi";
-
+import { PiShoppingCartLight } from "react-icons/pi";
 
 export default function ProductDetailsPage()  {
    
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <>
@@ -36,14 +37,19 @@ export default function ProductDetailsPage()  {
                 </div>
               </div>
               <div className={styles.amountFavorites}>
-                <button>
-                <FiPlus/>
-                <span>5</span>
-                <FiMinus/>
-                </button>
-                <button className={styles.favorite}>
-                <span><FiHeart/>Add to Favorites</span>
-                </button>
+                <div className={styles.amount}>
+                <FiMinus onClick={() => {if(quantity > 1) setQuantity(quantity - 1)}}/>
+                <span>{quantity}</span>
+                 <FiPlus onClick={() => setQuantity(quantity + 1)}/>
+                </div>
+                <div>
+                  <button className={styles.favorite}>
+                    <span><FiHeart/>Add to Favorites</span>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.addCartContainer}>
+                <button className={styles.addCart} disabled><PiShoppingCartLight/>ADD TO CART</button>
               </div>
             </div>
         </div>
