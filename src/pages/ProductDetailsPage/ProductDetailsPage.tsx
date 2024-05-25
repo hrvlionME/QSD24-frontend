@@ -5,6 +5,7 @@ import SizeGuide from '../../components/SizeGuide/SizeGuide';
 import Footer from '../../components/Footer/Footer';
 import { FiPlus, FiMinus, FiHeart } from "react-icons/fi";
 import { PiShoppingCartLight } from "react-icons/pi";
+import Reviews from '../../components/Reviews/Reviews';
 
 export default function ProductDetailsPage()  {
    
@@ -52,7 +53,8 @@ export default function ProductDetailsPage()  {
                 <button className={styles.addCart} disabled><PiShoppingCartLight/>ADD TO CART</button>
               </div>
             </div>
-        </div>
+           </div>
+           <Reviews/>
         <Footer/>
     </>
   );
