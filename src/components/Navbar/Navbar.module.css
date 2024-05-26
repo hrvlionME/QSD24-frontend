@@ -1,16 +1,27 @@
-/* Navbar section */
+/* Navbar.module.css */
 .nav {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   background-color: var(--nav-bg);
-  height: 60px;
-  padding: 0.5rem 0;
+  height: auto;
   box-shadow: var(--navbar-shadow) 0 10px 10px -10px;
   position: relative;
   transition: all 0.5s ease;
   width: 100%;
   z-index: 1000;
+}
+
+.nav_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 76px;
+}
+
+.nav_bottom {
+  width: 100%;
 }
 
 /* Navbar section left part */
@@ -21,7 +32,7 @@
 }
 
 .nav_left_logo {
-  height: 40px;
+  height: 35px;
   margin-left: 16px;
 }
 
@@ -36,11 +47,12 @@
 .nav_left_text {
   margin: 0 1rem;
   cursor: pointer;
+  color: var(--primary-text);
 }
 
 .nav_left_text a {
   text-decoration: none;
-  color: inherit;
+  font-family: Glory, sans-serif;
 }
 
 .nav_left_text_container {
@@ -83,42 +95,17 @@
   transform: scale(1.2);
 }
 
-.nav_right_img {
+.nav_right_profile {
   display: flex;
   align-items: center;
+  width: 35px;
+  height: 35px;
+  color: var(--logo-purple);
 }
 
-.nav_right_img:hover {
+.nav_right_profile:hover {
+  cursor: pointer;
   transform: scale(1.05);
-}
-
-.nav_right_searchContainer {
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid var(--primary-color-1);
-  padding: 5px;
-  flex: 1;
-  margin: 20px auto;
-}
-
-.nav_right_searchIcon {
-  font-size: 20px;
-  color: var(--primary-color-1);
-  margin-right: 10px;
-}
-
-.nav_right_searchInput {
-  border: none;
-  outline: none;
-  min-width: 50px;
-  max-width: 200px;
-  width: 30%;
-  font-size: 14px;
-  color: var(--primary-color-1);
-}
-
-.nav_right_searchInput::placeholder {
-  color: var(--primary-color-1);
 }
 
 ul {
@@ -132,15 +119,10 @@ ul {
   height: 40px;
   width: 40px;
 }
+
 /* MOBILE */
 .mobileMenu {
   display: none; /* Hide mobile menu by default */
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  position: absolute;
-  top: 60px;
   z-index: 1000;
 }
 
@@ -160,6 +142,10 @@ ul {
   margin: 0 20px;
 }
 
+.mobileSearchbar {
+  padding: 0 30px;
+}
+
 .mobileMenu_selection_item.selected,
 .mobileMenu_selection li.selected {
   border-bottom: 2px solid var(--logo-purple);
@@ -177,7 +163,7 @@ ul {
     display: none; /* Hide left text container on mobile */
   }
 
-  .nav_right_searchContainer {
+  .display_none {
     display: none;
   }
 

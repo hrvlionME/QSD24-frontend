@@ -1,0 +1,19 @@
+/* Added styles for NavLinks component */
+.nav_left_text_container {
+  display: flex;
+}
+
+.nav_left_text {
+  margin: 0 1rem;
+  cursor: pointer;
+  color: var(--primary-text);
+}
+
+.nav_left_text a {
+  text-decoration: none;
+  color: var(--primary-text);
+}
+
+.nav_left_text_selected {
+  border-bottom: 2px solid var(--logo-purple);
+}

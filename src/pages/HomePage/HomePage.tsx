@@ -19,13 +19,25 @@ export default function HomePage() {
         </div>
       </div>
       <div className={styles.categorySection}>
-        <Link to="shop/women/1" className={styles.categoryLink} style={{ backgroundImage: `url(${womenImg})` }}>
+        <Link
+          to="shop/women/1"
+          className={styles.categoryLink}
+          style={{ backgroundImage: `url(${womenImg})` }}
+        >
           <div className={styles.categoryLinkText}>WOMEN</div>
         </Link>
-        <Link to="shop/men/1" className={styles.categoryLink} style={{ backgroundImage: `url(${menImg})` }}>
+        <Link
+          to="shop/men/1"
+          className={styles.categoryLink}
+          style={{ backgroundImage: `url(${menImg})` }}
+        >
           <div className={styles.categoryLinkText}>MEN</div>
         </Link>
-        <Link to="shop/children/1" className={styles.categoryLink} style={{ backgroundImage: `url(${childrenImg})` }}>
+        <Link
+          to="shop/children/1"
+          className={styles.categoryLink}
+          style={{ backgroundImage: `url(${childrenImg})` }}
+        >
           <div className={styles.categoryLinkText}>CHILDREN</div>
         </Link>
       </div>
@@ -42,8 +54,8 @@ export default function HomePage() {
         </div>
       </div>
       <NewInThisWeek></NewInThisWeek>
-      <Footer />
       <ChatComponent />
+      <Footer />
     </>
   )
 }
