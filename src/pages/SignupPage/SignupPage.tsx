@@ -45,12 +45,8 @@ export default function SignupPage() {
       confirm_password: passwordConfirm
     };
    
-    try {
-      await register(requestBody);
-   
-    } catch (error : any) {
-      setError(error.response ? error.response.data.message : 'Registration failed');
-    }
+    try { await register(requestBody) }
+    catch (error: any) { setError(error.response ? error.response.data.message : "Registration failed"); }
   }
 
   return (

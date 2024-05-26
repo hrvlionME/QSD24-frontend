@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom'
 import styles from './HomePage.module.css'
 import NewInThisWeek from "./NewInThisWeek/NewInThisWeek";
@@ -7,8 +6,6 @@ import womenImg from '../../assets/images/women.webp'
 import menImg from '../../assets/images/men.webp'
 import childrenImg from '../../assets/images/children.webp'
 import ChatComponent from '../../components/ChatComponent/ChatComponent';
-import ImageProduct from '../../components/ImageProduct/ImageProduct';
-
 
 export default function HomePage() {
   return (
@@ -47,7 +44,6 @@ export default function HomePage() {
       <NewInThisWeek></NewInThisWeek>
       <Footer />
       <ChatComponent />
-      <ImageProduct />
     </>
   )
 }
