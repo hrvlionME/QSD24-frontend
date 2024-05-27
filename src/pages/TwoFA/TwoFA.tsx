@@ -1,8 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './TwoFA.module.css';
-import image from '../../assets/images/forgotPassword.png'
 import { FiArrowLeftCircle } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { sendCode } from '../../services/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { login } from '../../redux/userSlice'; 
 
 
 export default function TwoFA() {
@@ -10,6 +13,12 @@ export default function TwoFA() {
   const [code, setCode] = useState(Array(6).fill(""));
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [error, setError] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const user = useSelector((state: RootState) => state.user);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleCodeChange(event: React.ChangeEvent<HTMLInputElement>, index: number) {
     const { value } = event.target;
@@ -32,20 +41,39 @@ export default function TwoFA() {
     }
   }
   
-  function handleSubmit(event: any){
-    console.log(code);
-    //const response = await sendData();    
+  async function handleSubmit(event: any){
+    const codeAsString = code.join("");
+    const validationKey = parseInt(codeAsString, 10);
+    console.log(user)
+    const requestBody = {
+      email: user.email,
+      password: user.password,
+      validation_key: validationKey,
+    };
+   
+    try { 
+      const response = await sendCode(requestBody);
+
+      dispatch(login({
+        id: '',
+        username: '',
+        email: requestBody.email,
+        password: requestBody.password,
+        token: response.access_token,
+      }));
+
+      navigate('/'); 
+    }
+    catch (error: any) { setError(error.response ? error.response.data.message : "Registration failed"); }
   }
 
-  /*
-  async function sendData(){
-    axios.post()
-    .then((data) => {
-        console.log(data)
-    })
-    .catch()
-  }
-  */
+ 
+
+
+  useEffect(() => {
+    const allFieldsFilled = code.every(digit => digit !== "");
+    setIsButtonDisabled(!allFieldsFilled);
+  }, [code]);
 
   return (
     <>
@@ -72,7 +100,7 @@ export default function TwoFA() {
             ))}
           </div>
           <p className={styles.message}>Enter 6-digit code that has been sent to your mail.</p>
-          <button className={styles.btn} onClick={handleSubmit}>CONFIRM</button>
+          <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>CONFIRM</button>
         </div>
     </>
   );

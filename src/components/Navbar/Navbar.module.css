@@ -1,0 +1,196 @@
+/* Navbar.module.css */
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--nav-bg);
+  height: auto;
+  box-shadow: var(--navbar-shadow) 0 10px 10px -10px;
+  position: relative;
+  transition: all 0.5s ease;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 76px;
+}
+
+.nav_bottom {
+  width: 100%;
+}
+
+/* Navbar section left part */
+.nav_left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav_left_logo {
+  height: 35px;
+  margin-left: 16px;
+}
+
+.nav_left_logo_container {
+  align-items: center;
+  display: flex;
+  font-family: Glory, sans-serif;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.nav_left_text {
+  margin: 0 1rem;
+  cursor: pointer;
+  color: var(--primary-text);
+}
+
+.nav_left_text a {
+  text-decoration: none;
+  font-family: Glory, sans-serif;
+}
+
+.nav_left_text_container {
+  display: flex;
+}
+
+.nav_left_text_selected {
+  border-bottom: 2px solid var(--logo-purple);
+}
+
+/* NAV RIGHT */
+.nav_right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 10px;
+}
+
+.nav_right_icon {
+  align-items: center;
+  background-color: initial;
+  border: none;
+  color: var(--logo-purple);
+  justify-content: center;
+  margin-top: 5px;
+  padding: 0;
+  width: 20px;
+}
+
+.nav_right_iconMenu {
+  display: none; /* Hide the hamburger menu by default */
+}
+
+.nav_right_icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav_right_icon svg:hover {
+  transform: scale(1.2);
+}
+
+.nav_right_profile {
+  display: flex;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  color: var(--logo-purple);
+}
+
+.nav_right_profile:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+
+.nav_right img {
+  zoom: 0.8;
+  height: 40px;
+  width: 40px;
+}
+
+/* MOBILE */
+.mobileMenu {
+  display: none; /* Hide mobile menu by default */
+  z-index: 1000;
+}
+
+.mobileMenu_selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.mobileMenu_selection li {
+  font-size: 18px;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  margin: 0 20px;
+}
+
+.mobileSearchbar {
+  padding: 0 30px;
+}
+
+.mobileMenu_selection_item.selected,
+.mobileMenu_selection li.selected {
+  border-bottom: 2px solid var(--logo-purple);
+}
+
+.mobileMenu_selection li:hover {
+  background-color: var(--nav-collapsed-list-hover);
+  color: var(--logo-purple);
+  border-bottom: none;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .nav_left_text_container {
+    display: none; /* Hide left text container on mobile */
+  }
+
+  .display_none {
+    display: none;
+  }
+
+  .nav_right_iconMenu {
+    display: flex; /* Show hamburger menu on mobile */
+    align-items: center;
+    background-color: initial;
+    border: none;
+    color: var(--logo-purple);
+    justify-content: center;
+    margin-top: 5px;
+    padding: 0;
+    width: 20px;
+    cursor: pointer;
+  }
+
+  .nav_right_iconMenu svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobileMenu {
+    display: flex; /* Show mobile menu when state is true */
+    flex-direction: column;
+  }
+
+  .nav_right_icon svg:hover {
+    transform: scale(1.2);
+  }
+}

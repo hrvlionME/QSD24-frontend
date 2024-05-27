@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+}
+.smallImageContainer{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 50px;
+    width: 90px;
+}
+.smallImage {
+    cursor: pointer;
+    margin-top: 5px;
+    max-height: 110px;
+    object-fit: contain;
+    width: 100%;
+}
+
+.bigImageContainer{
+    height: 550px;
+    max-width: 400px;
+    position: relative;
+}
+
+.bigImage{
+    height: 100%;
+    margin-right: 25%;
+    max-width: 350px;
+    object-fit: cover;
+}

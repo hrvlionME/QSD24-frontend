@@ -118,9 +118,12 @@ export default function Faq() {
         {questions.map((question, index) => {
           const isExpanded = expanded[index];
           return <div key={index} className={styles.item}  onClick={() => handleToggle(index)}>
-           <span className={isExpanded ? styles.questionExpanded : styles.question}>
-                {isExpanded ? <FiMinus /> : <FiPlus />} {question}
+            <div style={{display: 'flex'}}>
+             <span className={isExpanded ? styles.questionExpanded : styles.question}>
+                {isExpanded ? <FiMinus /> : <FiPlus />} 
               </span>
+              <span className={isExpanded ? styles.questionExpanded : styles.question}>{question}</span>
+              </div>
               {isExpanded && <span className={styles.answer}>{answers[index]}</span>}
           </div>
         })}
