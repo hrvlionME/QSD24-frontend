@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import styles from "./LoginPage.module.css";
 import image from "../../assets/images/login-removebg-preview.png";
@@ -13,6 +13,8 @@ export default function LoginPage() {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   function validateEmail(event: any) {
     setEmail(event.target.value);
@@ -31,7 +33,10 @@ export default function LoginPage() {
       email: email,
       password: password
     };
-    try { await login(requestBody) }
+    try { 
+      await login(requestBody)
+      navigate('/sendCode')
+    }
     catch (error: any) { setError(error.response ? error.response.data.message : "Login failed"); }
   }
 
