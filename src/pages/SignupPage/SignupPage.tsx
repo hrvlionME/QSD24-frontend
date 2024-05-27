@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import styles from './SignupPage.module.css'
 import image from '../../assets/images/avatar-removebg-preview.png'
@@ -18,6 +18,8 @@ export default function SignupPage() {
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidPasswordConfirm, setIsValidPasswordConfirm] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   function validateEmail(event: any) {
     setEmail(event.target.value);
@@ -45,7 +47,10 @@ export default function SignupPage() {
       confirm_password: passwordConfirm
     };
    
-    try { await register(requestBody) }
+    try { 
+      await register(requestBody)
+      navigate('/login'); 
+    }
     catch (error: any) { setError(error.response ? error.response.data.message : "Registration failed"); }
   }
 
