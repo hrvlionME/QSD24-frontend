@@ -26,7 +26,7 @@ import TwoFA from './pages/TwoFA/TwoFA';
 import UPChangePasswordPage from "./pages/UserPanel/UPChangePasswordPage/UPChangePasswordPage";
 import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 
 function App() {
   return (
@@ -43,6 +43,7 @@ function App() {
           <Route path="/faq" element={ <Faq /> } />
           <Route path="/shop/:category/:id" element={<ShopPage />} />
           <Route path="/shop/favorites/:id" element={<FavoritesPage />} />
+          <Route path="/product/:id" element={<ProductDetailsPage />} />
           <Route path="/profile" element={ <UPUserDataPage /> } />
           <Route path="/profile/edit" element={ <UPEditProfilePage /> } />
           <Route path="/profile/change-password" element={ <UPChangePasswordPage /> } />
