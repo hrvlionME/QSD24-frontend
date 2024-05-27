@@ -1,18 +1,22 @@
-// ShopPage.jsx
-import React from "react";
 import { useParams } from "react-router-dom";
+import Filter from "./Filter/Filter";
+import Footer from "../../components/Footer/Footer";
+import styles from "./ShopPage.module.css";
 
-const ShopPage = () => {
+export default function ShopPage() {
   const { category, id } = useParams();
 
   return (
-    <div>
-      <h1>Shop Page</h1>
-      <p>Category: {category}</p>
-      <p>Page: {id}</p>
-      {/* Add your shop content here */}
-    </div>
+    <>
+      <div className={styles.page}>
+        <Filter />
+        <div>
+          <h1>Shop Page</h1>
+          <p>Category: {category}</p>
+          <p>Page: {id}</p>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };
-
-export default ShopPage;
