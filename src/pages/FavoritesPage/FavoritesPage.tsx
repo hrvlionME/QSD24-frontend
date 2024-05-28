@@ -10,7 +10,7 @@ export default function FavoritesPage() {
           <div className={styles.title}>Favorites</div>
         </div>
         <div className={styles.cards}>
-          <Card />
+          <div className={styles.text}>You don't have any products in your favorites.</div>
         </div>
       </div>
       <Footer />
