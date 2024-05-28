@@ -115,6 +115,7 @@
   flex-direction: column;
   gap: 25px;
   margin-bottom: 18px;
+  color: var(--primary-text);
 }
 .heroSection:hover .heroImage,
 .misionVisionSection:hover .misionVisionImage {
