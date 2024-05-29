@@ -1,22 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Filter.module.css'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
 import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
 
-export default function Filter() {
+export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange }: any) {
     const [isExpended, setIsExpended] = useState([true, true, true, true]);
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(5000);
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
     const [sizes, setSizes] = useState([]);
     const [colors, setColors] = useState([]);
     const [error, setError] = useState(null);
 
-    function handleInput(event: any) {
-        setMinPrice(event.minValue);
-        setMaxPrice(event.maxValue);
+    function addItemFilter(item: string) {
+        if(filterItems.includes(item)) setFilterItems(filterItems.filter((i: string) => i !== item))
+        else setFilterItems([...filterItems, item]);
+    }
+
+    function resetFilter() {
+        setPriceRange([0, 5000]);
+        setFilterItems([]);
     }
 
     useEffect(() => {
@@ -40,7 +44,7 @@ export default function Filter() {
                 </div>
                 {isExpended[0] && <div className={styles.subCategoryBox}>
                     {categories.map((item: any) => (
-                        <div className={styles.subcategory}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -52,7 +56,7 @@ export default function Filter() {
             </div>
                 {isExpended[1] && <div className={styles.subCategoryBox}>
                     {brands.map((item: any) => (
-                        <div className={styles.subcategory}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -64,7 +68,7 @@ export default function Filter() {
             </div>
                 {isExpended[2] && <div className={styles.subCategoryBox}>
                     {sizes.map((item: any) => (
-                        <div className={styles.subcategory}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -76,12 +80,18 @@ export default function Filter() {
             </div>
                 {isExpended[3] && <div className={styles.subCategoryBox}>
                     {colors.map((item: any) => (
-                        <div className={styles.subcategory}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
                     ))}
                 </div>}
             </div>
-            <div className={styles.text}>Price Range: ${minPrice} - ${maxPrice}</div>
-            <MultiRangeSlider className={styles.slider} min={0} max={5000} ruler={false} label={false} minValue={minPrice} maxValue={maxPrice} barInnerColor={"blue"} onInput={handleInput} />
+            <div className={styles.text}>Price Range: ${priceRange[0]} - ${priceRange[1]}</div>
+            <MultiRangeSlider className={styles.slider} min={0} max={5000} ruler={false} label={false} minValue={priceRange[0]} maxValue={priceRange[1]} barInnerColor={"blue"} onChange={(event) => setPriceRange([event.minValue, event.maxValue])} />
+            {(filterItems.length > 0 || priceRange[0] > 0 || priceRange[1] < 5000) &&
+                <div className={`${styles.resetButton} ${styles.xButton}`} onClick={resetFilter}>
+                    <FiXCircle />
+                    <div>Reset All</div>
+                </div>
+            }
         </div>
     )
 }
