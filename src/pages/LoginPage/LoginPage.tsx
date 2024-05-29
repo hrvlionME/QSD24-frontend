@@ -38,18 +38,16 @@ export default function LoginPage() {
     };
     try { 
       await login(requestBody)
-
       dispatch(loginAction({
-        id: '',
-        username: '',
+        id: "",
+        username: "",
         email: requestBody.email,
         password: requestBody.password,
-        token: '',
+        token: "",
       }));
-
-      navigate('/sendCode')
+      navigate("/sendCode")
     }
-    catch (error: any) { setError(error.response ? error.response.data.message : "Login failed"); }
+    catch (err: any) { setError(err) }
   }
 
   return (
