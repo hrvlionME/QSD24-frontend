@@ -1,0 +1,24 @@
+.page {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 600px;
+}
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 80px 0;
+}
+
+@media (max-width: 768px) {
+    .page {
+        flex-direction: column;
+        justify-content: start;
+    }
+    .content {
+        margin: 30px auto 100px auto;
+    }
+}
