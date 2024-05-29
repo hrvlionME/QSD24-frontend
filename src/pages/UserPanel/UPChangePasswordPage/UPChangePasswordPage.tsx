@@ -4,8 +4,12 @@ import styles from "./UPChangePasswordPage.module.css";
 import UPTitle from '../UPTitle/UPTitle';
 import UPNav from '../UPNav/UPNav';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { changePassword } from "../../../services/auth";
 
 export default function UPChangePasswordPage() {
+
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [isValidOldPassword, setIsValidOldPassword] = useState(true);
@@ -13,15 +17,27 @@ export default function UPChangePasswordPage() {
   
   function validateOldPassword(event: any) {
     const password = event.target.value;
+    setOldPassword(password);
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     setIsValidOldPassword(re.test(password));
   }
 
   function validateNewPassword(event: any) {
     const password = event.target.value;
+    setNewPassword(password);
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     setIsValidNewPassword(re.test(password));
   }
+
+  async function handleSubmit() {
+    const requestBody = {
+      current_password: oldPassword,
+      new_password: newPassword,
+      confirm_password: newPassword,
+    };
+    await changePassword(requestBody)
+  }
+
 
   return (
     <div style={{ backgroundColor: "var(--primary-color-2)" }}>
@@ -46,7 +62,7 @@ export default function UPChangePasswordPage() {
           </div>
           {!isValidNewPassword && <p className={styles.errorMessage}>Password must have at least 8 characters, one capital letter, one small letter, one number, and one special character.</p>}
           <div className={styles.buttonWrapper}>
-            <button className={`${styles.button} ${isValidOldPassword && isValidNewPassword ? styles.validButton : styles.invalidButton}`} value="Login" disabled={!isValidOldPassword || !isValidNewPassword}>Change Password</button>
+            <button className={`${styles.button} ${isValidOldPassword && isValidNewPassword ? styles.validButton : styles.invalidButton}`} value="Login" disabled={!isValidOldPassword || !isValidNewPassword} onClick={handleSubmit}>Change Password</button>
           </div>
         </div>
       </div>
