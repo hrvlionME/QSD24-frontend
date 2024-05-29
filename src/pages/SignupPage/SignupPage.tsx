@@ -51,7 +51,7 @@ export default function SignupPage() {
       await register(requestBody)
       navigate('/login'); 
     }
-    catch (error: any) { setError(error.response ? error.response.data.message : "Registration failed"); }
+    catch (err: any) { setError(err) }
   }
 
   return (
