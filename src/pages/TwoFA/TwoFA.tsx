@@ -20,7 +20,6 @@ export default function TwoFA() {
   const location = useLocation();
 
   const { isFromForgotPassword } = location.state || {};
-  console.log(location.state)
   const user = useSelector((state: RootState) => state.user);
 
   const navigate = useNavigate();

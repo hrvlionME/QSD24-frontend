@@ -18,7 +18,7 @@ import "./colors.css";
 import Faq from "./pages/FAQ/Faq";
 import ContactUs from "./pages/ContactUsPage/ContactUs";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store, { persistor } from "./redux/store";
 import UPFavoritesPage from "./pages/UserPanel/UPFavoritesPage/UPFavoritesPage";
 import UPEditProfilePage from "./pages/UserPanel/UPEditProfilePage/UPEditProfilePage";
 import UPUserDataPage from "./pages/UserPanel/UPUserDataPage/UPUserDataPage";
@@ -27,10 +27,13 @@ import UPChangePasswordPage from "./pages/UserPanel/UPChangePasswordPage/UPChang
 import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   return (
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}>
@@ -45,6 +48,7 @@ function App() {
             <Route path="/shop/favorites/:id" element={<FavoritesPage />} />
             <Route path="/profile" element={<UPUserDataPage />} />
             <Route path="/profile/edit" element={<UPEditProfilePage />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
             <Route
               path="/profile/change-password"
               element={<UPChangePasswordPage />}
@@ -55,6 +59,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }
