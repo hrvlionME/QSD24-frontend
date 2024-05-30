@@ -29,6 +29,7 @@ import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import { PersistGate } from 'redux-persist/integration/react';
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/profile/my-orders" element={<UPMyOrdersPage />} />
             <Route path="/profile/favorites" element={<UPFavoritesPage />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/admin/:category" element={<AdminPage />} />
           </Route>
         </Routes>
