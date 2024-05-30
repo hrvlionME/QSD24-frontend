@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
-import APUsers from "./AdminPageCategories/APUsers/APUsers";
+import APUsers from "./APUsers/APUsers";
 import styles from "./AdminPage.module.css";
 // Images and Icons
 import userImg from "../../assets/images/user-icon.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
+import APCategories from "./APCategories/APCategories";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
+  categories: APCategories
 };
 
 function capitalizeFirstLetter(string: string) {

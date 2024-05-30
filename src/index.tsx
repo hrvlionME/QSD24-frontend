@@ -49,10 +49,7 @@ function App() {
             <Route path="/shop/favorites/:id" element={<FavoritesPage />} />
             <Route path="/profile" element={<UPUserDataPage />} />
             <Route path="/profile/edit" element={<UPEditProfilePage />} />
-            <Route
-              path="/profile/change-password"
-              element={<UPChangePasswordPage />}
-            />
+            <Route path="/profile/change-password" element={<UPChangePasswordPage />}/>
             <Route path="/profile/my-orders" element={<UPMyOrdersPage />} />
             <Route path="/profile/favorites" element={<UPFavoritesPage />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
