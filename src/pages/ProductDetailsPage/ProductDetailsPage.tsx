@@ -4,10 +4,12 @@ import ImageProduct from '../../components/ImageProduct/ImageProduct';
 import SizeGuide from '../../components/SizeGuide/SizeGuide';
 import Footer from '../../components/Footer/Footer';
 import { FiPlus, FiMinus, FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import { PiShoppingCartLight } from "react-icons/pi";
 import Reviews from '../../components/Reviews/Reviews';
 import { getProduct } from '../../services/product';
 import { useParams } from 'react-router-dom';
+import { getFavorites } from '../../services/favorite';
 
 
 export default function ProductDetailsPage()  {
@@ -18,6 +20,7 @@ export default function ProductDetailsPage()  {
   const [sizes, setSizes] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
   const [product, setProduct] = useState<{ name?: string, price?: number, brands?: { name?: string } | null } | null>({});
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
 
@@ -76,8 +79,8 @@ export default function ProductDetailsPage()  {
                  <FiPlus onClick={() => setQuantity(quantity + 1)}/>
                 </div>
                 <div>
-                  <button className={styles.favorite}>
-                    <span><FiHeart/>Add to Favorites</span>
+                  <button className={styles.favorite} onClick={() => setFavorite(!favorite)}>
+                    {favorite ? <span><FaHeart style={{color: "var(--logo-purple)"}}/>Remove from Favorites</span> : <span><FiHeart/>Add to Favorites</span>}
                   </button>
                 </div>
               </div>
