@@ -7,9 +7,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { requestValidationKey } from '../../services/auth';
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice'; 
-
+import { useTranslation } from "react-i18next";
 
 export default function ForgotPassowrdPage() {
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -28,7 +29,7 @@ export default function ForgotPassowrdPage() {
   async function handleSubmit(event: any){
 
     if (!isValidEmail(event.target.value)) {
-      setError("Required field, invalid email format.");
+      setError(t("invalid_email_format"));
     } else {
       setError("");
     }  
@@ -60,9 +61,9 @@ export default function ForgotPassowrdPage() {
         <div className={styles.root}>
           <Link  to="/login" className={styles.backArrow}><FiArrowLeftCircle/></Link>
           <img src={image} alt="" className={styles.img} />
-          <input type="text" className={`${styles.emailInput} ${error && styles.errorInput}`} placeholder="Email address" value={email} onChange={handleEmailChange} />
+          <input type="text" className={`${styles.emailInput} ${error && styles.errorInput}`} placeholder={t("email_address")} value={email} onChange={handleEmailChange} />
           {error && <p className={styles.errorText}>{error}</p>}
-          <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>Send email</button>
+          <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>{t("send_email")}</button>
         </div>
       </div>
     </>

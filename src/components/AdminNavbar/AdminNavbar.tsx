@@ -11,22 +11,25 @@ import { BiCategory } from "react-icons/bi";
 import { TbBrandOpenai } from "react-icons/tb";
 import { IoIosColorPalette } from "react-icons/io";
 import { SiZenn } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 
 export default function AdminNavbar() {
+  const { t } = useTranslation();
+
   const categories = [
-    { name: "Users", path: "/admin/users", icon: <LuUsers /> },
-    { name: "Orders", path: "/admin/orders", icon: <LuInbox /> },
-    { name: "Analytics", path: "/admin/analytics", icon: <IoMdAnalytics /> },
-    { name: "Products", path: "/admin/products", icon: <FaProductHunt /> },
+    { name: t("Users"), path: "/admin/users", icon: <LuUsers /> },
+    { name: t("Orders"), path: "/admin/orders", icon: <LuInbox /> },
+    { name: t("Analytics"), path: "/admin/analytics", icon: <IoMdAnalytics /> },
+    { name: t("Products"), path: "/admin/products", icon: <FaProductHunt /> },
     {
-      name: "Discounts",
+      name: t("Discounts"),
       path: "/admin/discounts",
       icon: <TbShoppingCartDiscount />,
     },
-    { name: "Categories", path: "/admin/categories", icon: <BiCategory /> },
-    { name: "Brands", path: "/admin/brands", icon: <TbBrandOpenai /> },
-    { name: "Colors", path: "/admin/colors", icon: <IoIosColorPalette /> },
-    { name: "Sizes", path: "/admin/sizes", icon: <SiZenn /> },
+    { name: t("Categories"), path: "/admin/categories", icon: <BiCategory /> },
+    { name: t("Brands"), path: "/admin/brands", icon: <TbBrandOpenai /> },
+    { name: t("Colors"), path: "/admin/colors", icon: <IoIosColorPalette /> },
+    { name: t("Sizes"), path: "/admin/sizes", icon: <SiZenn /> },
   ];
 
   const location = useLocation();

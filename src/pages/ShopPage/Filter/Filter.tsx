@@ -4,8 +4,10 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
 import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
+import { useTranslation } from "react-i18next";
 
 export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange }: any) {
+    const { t } = useTranslation();
     const [isExpended, setIsExpended] = useState([true, true, true, true]);
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
@@ -38,7 +40,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
         <div className={styles.filter}>
             <div>
                 <div className={styles.category} onClick={() => setIsExpended([!isExpended[0], isExpended[1], isExpended[2], isExpended[3]])}>
-                    <span>Category</span>
+                    <span>{t("category")}</span>
                     {isExpended[0] && <IoIosArrowUp />}
                     {!isExpended[0] && <IoIosArrowDown />}
                 </div>
@@ -50,7 +52,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
             <div>
             <div className={styles.category} onClick={() => setIsExpended([isExpended[0], !isExpended[1], isExpended[2], isExpended[3]])}>
-                <span>Brand</span>
+                <span>{t("brand")}</span>
                 {isExpended[1] && <IoIosArrowUp />}
                 {!isExpended[1] && <IoIosArrowDown />}
             </div>
@@ -62,7 +64,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
             <div>
             <div className={styles.category} onClick={() => setIsExpended([isExpended[0], isExpended[1], !isExpended[2], isExpended[3]])}>
-                <span>Size</span>
+                <span>{t("size")}</span>
                 {isExpended[2] && <IoIosArrowUp />}
                 {!isExpended[2] && <IoIosArrowDown />}
             </div>
@@ -74,7 +76,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
             <div>
             <div className={styles.category} onClick={() => setIsExpended([isExpended[0], isExpended[1], isExpended[2], !isExpended[3]])}>
-                <span>Color</span>
+                <span>{t("color")}</span>
                 {isExpended[3] && <IoIosArrowUp />}
                 {!isExpended[3] && <IoIosArrowDown />}
             </div>
