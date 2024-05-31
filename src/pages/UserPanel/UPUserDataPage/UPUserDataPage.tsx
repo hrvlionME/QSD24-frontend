@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import Footer from "../../../components/Footer/Footer";
 import styles from "./UPUserDataPage.module.css";
 import { FaRegHeart } from "react-icons/fa";
 import { GiDeliveryDrone } from "react-icons/gi";
-import UPTitle from "../UPTitle/UPTitle";
-import UPNav from "../UPNav/UPNav";
-import { useTranslation } from "react-i18next";
+import UPTitle from '../UPTitle/UPTitle';
+import UPNav from '../UPNav/UPNav';
 
 export default function UPUserDataPage() {
-  const { t } = useTranslation();
-
   return (
     <div style={{ backgroundColor: "var(--primary-color-2)" }}>
       <UPTitle />
@@ -19,24 +16,20 @@ export default function UPUserDataPage() {
           <div className={styles.buttonsSection}>
             <div>
               <Link to="/profile/favorites">
-                <button className={styles.button}>
-                  <FaRegHeart />
-                </button>
+                <button className={styles.button}><FaRegHeart /></button>
               </Link>
-              <div className={styles.buttonText}>{t("favorites")}</div>
+              <div className={styles.buttonText}>Favorites</div>
             </div>
             <div>
               <Link to="/profile/my-orders">
-                <button className={styles.button}>
-                  <GiDeliveryDrone />
-                </button>
+                <button className={styles.button}><GiDeliveryDrone /></button>
               </Link>
-              <div className={styles.buttonText}>{t("myOrders")}</div>
+              <div className={styles.buttonText}>My Orders</div>
             </div>
           </div>
           <div className={styles.dataSection}>
             <div className={styles.data}>
-              <span>{t("full_name")}</span>
+              <span>Full name:</span>
               <input type="text" className={styles.input} disabled />
             </div>
             <div className={styles.data}>
@@ -44,7 +37,7 @@ export default function UPUserDataPage() {
               <input type="text" className={styles.input} disabled />
             </div>
             <div className={styles.data}>
-              <span>{t("city")}</span>
+              <span>City:</span>
               <input type="text" className={styles.input} disabled />
             </div>
             <div className={styles.data}>
@@ -52,7 +45,7 @@ export default function UPUserDataPage() {
               <input type="text" className={styles.input} disabled />
             </div>
             <div className={styles.data}>
-              <span>{t("address")}</span>
+              <span>Address:</span>
               <input type="text" className={styles.input} disabled />
             </div>
           </div>
@@ -60,5 +53,5 @@ export default function UPUserDataPage() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }

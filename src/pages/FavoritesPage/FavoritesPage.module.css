@@ -1,12 +1,10 @@
 .page {
-    background-color: var(--primary-color-2);
-    padding: 50px 10%;
-    min-height: 600px;
+    margin: 50px 7%;
 }
 .titleWrapper {
     width: 100%;
     border-bottom: 2px solid var(--logo-purple);
-    padding: 0 0 10px 10px;
+    padding: 7px;
     margin-bottom: 30px;
 }
 .title {
@@ -18,9 +16,4 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 50px 20px;
-}
-.text {
-    font-weight: 600;
-    margin-top: 200px;
 }
