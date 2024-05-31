@@ -18,13 +18,10 @@ export default function HomePage() {
         <div className={styles.heroImage}></div>
         <div className={styles.heroContent}>
           <div className={styles.heroSmText}>{t("in_the_mood_for_new")}</div>{" "}
-          {/* Translate text */}
           <div className={styles.heroLgText}>{t("style")}</div>{" "}
-          {/* Translate text */}
           <Link to="shop/all/1" className={styles.heroButton}>
             {t("shop_now")}
           </Link>{" "}
-          {/* Translate text */}
         </div>
       </div>
       <div className={styles.categorySection}>
@@ -34,7 +31,6 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${womenImg})` }}
         >
           <div className={styles.categoryLinkText}>{t("women")}</div>{" "}
-          {/* Translate text */}
         </Link>
         <Link
           to="shop/men/1"
@@ -42,7 +38,6 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${menImg})` }}
         >
           <div className={styles.categoryLinkText}>{t("men")}</div>{" "}
-          {/* Translate text */}
         </Link>
         <Link
           to="shop/children/1"
@@ -50,7 +45,6 @@ export default function HomePage() {
           style={{ backgroundImage: `url(${childrenImg})` }}
         >
           <div className={styles.categoryLinkText}>{t("children")}</div>{" "}
-          {/* Translate text */}
         </Link>
       </div>
       <div className={styles.misionVisionSection}>
@@ -58,17 +52,14 @@ export default function HomePage() {
         <div className={styles.misionVisionBoxWrapper}>
           <div className={styles.misionVisionBox}>
             <div className={styles.misionVisionTitle}>{t("qsd_shop")}</div>{" "}
-            {/* Translate text */}
             <div className={styles.misionVisionText}>
-              <div>{t("mission")}</div> {/* Translate text */}
-              <div>{t("vision")}</div> {/* Translate text */}
+              <div>{t("mission")}</div>
+              <div>{t("vision")}</div>
             </div>
           </div>
         </div>
       </div>
-      <NewInThisWeek />{" "}
-      {/* No need to translate here as it's done in the child component */}
-      <ChatComponent />
+      <NewInThisWeek /> <ChatComponent />
       <Footer />
     </>
   );
