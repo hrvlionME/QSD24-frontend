@@ -9,7 +9,8 @@ import { PiShoppingCartLight } from "react-icons/pi";
 import Reviews from '../../components/Reviews/Reviews';
 import { getProduct } from '../../services/product';
 import { useParams } from 'react-router-dom';
-import { getFavorites } from '../../services/favorite';
+import { getFavorites, handleFavorite } from '../../services/favorite';
+
 
 
 export default function ProductDetailsPage()  {
@@ -22,6 +23,8 @@ export default function ProductDetailsPage()  {
   const [product, setProduct] = useState<{ name?: string, price?: number, brands?: { name?: string } | null } | null>({});
   const [favorite, setFavorite] = useState(false);
 
+
+
   useEffect(() => {
 
     const fetchProduct = async () => {
@@ -33,14 +36,35 @@ export default function ProductDetailsPage()  {
         setGender(product.gender);
       }
     }
+
+    const fetchFavorites = async () => {
+  
+        const response = await getFavorites();
+        const favorites = response[0];
+        const isFavorite = favorites.some((fav: any) => {console.log (fav.product_ID); return fav.product_id === Number(id)})
+        setFavorite(isFavorite);
+
+    } 
+
     fetchProduct();
+    fetchFavorites();
 
   }, [id])
 
-  console.log(product);
 
   const handleSizeClick = (size: any) => {
     setSelectedSize(size);
+  }
+
+  const handleSubmit = async () => {
+
+    const requestBody = {
+      product_id: Number(id),
+    };
+    
+    await handleFavorite(requestBody)
+    setFavorite(!favorite)
+    
   }
 
   return (
@@ -79,7 +103,7 @@ export default function ProductDetailsPage()  {
                  <FiPlus onClick={() => setQuantity(quantity + 1)}/>
                 </div>
                 <div>
-                  <button className={styles.favorite} onClick={() => setFavorite(!favorite)}>
+                  <button className={styles.favorite} onClick={handleSubmit}>
                     {favorite ? <span><FaHeart style={{color: "var(--logo-purple)"}}/>Remove from Favorites</span> : <span><FiHeart/>Add to Favorites</span>}
                   </button>
                 </div>
