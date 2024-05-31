@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"],
   },
   "include": ["src", "globals.d.ts"]
 }

@@ -4,9 +4,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import styles from "./LoginPage.module.css";
 import image from "../../assets/images/login-removebg-preview.png";
 import bgImg from "../../assets/images/auth_bg.jpg";
-import { useDispatch } from "react-redux";
-import { login as loginAction } from "../../redux/userSlice";
-import { login } from "../../services/auth";
+import { useDispatch } from 'react-redux';
+import { login as loginAction } from '../../redux/userSlice'; 
+import { login } from '../../services/auth';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,18 +14,18 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function validateEmail(event: React.ChangeEvent<HTMLInputElement>) {
+  function validateEmail(event: any) {
     setEmail(event.target.value);
     const re = /\S+@\S+\.\S+/;
     setIsValidEmail(re.test(event.target.value));
   }
 
-  function validatePassword(event: React.ChangeEvent<HTMLInputElement>) {
+  function validatePassword(event: any) {
     setPassword(event.target.value);
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     setIsValidPassword(re.test(event.target.value));
@@ -34,9 +34,8 @@ export default function LoginPage() {
   async function formSubmit() {
     const requestBody = {
       email: email,
-      password: password,
+      password: password
     };
-
     try { 
       await login(requestBody)
       dispatch(loginAction({
@@ -110,10 +109,7 @@ export default function LoginPage() {
               : styles.invalidButton
           }`}
           disabled={!isValidEmail || !isValidPassword}
-        >
-          Login
-        </button>
-        {error && <p className={styles.errorMessage}>{error}</p>}
+        >Login</button>
         <div className={styles.links}>
           <Link to="/signup" className={styles.link}>
             Go to Sign Up

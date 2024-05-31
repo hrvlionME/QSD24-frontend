@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import APUsers from "./APUsers/APUsers";
 import styles from "./AdminPage.module.css";
+// Images and Icons
 import userImg from "../../assets/images/user-icon.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
-import { useTranslation } from "react-i18next";
 import APCategories from "./APCategories/APCategories";
-
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
@@ -24,11 +23,10 @@ export default function AdminPage() {
   const { category } = useParams<{ category: string }>();
   const Component = componentsMap[category || "users"] || APUsers;
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
-  const { t } = useTranslation();
-  const navigate = useNavigate();
+  const [theme, setTheme] = useState("light"); // Default to "light" theme
 
   useEffect(() => {
+    // Apply the selected theme to the document
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
@@ -40,21 +38,13 @@ export default function AdminPage() {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
-  const handleLogoutClick = () => {
-    navigate("/");
-  };
-
   return (
     <div className={styles.admin_container}>
       <AdminNavbar />
       <div className={styles.admin_content}>
         <div className={styles.admin_content_header}>
           <p className={styles.admin_content_headerTitle}>
-            {t(capitalizeFirstLetter(category || "Users"))}
+            {capitalizeFirstLetter(category || "Users")}
           </p>
           <div className={styles.admin_content_header_profileContainer}>
             <div
@@ -65,7 +55,7 @@ export default function AdminPage() {
                 <img
                   src={userImg}
                   className={styles.admin_content_header_img}
-                  alt={t("user")}
+                  alt="user"
                 />
                 <p style={{ paddingRight: "5px" }}>Tin Minarik</p>
                 <div
@@ -85,23 +75,23 @@ export default function AdminPage() {
                     : styles.admin_content_header_profileBottomContainerClosed
                 }`}
               >
-                <button onClick={handleHomeClick}>{t("Home")}</button>
+                <button>Home</button>
                 <button onClick={toggleTheme}>
                   {theme === "light" ? (
                     <>
                       <IoMoon style={{ color: "black", paddingRight: "5px" }} />
-                      {t("Dark")}
+                      Dark
                     </>
                   ) : (
                     <>
                       <IoMdSunny
                         style={{ color: "orange", paddingRight: "5px" }}
                       />
-                      {t("Light")}
+                      Light
                     </>
                   )}
                 </button>
-                <button onClick={handleLogoutClick}>{t("Log out")}</button>
+                <button>Log out</button>
               </div>
             </div>
           </div>

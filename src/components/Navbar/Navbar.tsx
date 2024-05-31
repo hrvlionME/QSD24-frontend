@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import qsdlogo from "../../assets/images/qsd_logo.png";
@@ -10,8 +10,6 @@ import { TbLetterX } from "react-icons/tb";
 import { MdAccountCircle } from "react-icons/md";
 import SearchBar from "./SearchBar/SearchBar";
 import UserWindow from "./UserWindow/UserWindow";
-import { useTranslation } from "react-i18next"; // Import useTranslation
-
 interface NavLinkProps {
   label: string;
   to: string;
@@ -40,8 +38,6 @@ const NavLink: React.FC<NavLinkProps> = ({ label, to, selected, onClick }) => {
 };
 
 const NavbarPage = () => {
-  const { t } = useTranslation(); // Initialize useTranslation hook
-
   const [isXShown, setIsXShown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,7 +90,7 @@ const NavbarPage = () => {
     return categories.map((category) => (
       <NavLink
         key={category}
-        label={t(category).toUpperCase()} // Translate category label
+        label={category.toUpperCase()}
         to={`/shop/${category}/1`}
         selected={selectedCategory === category}
         onClick={() => handleCategoryClick(category)}

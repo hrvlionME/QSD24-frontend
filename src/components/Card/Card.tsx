@@ -1,34 +1,14 @@
-import React from "react";
-import styles from "./Card.module.css";
+import styles from './Card.module.css'
 import { RiStarSFill } from "react-icons/ri";
-import { useTranslation } from "react-i18next";
 
 export default function Card() {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.card}>
-      <img
-        src="https://picsum.photos/200/300"
-        className={styles.cardImage}
-        alt="product"
-      />
+      <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
       <div className={styles.cardContent}>
-        <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>
-          {t("title")}
-        </div>
-        <div
-          className={styles.cardText}
-          style={{ fontSize: "0.9rem", fontWeight: "400" }}
-        >
-          {t("description")}
-        </div>
-        <div
-          className={styles.cardText}
-          style={{ fontSize: "1.3rem", marginTop: "10px" }}
-        >
-          {t("price")}
-        </div>
+        <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>Title</div>
+        <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>Description</div>
+        <div className={styles.cardText} style={{ fontSize: "1.3rem", marginTop: "10px" }}>$100.00</div>
         <div className={styles.cardStars}>
           <RiStarSFill />
           <RiStarSFill />
@@ -37,7 +17,7 @@ export default function Card() {
           <RiStarSFill />
         </div>
       </div>
-      <button className={styles.cardButton}>{t("addToCard")}</button>
+      <button className={styles.cardButton}>ADD TO CARD</button>
     </div>
-  );
+  )
 }
