@@ -22,7 +22,7 @@ export default function ProductDetailsPage()  {
   const [selectedSize, setSelectedSize] = useState(null);
   const [product, setProduct] = useState<{ name?: string, price?: number, brands?: { name?: string } | null } | null>({});
   const [favorite, setFavorite] = useState(false);
-
+  const [images, setImages] = useState([]);
 
 
   useEffect(() => {
@@ -34,6 +34,7 @@ export default function ProductDetailsPage()  {
       if (product.sizes.length > 0) {
         setSelectedSize(product.sizes[0]);
         setGender(product.gender);
+        setImages(product.images);
       }
     }
 
@@ -71,7 +72,7 @@ export default function ProductDetailsPage()  {
     <>
         <div className={styles.container}>
             <div className={styles.left}>
-              <ImageProduct/>
+              <ImageProduct productImages={images}/>
             </div>
             <div className={styles.right}>
               <div>

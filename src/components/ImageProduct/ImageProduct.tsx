@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ImageProduct.module.css';
 
-export default function ImageProduct()  {
+export default function ImageProduct({ productImages } : {productImages : any})  {
     
     const [images, setImages] = useState(['https://picsum.photos/200/100', 'https://picsum.photos/200/200', 'https://picsum.photos/200/300']);
     const [currentImage, setCurrentImage] = useState(images[0]);
@@ -9,6 +9,12 @@ export default function ImageProduct()  {
     const switchImg = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, index: number) => {
         setCurrentImage(images[index]);
     }
+
+    useEffect(() => {
+        setImages(productImages);
+        setCurrentImage(productImages[0]);
+    }, [productImages]);
+
     return (
     <>
         <div className={styles.container}>      
