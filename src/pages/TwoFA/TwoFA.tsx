@@ -16,8 +16,11 @@ export default function TwoFA() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const location = useLocation();
+
   const { isFromForgotPassword } = location.state || {};
+  console.log(location.state);
   const user = useSelector((state: RootState) => state.user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -87,14 +90,15 @@ export default function TwoFA() {
       try {
         const response = await sendCode(requestBody);
 
-      dispatch(login({
-        id: response.user.id,
-        first_name: response.user.first_name,
-        last_name: response.user.last_name,
-        email: requestBody.email,
-        password: requestBody.password,
-        token: response.access_token,
-      }));
+        dispatch(
+          login({
+            id: "",
+            username: "",
+            email: requestBody.email,
+            password: requestBody.password,
+            token: response.access_token,
+          })
+        );
 
         navigate("/");
       } catch (err) {

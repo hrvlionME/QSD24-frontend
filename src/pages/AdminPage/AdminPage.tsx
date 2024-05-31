@@ -8,12 +8,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
 import { useTranslation } from "react-i18next";
-import APCategories from "./APCategories/APCategories";
-
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
-  categories: APCategories
 };
 
 function capitalizeFirstLetter(string: string) {

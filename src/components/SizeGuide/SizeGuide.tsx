@@ -4,12 +4,13 @@ import WomenSizeGuide from './Women/WomenSizeGuide';
 import ChildrenSizeGuide from './Children/ChildrenSizeGuide';
 
 
-export default function SizeGuide({ gender } : {gender : string})  {
-    
+export default function SizeGuide()  {
+    const [gender, setGender] = useState(1); //0 men, 1 women, 2 children, for now this is just a placeholder
+
   return (
     <>
     {
-      gender === '1' ? <MenSizeGuide /> : gender === '2' ? <WomenSizeGuide /> : <ChildrenSizeGuide />
+      gender === 0 ? <MenSizeGuide /> : gender === 1 ? <WomenSizeGuide /> : <ChildrenSizeGuide />
     }
     </>
   );

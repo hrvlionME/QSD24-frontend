@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {
-    id: number;
-    first_name: string;
-    last_name: string;
+    id: string;
+    username: string;
     password: string;
     email: string;
     token: string;
@@ -11,9 +10,8 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    id: 0,
-    first_name: '',
-    last_name: '',
+    id: '',
+    username: '',
     password: '',
     email: '',
     token: '',
@@ -24,19 +22,17 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<{ id: number; first_name: string; last_name: string; password: string; email: string; token: string }>) => {
+        login: (state, action: PayloadAction<{ id: string; username: string; password: string; email: string; token: string }>) => {
             state.id = action.payload.id;
-            state.first_name = action.payload.first_name;
-            state.last_name = action.payload.last_name;
+            state.username = action.payload.username;
             state.password = action.payload.password;
             state.email = action.payload.email;
             state.token = action.payload.token;
             state.loggedIn = true;
         },
         logout: (state) => {
-            state.id = 0;
-            state.first_name = '';
-            state.last_name = '';
+            state.id = '';
+            state.username = '';
             state.password = '';
             state.email = '';
             state.token = '';

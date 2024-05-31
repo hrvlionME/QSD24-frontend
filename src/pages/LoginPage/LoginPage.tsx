@@ -36,20 +36,29 @@ export default function LoginPage() {
       email: email,
       password: password,
     };
+    try {
+      await login(requestBody);
 
-    try { 
-      await login(requestBody)
-      dispatch(loginAction({
-        id: 0,
-        first_name: "",
-        last_name: "",
-        email: requestBody.email,
-        password: requestBody.password,
-        token: "",
-      }));
-      navigate("/sendCode")
+      dispatch(
+        loginAction({
+          id: "",
+          username: "",
+          email: requestBody.email,
+          password: requestBody.password,
+          token: "",
+        })
+      );
+
+      navigate("/sendCode");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else if (typeof err === "object" && err !== null && "response" in err) {
+        setError((err as any).response.data.message);
+      } else {
+        setError("Login failed");
+      }
     }
-    catch (err: any) { setError(err) }
   }
 
   return (

@@ -6,8 +6,6 @@
   margin-left: 230px;
   padding: 30px;
   flex: 1;
-  background-color: var(--primary-color-2);
-  height: 100vh;
 }
 .admin_content_header {
   display: flex;
