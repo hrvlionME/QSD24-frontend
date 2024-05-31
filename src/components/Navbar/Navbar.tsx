@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import qsdlogo from "../../assets/images/qsd_logo.png";
+import userlogo from "../../assets/images/user-icon.png";
 import { MdFavoriteBorder } from "react-icons/md";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { IoSearchSharp } from "react-icons/io5";

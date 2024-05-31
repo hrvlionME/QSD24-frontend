@@ -57,7 +57,7 @@
     background-color: var(--auth-input);
     border: 1px solid;
     border-radius: 5px;
-    color: var(--light-blue);
+    color: var(--logo-purple);
     margin: 5px;
     text-align: center;
     width: 35px;
@@ -74,7 +74,7 @@
     padding: 7px 20px;
     margin: 5px -10px;
     width: calc(100% + 20px);
-    background-color: var(--light-blue);
+    background-color: var(--logo-purple);
     color: var(--auth-submit-btn-color);
     border: none;
     border-radius: 5px;
@@ -96,7 +96,7 @@
 }
 .backArrow{
     align-items: center;
-    color:  var(--light-blue);
+    color:  #B5B1FF;
     border: none;
     background-color: initial;
     height: 50px;
