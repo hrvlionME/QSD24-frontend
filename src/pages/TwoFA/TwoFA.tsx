@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './TwoFA.module.css';
-import image from '../../assets/images/forgotPassword.png'
 import { FiArrowLeftCircle } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { resetPassword, sendCode } from '../../services/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { login } from '../../redux/userSlice'; 
+import ResetPassword from '../../components/ResetPassword/ResetPassword';
 
 
 export default function TwoFA() {
@@ -11,6 +15,15 @@ export default function TwoFA() {
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [error, setError] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const location = useLocation();
+
+  const { isFromForgotPassword } = location.state || {};
+  const user = useSelector((state: RootState) => state.user);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleCodeChange(event: React.ChangeEvent<HTMLInputElement>, index: number) {
     const { value } = event.target;
@@ -33,20 +46,50 @@ export default function TwoFA() {
     }
   }
   
-  function handleSubmit(event: any){
-    console.log(code);
-    //const response = await sendData();    
+  async function handleSubmit(event: any){
+    const codeAsString = code.join("");
+    const validationKey = parseInt(codeAsString, 10);
+
+    if (isFromForgotPassword){
+      const requestBody = {
+        email: user.email,
+        password: password,
+        key: validationKey,
+      };
+     
+      try { 
+        await resetPassword(requestBody);
+        
+        navigate('/login'); 
+      }
+      catch (error: any) { setError(error.response ? error.response.data.message : "Reset password failed"); }
+    }
+    else{
+    const requestBody = {
+      email: user.email,
+      password: user.password,
+      validation_key: validationKey,
+    };
+   
+    try { 
+      const response = await sendCode(requestBody);
+
+      dispatch(login({
+        id: response.user.id,
+        first_name: response.user.first_name,
+        last_name: response.user.last_name,
+        email: requestBody.email,
+        password: requestBody.password,
+        token: response.access_token,
+      }));
+
+      navigate('/'); 
+    }
+    catch (error: any) { setError(error.response ? error.response.data.message : "Login failed"); }
+  }
   }
 
-  /*
-  async function sendData(){
-    axios.post()
-    .then((data) => {
-        console.log(data)
-    })
-    .catch()
-  }
-  */
+ 
 
 
   useEffect(() => {
@@ -79,6 +122,7 @@ export default function TwoFA() {
             ))}
           </div>
           <p className={styles.message}>Enter 6-digit code that has been sent to your mail.</p>
+          {isFromForgotPassword ?<ResetPassword password={password} passwordConfirm={passwordConfirm} setPassword={setPassword} setPasswordConfirm={setPasswordConfirm}/> : <div></div>}
           <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>CONFIRM</button>
         </div>
     </>
