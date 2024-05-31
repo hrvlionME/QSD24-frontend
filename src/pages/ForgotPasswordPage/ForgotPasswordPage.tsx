@@ -39,15 +39,14 @@ export default function ForgotPasswordPage() {
     try {
       await requestValidationKey(requestBody);
 
-      dispatch(
-        loginAction({
-          id: "",
-          username: "",
-          email: requestBody.email,
-          password: "",
-          token: "",
-        })
-      );
+      dispatch(loginAction({
+        id: 0,
+        first_name: '',
+        last_name: '',
+        email: requestBody.email,
+        password: '',
+        token: '',
+      }));
 
       navigate("/sendCode", { state: { isFromForgotPassword: true } });
     } catch (err) {

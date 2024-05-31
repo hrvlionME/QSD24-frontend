@@ -46,19 +46,7 @@ export default function SignupPage() {
       password: password,
       confirm_password: passwordConfirm,
     };
-
-    try {
-      await register(requestBody);
-      navigate("/login");
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else if (typeof err === "object" && err !== null && "response" in err) {
-        setError((err as any).response.data.message);
-      } else {
-        setError("Registration failed");
-      }
-    }
+    catch (err: any) { setError(err) }
   }
 
   return (

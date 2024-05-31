@@ -132,6 +132,14 @@
     gap: 5px;
 }
 
+.favorite:hover{
+    cursor: pointer;
+}
+
+.favorite span:hover{
+    cursor: pointer;
+}
+
 .addCartContainer{
     display: flex;
     justify-content: space-between;

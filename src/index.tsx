@@ -18,7 +18,7 @@ import "./colors.css";
 import Faq from "./pages/FAQ/Faq";
 import ContactUs from "./pages/ContactUsPage/ContactUs";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store, { persistor } from "./redux/store";
 import UPFavoritesPage from "./pages/UserPanel/UPFavoritesPage/UPFavoritesPage";
 import UPEditProfilePage from "./pages/UserPanel/UPEditProfilePage/UPEditProfilePage";
 import UPUserDataPage from "./pages/UserPanel/UPUserDataPage/UPUserDataPage";
@@ -28,10 +28,15 @@ import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import "./i18n";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
+import { PersistGate } from 'redux-persist/integration/react';
+import CartPage from "./pages/CartPage/CartPage";
+
 
 function App() {
   return (
     <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}>
@@ -46,16 +51,16 @@ function App() {
             <Route path="/shop/favorites/:id" element={<FavoritesPage />} />
             <Route path="/profile" element={<UPUserDataPage />} />
             <Route path="/profile/edit" element={<UPEditProfilePage />} />
-            <Route
-              path="/profile/change-password"
-              element={<UPChangePasswordPage />}
-            />
+            <Route path="/profile/change-password" element={<UPChangePasswordPage />}/>
             <Route path="/profile/my-orders" element={<UPMyOrdersPage />} />
             <Route path="/profile/favorites" element={<UPFavoritesPage />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/admin/:category" element={<AdminPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }
