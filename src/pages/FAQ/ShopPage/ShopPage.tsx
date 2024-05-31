@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Filter from "./Filter/Filter";
-import Footer from "../../components/Footer/Footer";
 import styles from "./ShopPage.module.css";
+import Footer from "../../../components/Footer/Footer";
 import { FaFilter } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 

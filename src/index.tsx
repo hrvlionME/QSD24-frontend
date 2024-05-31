@@ -27,6 +27,7 @@ import UPChangePasswordPage from "./pages/UserPanel/UPChangePasswordPage/UPChang
 import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import "./i18n";
 
 function App() {
   return (
