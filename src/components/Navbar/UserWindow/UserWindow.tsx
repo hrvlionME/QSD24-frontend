@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserWindow.module.css";
-// Icons
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface UserWindowProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+// Define a type for the language keys
+type Language = "English" | "Bosanski" | "Hrvatski" | "Srpski";
+
 const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [theme, setTheme] = useState("light"); // Default to "light" theme
-  const [selectedItem, setSelectedItem] = useState("English"); // Default to "English"
+  const [selectedItem, setSelectedItem] = useState<Language>("English"); // Default to "English"
 
   const navigate = useNavigate(); // Initialize the navigate function
 
@@ -31,9 +36,16 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: Language) => {
     setSelectedItem(item);
     setDropdownOpen(false);
+    const languageMap: Record<Language, string> = {
+      English: "en",
+      Bosanski: "ba",
+      Hrvatski: "hr",
+      Srpski: "srb",
+    };
+    i18n.changeLanguage(languageMap[item]);
   };
 
   const handleSignInClick = () => {
@@ -47,7 +59,7 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   return (
     <div className={`${styles.user_window} ${isOpen ? styles.open : ""}`}>
       <div className={styles.user_window_settings}>
-        <p className={styles.user_window_title}>Settings</p>
+        <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
           <div className={styles.dropdownContainer}>
             <div className={styles.dropdownHeader} onClick={toggleDropdown}>
@@ -59,29 +71,32 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
             </div>
             {dropdownOpen && (
               <div className={styles.dropdownList}>
-                {["English", "Bosanski", "Hrvatski", "Srpski"].map(
-                  (item, index) => (
-                    <div
-                      key={index}
-                      className={styles.dropdownItem}
-                      onClick={() => handleItemClick(item)}
-                    >
-                      {item}
-                    </div>
-                  )
-                )}
+                {([
+                  "English",
+                  "Bosanski",
+                  "Hrvatski",
+                  "Srpski",
+                ] as Language[]).map((item, index) => (
+                  <div
+                    key={index}
+                    className={styles.dropdownItem}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             )}
           </div>
           <p className={styles.user_window_faq} onClick={handleFaqClick}>
-            FAQ
+            {t("faq")}
           </p>
         </div>
         <div className={styles.theme_toggle} onClick={toggleTheme}>
           {theme === "light" ? (
             <div className={styles.user_window_theme}>
               <IoMoon className={styles.user_window_theme_icon} />
-              <p className={styles.user_window_theme_text}>Dark Mode</p>
+              <p className={styles.user_window_theme_text}>{t("darkMode")}</p>
             </div>
           ) : (
             <div className={styles.user_window_theme}>
@@ -89,7 +104,7 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
                 className={styles.user_window_theme_icon}
                 color="orange"
               />
-              <p className={styles.user_window_theme_text}>Light Mode</p>
+              <p className={styles.user_window_theme_text}>{t("lightMode")}</p>
             </div>
           )}
         </div>
@@ -99,7 +114,7 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
           className={styles.user_window_signIn}
           onClick={handleSignInClick}
         >
-          Sign In
+          {t("signIn")}
         </button>
       </div>
     </div>

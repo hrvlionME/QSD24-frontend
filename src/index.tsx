@@ -27,9 +27,11 @@ import UPChangePasswordPage from "./pages/UserPanel/UPChangePasswordPage/UPChang
 import UPMyOrdersPage from "./pages/UserPanel/UPMyOrdersPage/UPMyOrdersPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import "./i18n";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import { PersistGate } from 'redux-persist/integration/react';
 import CartPage from "./pages/CartPage/CartPage";
+
 
 function App() {
   return (

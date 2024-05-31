@@ -4,7 +4,8 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
 import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
-
+import { useTranslation } from "react-i18next";
+                    
 export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange }: any) {
     const [isExpended, setIsExpended] = useState([true, true, true, true]);
     const [categories, setCategories] = useState([]);
@@ -12,6 +13,8 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
     const [sizes, setSizes] = useState([]);
     const [colors, setColors] = useState([]);
     const [error, setError] = useState(null);
+    const { t } = useTranslation();
+            
 
     function addItemFilter(item: string) {
         if(filterItems.includes(item)) setFilterItems(filterItems.filter((i: string) => i !== item))
@@ -93,5 +96,100 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                 </div>
             }
         </div>
-    )
+        {isExpended[0] && (
+          <div className={styles.subCategoryBox}>
+            {[0, 1, 2, 3].map(() => (
+              <div className={styles.subcategory}>{t("subcategory")}</div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div>
+        <div
+          className={styles.category}
+          onClick={() =>
+            setIsExpended([
+              isExpended[0],
+              !isExpended[1],
+              isExpended[2],
+              isExpended[3],
+            ])
+          }
+        >
+          <span>{t("brand")}</span>
+          {isExpended[1] && <IoIosArrowUp />}
+          {!isExpended[1] && <IoIosArrowDown />}
+        </div>
+        {isExpended[1] && (
+          <div className={styles.subCategoryBox}>
+            {[0, 1, 2, 3].map(() => (
+              <div className={styles.subcategory}>{t("subcategory")}</div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div>
+        <div
+          className={styles.category}
+          onClick={() =>
+            setIsExpended([
+              isExpended[0],
+              isExpended[1],
+              !isExpended[2],
+              isExpended[3],
+            ])
+          }
+        >
+          <span>{t("size")}</span>
+          {isExpended[2] && <IoIosArrowUp />}
+          {!isExpended[2] && <IoIosArrowDown />}
+        </div>
+        {isExpended[2] && (
+          <div className={styles.subCategoryBox}>
+            {[0, 1, 2, 3].map(() => (
+              <div className={styles.subcategory}>{t("subcategory")}</div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div>
+        <div
+          className={styles.category}
+          onClick={() =>
+            setIsExpended([
+              isExpended[0],
+              isExpended[1],
+              isExpended[2],
+              !isExpended[3],
+            ])
+          }
+        >
+          <span>{t("color")}</span>
+          {isExpended[3] && <IoIosArrowUp />}
+          {!isExpended[3] && <IoIosArrowDown />}
+        </div>
+        {isExpended[3] && (
+          <div className={styles.subCategoryBox}>
+            {[0, 1, 2, 3].map(() => (
+              <div className={styles.subcategory}>{t("subcategory")}</div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className={styles.text}>
+        {t("priceRange", { minPrice, maxPrice })}
+      </div>
+      <MultiRangeSlider
+        className={styles.slider}
+        min={0}
+        max={5000}
+        ruler={false}
+        label={false}
+        minValue={minPrice}
+        maxValue={maxPrice}
+        barInnerColor={"blue"}
+        onInput={handleInput}
+      />
+    </div>
+  );
 }
