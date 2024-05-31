@@ -1,23 +1,26 @@
 import Footer from "../../../components/Footer/Footer";
 import styles from "./UPEditProfilePage.module.css";
-import UPTitle from '../UPTitle/UPTitle';
-import UPNav from '../UPNav/UPNav';
+import UPTitle from "../UPTitle/UPTitle";
+import UPNav from "../UPNav/UPNav";
+import { useTranslation } from "react-i18next";
 
 export default function UPEditProfilePage() {
+  const { t } = useTranslation();
+
   return (
     <div style={{ backgroundColor: "var(--primary-color-2)" }}>
       <UPTitle />
       <div className={styles.page}>
         <UPNav active="2" />
         <div className={styles.content}>
-          <div style={{ letterSpacing: "1px" }}>Dear <strong>userName</strong>, to update your data, please locate the specific field that you wish to modify and input the new value.</div>
+          <div style={{ letterSpacing: "1px" }}>{t("updateInstructions")}</div>
           <div className={styles.dataSection}>
             <div className={styles.data}>
-              <span>First name:</span>
+              <span>{t("firstName")}</span>
               <input type="text" className={styles.input} />
             </div>
             <div className={styles.data}>
-              <span>Last name:</span>
+              <span>{t("lastName")}</span>
               <input type="text" className={styles.input} />
             </div>
             <div className={styles.data}>
@@ -25,7 +28,7 @@ export default function UPEditProfilePage() {
               <input type="text" className={styles.input} />
             </div>
             <div className={styles.data}>
-              <span>City:</span>
+              <span>{t("city")}</span>
               <input type="text" className={styles.input} />
             </div>
             <div className={styles.data}>
@@ -33,7 +36,7 @@ export default function UPEditProfilePage() {
               <input type="text" className={styles.input} />
             </div>
             <div className={styles.data}>
-              <span>Address:</span>
+              <span>{t("address")}</span>
               <input type="text" className={styles.input} />
             </div>
           </div>
@@ -44,5 +47,5 @@ export default function UPEditProfilePage() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }

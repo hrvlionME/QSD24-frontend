@@ -1,26 +1,64 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import styles from "./LoginPage.module.css";
 import image from "../../assets/images/login-removebg-preview.png";
 import bgImg from "../../assets/images/auth_bg.jpg";
+import { useDispatch } from "react-redux";
+import { login as loginAction } from "../../redux/userSlice";
+import { login } from "../../services/auth";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  function validateEmail(event: any) {
-    const email = event.target.value;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function validateEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    setEmail(event.target.value);
     const re = /\S+@\S+\.\S+/;
-    setIsValidEmail(re.test(email));
+    setIsValidEmail(re.test(event.target.value));
   }
 
-  function validatePassword(event: any) {
-    const password = event.target.value;
-    const re =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    setIsValidPassword(re.test(password));
+  function validatePassword(event: React.ChangeEvent<HTMLInputElement>) {
+    setPassword(event.target.value);
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    setIsValidPassword(re.test(event.target.value));
+  }
+
+  async function formSubmit() {
+    const requestBody = {
+      email: email,
+      password: password,
+    };
+    try {
+      await login(requestBody);
+
+      dispatch(
+        loginAction({
+          id: "",
+          username: "",
+          email: requestBody.email,
+          password: requestBody.password,
+          token: "",
+        })
+      );
+
+      navigate("/sendCode");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else if (typeof err === "object" && err !== null && "response" in err) {
+        setError((err as any).response.data.message);
+      } else {
+        setError("Login failed");
+      }
+    }
   }
 
   return (
@@ -73,16 +111,18 @@ export default function LoginPage() {
             small letter, one number, and one special character.
           </p>
         )}
-        <input
-          type="button"
+        <button
+          onClick={formSubmit}
           className={`${styles.button} ${
             isValidEmail && isValidPassword
               ? styles.validButton
               : styles.invalidButton
           }`}
-          value="Login"
           disabled={!isValidEmail || !isValidPassword}
-        />
+        >
+          Login
+        </button>
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <div className={styles.links}>
           <Link to="/signup" className={styles.link}>
             Go to Sign Up

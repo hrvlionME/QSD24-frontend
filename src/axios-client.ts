@@ -1,5 +1,7 @@
 import axios from 'axios';
 import store from './redux/store';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 const axiosClient = axios.create({
     baseURL: 'http://localhost:8000/api',
@@ -8,6 +10,7 @@ const axiosClient = axios.create({
     },
 });
 
+
 const getToken = () => {
     const state = store.getState();
     return state.user.token;
@@ -15,7 +18,7 @@ const getToken = () => {
  
 axiosClient.interceptors.request.use(
     (config) => {
-        const token = getToken();
+        const token = null;
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
