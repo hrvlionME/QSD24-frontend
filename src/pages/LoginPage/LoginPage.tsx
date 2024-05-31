@@ -39,8 +39,9 @@ export default function LoginPage() {
     try { 
       await login(requestBody)
       dispatch(loginAction({
-        id: "",
-        username: "",
+        id: 0,
+        first_name: "",
+        last_name: "",
         email: requestBody.email,
         password: requestBody.password,
         token: "",

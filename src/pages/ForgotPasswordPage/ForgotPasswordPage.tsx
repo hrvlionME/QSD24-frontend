@@ -40,8 +40,9 @@ export default function ForgotPassowrdPage() {
       await requestValidationKey(requestBody)
 
       dispatch(loginAction({
-        id: '',
-        username: '',
+        id: 0,
+        first_name: '',
+        last_name: '',
         email: requestBody.email,
         password: '',
         token: '',
