@@ -75,8 +75,9 @@ export default function TwoFA() {
       const response = await sendCode(requestBody);
 
       dispatch(login({
-        id: '',
-        username: '',
+        id: response.user.id,
+        first_name: response.user.first_name,
+        last_name: response.user.last_name,
         email: requestBody.email,
         password: requestBody.password,
         token: response.access_token,

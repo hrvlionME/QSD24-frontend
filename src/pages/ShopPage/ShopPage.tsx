@@ -5,13 +5,17 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./ShopPage.module.css";
 import { FaFilter } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 export default function ShopPage() {
+  const { t } = useTranslation();
   const { category, id } = useParams();
-  const [showFilter, setShowFilter] = useState(window.innerWidth > 768 ? true : false);
+  const [showFilter, setShowFilter] = useState(
+    window.innerWidth > 768 ? true : false
+  );
   const [filterItems, setFilterItems] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 5000]);
-
+  
   useEffect(() => {
     const resizeListener = () => { window.innerWidth > 768 ? setShowFilter(true) : setShowFilter(false) }
     window.addEventListener("resize", resizeListener);
@@ -42,7 +46,7 @@ export default function ShopPage() {
           }
           </div>
           <div className={styles.cards}>
-            <div className={styles.text}>There are no products to show.</div>
+            <div className={styles.text}>{t("noProducts")}</div>
           </div>
         </div>
       </div>

@@ -35,10 +35,11 @@ export default function LoginPage() {
     try { 
       await login({ email: email, password: password });
       dispatch(loginAction({
-        id: "",
-        username: "",
-        email: email,
-        password: password,
+        id: 0,
+        first_name: "",
+        last_name: "",
+        email: requestBody.email,
+        password: requestBody.password,
         token: "",
       }));
       navigate("/sendCode")

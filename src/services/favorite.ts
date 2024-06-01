@@ -13,9 +13,9 @@ export const getFavorites = async () => {
 }
 
 
-export const handleFavorite = async () => {
+export const handleFavorite = async (req: any) => {
     try {
-        const response = await axiosClient.get("/handleFavorite");
+        const response = await axiosClient.post("/handleFavorite", req);
         return response.data;
     }
     catch (error: any) {

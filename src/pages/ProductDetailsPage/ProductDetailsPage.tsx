@@ -9,11 +9,14 @@ import { PiShoppingCartLight } from "react-icons/pi";
 import Reviews from '../../components/Reviews/Reviews';
 import { getProduct } from '../../services/product';
 import { useParams } from 'react-router-dom';
-import { getFavorites } from '../../services/favorite';
+import { getFavorites, handleFavorite } from '../../services/favorite';
+import { useTranslation } from "react-i18next";
+
 
 
 export default function ProductDetailsPage()  {
-  
+
+  const { t } = useTranslation();
   const { id } = useParams(); 
   const [quantity, setQuantity] = useState(1);
   const [gender, setGender] = useState('')
@@ -21,6 +24,8 @@ export default function ProductDetailsPage()  {
   const [selectedSize, setSelectedSize] = useState(null);
   const [product, setProduct] = useState<{ name?: string, price?: number, brands?: { name?: string } | null } | null>({});
   const [favorite, setFavorite] = useState(false);
+
+
 
   useEffect(() => {
 
@@ -33,14 +38,35 @@ export default function ProductDetailsPage()  {
         setGender(product.gender);
       }
     }
+
+    const fetchFavorites = async () => {
+  
+        const response = await getFavorites();
+        const favorites = response[0];
+        const isFavorite = favorites.some((fav: any) => {console.log (fav.product_ID); return fav.product_id === Number(id)})
+        setFavorite(isFavorite);
+
+    } 
+
     fetchProduct();
+    fetchFavorites();
 
   }, [id])
 
-  console.log(product);
 
   const handleSizeClick = (size: any) => {
     setSelectedSize(size);
+  }
+
+  const handleSubmit = async () => {
+
+    const requestBody = {
+      product_id: Number(id),
+    };
+    
+    await handleFavorite(requestBody)
+    setFavorite(!favorite)
+    
   }
 
   return (
@@ -51,14 +77,14 @@ export default function ProductDetailsPage()  {
             </div>
             <div className={styles.right}>
               <div>
-                <h3 className={styles.text}>{product?.name || "Product name"}</h3>
-                <h4 className={styles.text}>{product?.brands?.name || "Brand name"}</h4>
+                <h3 className={styles.text}>{product?.name || t("productName")}</h3>
+                <h4 className={styles.text}>{product?.brands?.name || t("brandName")}</h4>
               </div>
               <div className={styles.priceContainer}>
                 <h4 className={styles.text}>${product?.price ? `${(product.price).toFixed(2)}` : "0.00"}</h4>
               </div>
               <div className={styles.sizeGuide}>
-                <h4 className={styles.text}>Select Size</h4>
+                <h4 className={styles.text}>t("selectSize")</h4>
                 <SizeGuide gender={gender}/>
               </div>
               <div className={styles.sizeContainer}>
@@ -79,13 +105,13 @@ export default function ProductDetailsPage()  {
                  <FiPlus onClick={() => setQuantity(quantity + 1)}/>
                 </div>
                 <div>
-                  <button className={styles.favorite} onClick={() => setFavorite(!favorite)}>
-                    {favorite ? <span><FaHeart style={{color: "var(--logo-purple)"}}/>Remove from Favorites</span> : <span><FiHeart/>Add to Favorites</span>}
+                  <button className={styles.favorite} onClick={handleSubmit}>
+                    {favorite ? <span><FaHeart style={{color: "var(--logo-purple)"}}/>Remove from Favorites</span> : <span><FiHeart/>{t("addToFavorites")}</span>}
                   </button>
                 </div>
               </div>
               <div className={styles.addCartContainer}>
-                <button className={styles.addCart} disabled><PiShoppingCartLight/>ADD TO CART</button>
+                <button className={styles.addCart} disabled><PiShoppingCartLight/>{t("addToCart")}</button>
               </div>
             </div>
            </div>
