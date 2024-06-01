@@ -7,6 +7,10 @@
     margin: 30px 0 15px 20px;
     font-weight: 700;
     font-size: 1.1rem;
+    width: 165px;
+}
+.addButton:hover {
+    scale: 1.01;
 }
 .addButton .buttonText {
     font-size: 1rem;

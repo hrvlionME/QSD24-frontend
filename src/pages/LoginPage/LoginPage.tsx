@@ -32,12 +32,8 @@ export default function LoginPage() {
   }
 
   async function formSubmit() {
-    const requestBody = {
-      email: email,
-      password: password
-    };
     try { 
-      await login(requestBody)
+      await login({ email: email, password: password });
       dispatch(loginAction({
         id: 0,
         first_name: "",

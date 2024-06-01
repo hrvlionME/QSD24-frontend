@@ -4,6 +4,10 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
 import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
+import { getCategories } from '../../../services/categories';
+import { getBrands } from '../../../services/brands';
+import { getSizes } from '../../../services/sizes';
+import { getColors } from '../../../services/colors';
 import { useTranslation } from "react-i18next";
 
 export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange }: any) {
@@ -16,7 +20,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
     const [error, setError] = useState(null);
 
     function addItemFilter(item: string) {
-        if(filterItems.includes(item)) setFilterItems(filterItems.filter((i: string) => i !== item))
+        if (filterItems.includes(item)) setFilterItems(filterItems.filter((i: string) => i !== item))
         else setFilterItems([...filterItems, item]);
     }
 
@@ -25,16 +29,19 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
         setFilterItems([]);
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const fetchData = async () => {
+        try {
             setCategories(await getCategories());
             setBrands(await getBrands());
             setSizes(await getSizes());
             setColors(await getColors());
-        };
-        try { fetchData() }
-        catch (err: any) { setError(err) }
-    }, []);
+        } 
+        catch (err: any) {
+            setError(err)
+        }
+    };
+
+    useEffect(() => { fetchData() }, []);
 
     return (
         <div className={styles.filter}>
