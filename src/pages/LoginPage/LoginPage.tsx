@@ -32,17 +32,13 @@ export default function LoginPage() {
   }
 
   async function formSubmit() {
-    const requestBody = {
-      email: email,
-      password: password
-    };
     try { 
-      await login(requestBody)
+      await login({ email: email, password: password });
       dispatch(loginAction({
         id: "",
         username: "",
-        email: requestBody.email,
-        password: requestBody.password,
+        email: email,
+        password: password,
         token: "",
       }));
       navigate("/sendCode")

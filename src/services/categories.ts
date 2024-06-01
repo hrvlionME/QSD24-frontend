@@ -12,9 +12,9 @@ export const getCategories = async () => {
     }
 }
 
-export const getBrands = async () => {
+export const addCategory = async (req: any) => {
     try {
-        const response = await axiosClient.get("/brands");
+        const response = await axiosClient.post("/addCategory", req);
         return response.data;
     }
     catch (error: any) {
@@ -24,9 +24,9 @@ export const getBrands = async () => {
     }
 }
 
-export const getSizes = async () => {
+export const editCategory = async (id: any) => {
     try {
-        const response = await axiosClient.get("/sizes");
+        const response = await axiosClient.put("/updateCategory", id);
         return response.data;
     }
     catch (error: any) {
@@ -36,9 +36,9 @@ export const getSizes = async () => {
     }
 }
 
-export const getColors = async () => {
+export const deleteCategory = async (id: any) => {
     try {
-        const response = await axiosClient.get("/colors");
+        const response = await axiosClient.delete(`/deleteCategory/${id}`);
         return response.data;
     }
     catch (error: any) {
