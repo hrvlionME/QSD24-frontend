@@ -59,7 +59,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <NewInThisWeek /> <ChatComponent />
+      <NewInThisWeek />
+      <ChatComponent />
       <Footer />
     </>
   );

@@ -3,7 +3,6 @@ import styles from './Filter.module.css'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
-import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
 import { getCategories } from '../../../services/categories';
 import { getBrands } from '../../../services/brands';
 import { getSizes } from '../../../services/sizes';

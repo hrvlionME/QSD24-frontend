@@ -38,8 +38,8 @@ export default function LoginPage() {
         id: 0,
         first_name: "",
         last_name: "",
-        email: requestBody.email,
-        password: requestBody.password,
+        email: email,
+        password: password,
         token: "",
       }));
       navigate("/sendCode")

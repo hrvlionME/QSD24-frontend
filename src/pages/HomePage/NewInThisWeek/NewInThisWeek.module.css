@@ -61,12 +61,13 @@
 .buttonOnImage {
     display: none;
     position: absolute;
-    top: 35%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%);
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 13px 30px 12px 30px;
     border: none;
+    font-size: 0.8rem;
 }
 .cardImageWrapper:hover .buttonOnImage {
     display: block;
