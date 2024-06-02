@@ -24,9 +24,9 @@ export const addCategory = async (req: any) => {
     }
 }
 
-export const editCategory = async (id: any) => {
+export const editCategory = async (req: any) => {
     try {
-        const response = await axiosClient.put("/updateCategory", id);
+        const response = await axiosClient.put("/updateCategory", req);
         return response.data;
     }
     catch (error: any) {
