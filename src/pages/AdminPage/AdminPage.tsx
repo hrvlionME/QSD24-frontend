@@ -13,10 +13,10 @@ import APBrands from "./APBrands/APBrands";
 import APSizes from "./APSizes/APSizes";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
-  users: APUsers,
-  categories: APCategories,
-  brands: APBrands,
-  sizes: APSizes
+  "users": APUsers,
+  "categories": APCategories,
+  "brands": APBrands,
+  "sizes": APSizes
 };
 
 function capitalizeFirstLetter(string: string) {
