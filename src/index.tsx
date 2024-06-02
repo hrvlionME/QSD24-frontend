@@ -43,7 +43,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/sendCode" element={<TwoFA />} />
+            <Route path="/send-code" element={<TwoFA />} />
             <Route path="/contact-us" element={<ContactUs />}></Route>
             <Route path="/faq" element={<Faq />} />
             <Route path="/shop/:category/:id" element={<ShopPage />} />

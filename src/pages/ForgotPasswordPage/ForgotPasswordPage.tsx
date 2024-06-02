@@ -49,7 +49,7 @@ export default function ForgotPassowrdPage() {
         token: '',
       }));
 
-      navigate('/sendCode', {state: {isFromForgotPassword: true}})
+      navigate('/send-code', {state: {isFromForgotPassword: true}})
     }
     catch (error: any) { setError(error.response ? error.response.data.message : "User does not exist"); }
   }

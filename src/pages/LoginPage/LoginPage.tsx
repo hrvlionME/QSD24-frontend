@@ -42,7 +42,7 @@ export default function LoginPage() {
         password: password,
         token: "",
       }));
-      navigate("/sendCode")
+      navigate("/send-code")
     }
     catch (err: any) { setError(err) }
   }

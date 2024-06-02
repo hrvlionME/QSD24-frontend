@@ -7,6 +7,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        send_email: "Send Email",
         settings: "Settings",
         faq: "FAQ",
         signIn: "Sign In",
