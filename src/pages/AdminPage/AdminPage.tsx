@@ -10,11 +10,13 @@ import { IoMdSunny } from "react-icons/io";
 import APCategories from "./APCategories/APCategories";
 import { useTranslation } from "react-i18next";
 import APBrands from "./APBrands/APBrands";
+import APSizes from "./APSizes/APSizes";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
   categories: APCategories,
-  brands: APBrands
+  brands: APBrands,
+  sizes: APSizes
 };
 
 function capitalizeFirstLetter(string: string) {
