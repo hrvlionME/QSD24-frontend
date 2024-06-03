@@ -3,8 +3,8 @@ import styles from './ImageProduct.module.css';
 
 export default function ImageProduct({ productImages } : {productImages : any})  {
     
-    const [images, setImages] = useState(['https://picsum.photos/200/100', 'https://picsum.photos/200/200', 'https://picsum.photos/200/300']);
-    const [currentImage, setCurrentImage] = useState(images[0]);
+    const [images, setImages] = useState(productImages);
+    const [currentImage, setCurrentImage] = useState<any>(productImages[0] || { name: '' });
 
     const switchImg = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, index: number) => {
         setCurrentImage(images[index]);
@@ -12,19 +12,27 @@ export default function ImageProduct({ productImages } : {productImages : any}) 
 
     useEffect(() => {
         setImages(productImages);
-        setCurrentImage(productImages[0]);
+        if (productImages.length > 0) {
+            setCurrentImage(productImages[0]);
+        } else {
+            setCurrentImage({ name: '' });
+        }
+
     }, [productImages]);
+
+    console.log(productImages)
+    console.log(productImages[0])
 
     return (
     <>
         <div className={styles.container}>      
             <div className={styles.smallImageContainer}>
-                {images.map((image, index) => (
-                    <img className={styles.smallImage} key={index} src={image} alt="product" onMouseOver={(event) => switchImg(event, index)}/>
+                {images.map((image: any, index: number) => (
+                    <img className={styles.smallImage} key={index}  src={`http://127.0.0.1:8000/storage/products/${image.name}`} alt="product" onMouseOver={(event) => switchImg(event, index)}/>
                 ))}
             </div>
             <div className={styles.bigImageContainer}>
-                <img className={styles.bigImage} src={currentImage} alt="product"/>
+                <img className={styles.bigImage}  src={`http://127.0.0.1:8000/storage/products/${currentImage.name}`} alt="product"/>
             </div>
         </div>
     </>
