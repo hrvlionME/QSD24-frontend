@@ -30,11 +30,12 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import { PersistGate } from 'redux-persist/integration/react';
 import CartPage from "./pages/CartPage/CartPage";
+import "./i18n";
 
 function App() {
   return (
     <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}>
@@ -42,7 +43,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/sendCode" element={<TwoFA />} />
+            <Route path="/send-code" element={<TwoFA />} />
             <Route path="/contact-us" element={<ContactUs />}></Route>
             <Route path="/faq" element={<Faq />} />
             <Route path="/shop/:category/:id" element={<ShopPage />} />

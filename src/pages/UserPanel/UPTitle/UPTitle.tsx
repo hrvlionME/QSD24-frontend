@@ -1,9 +1,10 @@
-import styles from './UPTitle.module.css'
+import { useTranslation } from "react-i18next";
+import styles from "./UPTitle.module.css";
 
 function UPTitle() {
-  return (
-    <div className={styles.title}>MY ACCOUNT</div>
-  )
+  const { t } = useTranslation();
+
+  return <div className={styles.title}>{t("myAccount")}</div>;
 }
 
-export default UPTitle
+export default UPTitle;

@@ -32,21 +32,17 @@ export default function LoginPage() {
   }
 
   async function formSubmit() {
-    const requestBody = {
-      email: email,
-      password: password
-    };
     try { 
-      await login(requestBody)
+      await login({ email: email, password: password });
       dispatch(loginAction({
         id: 0,
         first_name: "",
         last_name: "",
-        email: requestBody.email,
-        password: requestBody.password,
+        email: email,
+        password: password,
         token: "",
       }));
-      navigate("/sendCode")
+      navigate("/send-code")
     }
     catch (err: any) { setError(err) }
   }

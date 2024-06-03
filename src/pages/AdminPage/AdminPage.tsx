@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import APUsers from "./APUsers/APUsers";
 import styles from "./AdminPage.module.css";
-// Images and Icons
 import userImg from "../../assets/images/user-icon.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
 import APCategories from "./APCategories/APCategories";
+import { useTranslation } from "react-i18next";
+import APBrands from "./APBrands/APBrands";
+import APSizes from "./APSizes/APSizes";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
-  categories: APCategories
+  categories: APCategories,
+  brands: APBrands,
+  sizes: APSizes
 };
 
 function capitalizeFirstLetter(string: string) {
@@ -23,10 +27,11 @@ export default function AdminPage() {
   const { category } = useParams<{ category: string }>();
   const Component = componentsMap[category || "users"] || APUsers;
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); // Default to "light" theme
+  const [theme, setTheme] = useState("light");
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Apply the selected theme to the document
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
@@ -38,13 +43,22 @@ export default function AdminPage() {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
+  const handleHomeClick = () => {
+    navigate("/")
+  }
+
+  const handleLogoutClick = () => {
+    navigate("/")
+  }
+
+
   return (
     <div className={styles.admin_container}>
       <AdminNavbar />
       <div className={styles.admin_content}>
         <div className={styles.admin_content_header}>
           <p className={styles.admin_content_headerTitle}>
-            {capitalizeFirstLetter(category || "Users")}
+            {t(capitalizeFirstLetter(category || "Users"))}
           </p>
           <div className={styles.admin_content_header_profileContainer}>
             <div
@@ -55,7 +69,7 @@ export default function AdminPage() {
                 <img
                   src={userImg}
                   className={styles.admin_content_header_img}
-                  alt="user"
+                  alt={t("user")}
                 />
                 <p style={{ paddingRight: "5px" }}>Tin Minarik</p>
                 <div
@@ -75,23 +89,23 @@ export default function AdminPage() {
                     : styles.admin_content_header_profileBottomContainerClosed
                 }`}
               >
-                <button>Home</button>
+                <button onClick={handleHomeClick}>{t("Home")}</button>
                 <button onClick={toggleTheme}>
                   {theme === "light" ? (
                     <>
                       <IoMoon style={{ color: "black", paddingRight: "5px" }} />
-                      Dark
+                      {t("Dark")}
                     </>
                   ) : (
                     <>
                       <IoMdSunny
                         style={{ color: "orange", paddingRight: "5px" }}
                       />
-                      Light
+                      {t("Light")}
                     </>
                   )}
                 </button>
-                <button>Log out</button>
+                <button onClick={handleLogoutClick}>{t("Log out")}</button>
               </div>
             </div>
           </div>

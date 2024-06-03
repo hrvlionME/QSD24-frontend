@@ -65,13 +65,15 @@
 }
 .categoryLinkText {
   color: var(--primary-color);
-  font-size: 1.7rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 550;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  text-transform: uppercase;
+  font-family: Glory, sans-serif;
 }
 .categoryLink:hover {
   opacity: 1;
@@ -115,7 +117,6 @@
   flex-direction: column;
   gap: 25px;
   margin-bottom: 18px;
-  color: var(--primary-text);
 }
 .heroSection:hover .heroImage,
 .misionVisionSection:hover .misionVisionImage {

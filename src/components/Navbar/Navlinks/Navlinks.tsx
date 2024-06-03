@@ -1,7 +1,7 @@
-// NavLinks.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Navlinks.module.css";
+import { useTranslation } from "react-i18next";
 
 interface NavLinkProps {
   label: string;
@@ -12,6 +12,7 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ label, to, selected, onClick }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     onClick();
@@ -25,7 +26,7 @@ const NavLink: React.FC<NavLinkProps> = ({ label, to, selected, onClick }) => {
       }`}
       onClick={handleClick}
     >
-      <span className={styles.nav_left_text_link}>{label}</span>
+      <span className={styles.nav_left_text_link}>{t(label)}</span>
     </li>
   );
 };
@@ -39,6 +40,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
   selectedCategory,
   onCategoryClick,
 }) => {
+  const { t } = useTranslation();
   const categories = ["women", "men", "children", "all"];
 
   return (
@@ -46,7 +48,7 @@ const NavLinks: React.FC<NavLinksProps> = ({
       {categories.map((category) => (
         <NavLink
           key={category}
-          label={category.toUpperCase()}
+          label={t(category.toUpperCase())}
           to={`/shop/${category}/1`}
           selected={selectedCategory === category}
           onClick={() => onCategoryClick(category)}

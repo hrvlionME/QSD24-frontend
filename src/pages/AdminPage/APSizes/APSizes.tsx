@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { FaCirclePlus } from 'react-icons/fa6'
-import styles from './APCategories.module.css'
+import styles from './APSizes.module.css'
 import { LuPenLine, LuTrash } from 'react-icons/lu'
 import APAddEditModal from '../APAddEditModal/APAddEditModal'
 import APDeleteModal from '../APDeleteModal/APDeleteModal'
-import { addCategory, editCategory, getCategories, deleteCategory } from '../../../services/categories'
+import { addSize, editSize, getSizes, deleteSize } from '../../../services/sizes'
 
-export default function APCategories() {
+export default function APSizes() {
   const [showAddEditModal, setShowAddEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [data, setData] = useState([]);
@@ -21,20 +21,20 @@ export default function APCategories() {
   }, []);
 
   async function fetchData () {
-    setData(await getCategories());
+    setData(await getSizes());
   };
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
-      try { await addCategory({ name: inputValue }) }
+      try { await addSize({ name: inputValue }) }
       catch (err: any) { setError(err) }
     }
     else if (operation === "edit") {
-      try { await editCategory({ id: tempId, name: inputValue }) }
+      try { await editSize({ id: tempId, name: inputValue }) }
       catch (err: any) { setError(err) }
     }
     else {
-      try { await deleteCategory(tempId) }
+      try { await deleteSize(tempId) }
       catch (err: any) { setError(err) }
     }
     fetchData();
@@ -44,12 +44,12 @@ export default function APCategories() {
     <>
       <div className={styles.addButton} onClick={() => { setShowAddEditModal(true); setOperation("add") }}>
         <FaCirclePlus />
-        <div className={styles.buttonText}>Add new category</div>
+        <div className={styles.buttonText}>Add new size</div>
       </div>
       <div className={styles.table}>
         <div className={styles.row} style={{ fontWeight: "700" }}>
           <div className={styles.cellId}>ID</div>
-          <div className={styles.cell} style={{ marginLeft: "40px" }}>Name</div>
+          <div className={styles.cell} style={{ marginLeft: "40px" }}>Size</div>
           <div className={styles.cell} style={{ marginLeft: "-40px" }}>Created at</div>
           <div className={styles.cell}>Options</div>
         </div>
