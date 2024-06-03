@@ -1,12 +1,13 @@
 
 .main {
-  background-color: var(--sale-card-text);
+  background-color: var(--logo-purple);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 30px;
 }
+
 .align {
   display: flex;
   align-items: center;

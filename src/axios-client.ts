@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from './redux/store';
+import { RootState } from './redux/store';
 
 const axiosClient = axios.create({
     baseURL: 'http://localhost:8000/api',
@@ -9,7 +10,7 @@ const axiosClient = axios.create({
 });
 
 const getToken = () => {
-    const state = store.getState();
+    const state: RootState = store.getState();
     return state.user.token;
 };
  

@@ -57,7 +57,7 @@
     background-color: var(--auth-input);
     border: 1px solid;
     border-radius: 5px;
-    color: var(--logo-purple);
+    color: var(--light-blue);
     margin: 5px;
     text-align: center;
     width: 35px;
@@ -74,16 +74,17 @@
     padding: 7px 20px;
     margin: 5px -10px;
     width: calc(100% + 20px);
-    background-color: var(--logo-purple);
+    background-color: var(--light-blue);
     color: var(--auth-submit-btn-color);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 .btn:disabled{
     opacity: 0.5;
+    cursor: not-allowed;
 }
 .btn:hover{
-    opacity: 0.5;
     transform: scale(1.01);
 }
 .links {
@@ -96,7 +97,7 @@
 }
 .backArrow{
     align-items: center;
-    color:  #B5B1FF;
+    color:  var(--light-blue);
     border: none;
     background-color: initial;
     height: 50px;

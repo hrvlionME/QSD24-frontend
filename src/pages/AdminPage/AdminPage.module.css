@@ -1,0 +1,85 @@
+.admin_container {
+  display: flex;
+  background-color: #fff;
+}
+.admin_content {
+  margin-left: 230px;
+  padding: 30px;
+  flex: 1;
+  background-color: var(--primary-color-2);
+  height: 100vh;
+}
+.admin_content_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+  padding-bottom: 15px;
+  border-bottom: rgba(0, 0, 0, 0.4) 1.5px solid;
+}
+.admin_content_headerTitle {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin_content.collapsedContent {
+  padding-left: 60px;
+}
+
+.admin_content_header_profileContainer {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  padding-top: 2px;
+  text-align: center;
+}
+
+.admin_content_header_profileContainerDropdown {
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.admin_content_header_profileTopContainer {
+  display: flex;
+  align-items: center;
+}
+
+.admin_content_header_img {
+  border-radius: 50%;
+  height: 50px;
+  margin-right: 10px;
+  width: 50px;
+}
+
+.admin_content_header_arrowDown {
+  padding-top: 5px;
+}
+.admin_content_header_arrowRight {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.admin_content_header_profileBottomContainerClosed {
+  height: 0;
+  visibility: hidden;
+}
+.admin_content_header_profileBottomContainer {
+  gap: 10px;
+  height: 110px;
+  opacity: 1;
+  transition: opacity 0.2s, visibility 0.3s, height 0.3s;
+  visibility: visible;
+  width: 100%;
+}
+.admin_content_header_profileBottomContainer button {
+  background-color: #a881af;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  padding: 7px 0;
+  width: 70%;
+  margin-top: 10px;
+}
