@@ -2,16 +2,23 @@ import styles from './Card.module.css'
 import { RiStarSFill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 
-export default function Card() {
+interface CardProps {
+  //image: string;
+  title: string;
+  description: string;
+  price: number;
+}
+
+export default function Card({title, description , price} : CardProps) {
   const { t } = useTranslation();
 
   return (
     <div className={styles.card}>
       <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
       <div className={styles.cardContent}>
-        <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{t("title")}</div>
-        <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>{t("description")}</div>
-        <div className={styles.cardText} style={{ fontSize: "1.3rem", marginTop: "10px" }}>${t("price")}</div>
+        <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{title ? title : t("title")}</div>
+        <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>{description ? description : t("description")}</div>
+        <div className={styles.cardText} style={{ fontSize: "1.3rem", marginTop: "10px" }}>${price ? price : t("price")}</div>
         <div className={styles.cardStars}>
           <RiStarSFill />
           <RiStarSFill />
