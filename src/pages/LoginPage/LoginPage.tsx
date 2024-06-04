@@ -58,7 +58,6 @@ export default function LoginPage() {
           }`}
           onChange={validateEmail}
           placeholder="Email address"
-          autoComplete="off"
           spellCheck="false"
           required
         />
@@ -75,7 +74,6 @@ export default function LoginPage() {
             }`}
             onChange={validatePassword}
             placeholder="Password"
-            autoComplete="off"
             spellCheck="false"
             required
           />

@@ -13,15 +13,15 @@ export default function UPUserDataPage() {
   const [data, setData] = useState<any>({});
   const [error, setError] = useState("");
   const { t } = useTranslation();
-
-  async function fetchData () {
-    try{ setData(await getUser(userId)) }
-    catch(err: any) { setError(err) }
-  };
-
+  
   useEffect(() => {
     fetchData();
   }, []);
+
+  async function fetchData () {
+    try { setData(await getUser(userId)) }
+    catch(err: any) { setError(err) }
+  };
 
   return (
     <div className={styles.content}>
@@ -46,27 +46,27 @@ export default function UPUserDataPage() {
       <div className={styles.dataSection}>
         <div className={styles.data}>
           <span>{t("full_name")}</span>
-          <input type="text" className={styles.input} value={data.first_name ? (data.first_name + " " + data.last_name) : ""} disabled />
+          <input type="text" className={styles.input} value={data.first_name ? `${data?.first_name} ${data?.last_name}` : ""} spellCheck="false" disabled />
         </div>
         <div className={styles.data}>
           <span>Email address:</span>
-          <input type="text" className={styles.input} value={data.email} disabled />
+          <input type="text" className={styles.input} value={data?.email} spellCheck="false" disabled />
         </div>
         <div className={styles.data}>
           <span>{t("city")}</span>
-          <input type="text" className={styles.input} value={data.city} disabled />
+          <input type="text" className={styles.input} value={data?.city} spellCheck="false" disabled />
         </div>
         <div className={styles.data}>
           <span>Zip code:</span>
-          <input type="text" className={styles.input} value={data.zip_code} disabled />
+          <input type="text" className={styles.input} value={data?.zip_code} spellCheck="false" disabled />
         </div>
         <div className={styles.data}>
           <span>{t("address")}</span>
-          <input type="text" className={styles.input} value={data.address} disabled />
+          <input type="text" className={styles.input} value={data?.address} spellCheck="false" disabled />
         </div>
         <div className={styles.data}>
           <span>{t("phone")}</span>
-          <input type="text" className={styles.input} value={data.phone} disabled />
+          <input type="text" className={styles.input} value={data?.phone} spellCheck="false" disabled />
         </div>
       </div>
     </div>

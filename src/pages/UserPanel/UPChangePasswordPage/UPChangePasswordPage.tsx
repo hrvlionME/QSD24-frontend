@@ -40,7 +40,7 @@ export default function UPChangePasswordPage() {
   return (
     <div className={styles.content}>
       <div style={{ position: "relative" }}>
-        <input type={showPassword ? "text" : "password"} onChange={validateOldPassword} className={`${styles.input} ${isValidOldPassword ? styles.validInput : styles.invalidInput}`} placeholder={t("oldPassword")} autoComplete="off" spellCheck="false" required />
+        <input type={showPassword ? "text" : "password"} onChange={validateOldPassword} className={`${styles.input} ${isValidOldPassword ? styles.validInput : styles.invalidInput}`} placeholder={t("oldPassword")} spellCheck="false" required />
         {showPassword ?
           <AiFillEyeInvisible onClick={() => setShowPassword(prev => !prev)} className={styles.icon} /> :
           <AiFillEye onClick={() => setShowPassword(prev => !prev)} className={styles.icon} />
@@ -48,7 +48,7 @@ export default function UPChangePasswordPage() {
       </div>
       {!isValidOldPassword && <p className={styles.errorMessage}>{t("password_contain")}</p>}
       <div style={{ position: "relative" }}>
-        <input type={showPasswordConfirm ? "text" : "password"} onChange={validateNewPassword} className={`${styles.input} ${isValidNewPassword ? styles.validInput : styles.invalidInput}`} placeholder={t("newPassword")} autoComplete="off" spellCheck="false" required />
+        <input type={showPasswordConfirm ? "text" : "password"} onChange={validateNewPassword} className={`${styles.input} ${isValidNewPassword ? styles.validInput : styles.invalidInput}`} placeholder={t("newPassword")} spellCheck="false" required />
         {showPasswordConfirm ?
           <AiFillEyeInvisible onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} /> :
           <AiFillEye onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} />
