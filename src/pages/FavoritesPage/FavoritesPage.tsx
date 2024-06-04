@@ -18,8 +18,8 @@ export default function FavoritesPage() {
     } 
 
     fetchFavorites();
-    console.log(favorites)
-  }, [favorites])
+
+  }, [])
 
   return (
     <>

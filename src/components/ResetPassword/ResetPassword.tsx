@@ -45,7 +45,6 @@ export default function ResetPassword({
           }`}
           onChange={validatePassword}
           placeholder={t("passwordPlaceholder")}
-          autoComplete="off"
           spellCheck="false"
           required
         />
@@ -72,7 +71,6 @@ export default function ResetPassword({
           }`}
           onChange={validatePasswordConfirm}
           placeholder={t("confirmPasswordPlaceholder")}
-          autoComplete="off"
           spellCheck="false"
           required
         />

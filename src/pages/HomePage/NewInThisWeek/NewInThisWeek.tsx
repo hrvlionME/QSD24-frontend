@@ -42,7 +42,7 @@ export default function NewInThisWeek() {
                             <button className={styles.productPrice}>100$</button>
                             <div className={styles.productName}>{t("title")}</div>
                             <div className={styles.productDescription}>{t("description")}</div>
-                            <div className={styles.productDescription}>{t("brand")} : {t("description")}</div>
+                            <div className={styles.productDescription}>{t("brand")}: {t("description")}</div>
                             <div className={styles.cardFooter}>
                                 <FaRegHeart style={{ cursor: "pointer" }} />
                                 <div style={{ cursor: "pointer" }}>{t("buy")}</div>
