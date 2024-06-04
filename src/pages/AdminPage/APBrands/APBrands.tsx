@@ -40,6 +40,11 @@ export default function APBrands() {
     fetchData();
   }
 
+  function formatDate(date: string) {
+    const d = new Date(date);
+    return `${d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()}.${(d.getMonth() < 9) ? `0${d.getMonth() + 1}` : d.getMonth() + 1}.${d.getFullYear()} ${d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}`;
+  }
+
   return (
     <>
       <div className={styles.addButton} onClick={() => { setShowAddEditModal(true); setOperation("add") }}>
@@ -57,7 +62,7 @@ export default function APBrands() {
           <div className={styles.row}>
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{item.created_at}</div>
+          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>
           <div className={`${styles.cell} ${styles.cellButtons}`}>
             <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
               <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
