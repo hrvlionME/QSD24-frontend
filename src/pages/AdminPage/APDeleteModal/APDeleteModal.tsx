@@ -1,6 +1,6 @@
 import styles from "./APDeleteModal.module.css"
 
-export default function APDeleteModal({ setShowModal, formSubmit }) {
+export default function APDeleteModal({ setShowModal, formSubmit }: any) {
     return (
         <div className={styles.modal}>
             <div className={styles.title}>Are you sure?</div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./APAddEditModal.module.css"
 
-export default function APModal({ value, formSubmit, operation, setShowModal }: any) {
+export default function APAddEditModal({ value, formSubmit, operation, setShowModal }: any) {
     const [inputValue, setInputValue] = useState(operation === "add" ? "" : value);
 
     return (

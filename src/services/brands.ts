@@ -26,7 +26,7 @@ export const addBrand = async (req: any) => {
 
 export const editBrand = async (req: any) => {
     try {
-        const response = await axiosClient.put(`/updateBrand/${req.id}`, { name: req.name });
+        const response = await axiosClient.put("/updateBrand/", req);
         return response.data;
     }
     catch (error: any) {
