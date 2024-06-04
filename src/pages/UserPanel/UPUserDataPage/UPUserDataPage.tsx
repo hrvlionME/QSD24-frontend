@@ -1,11 +1,27 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./UPUserDataPage.module.css";
 import { FaRegHeart } from "react-icons/fa";
 import { GiDeliveryDrone } from "react-icons/gi";
 import { useTranslation } from "react-i18next";
+import { getUser } from "../../../services/users";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 export default function UPUserDataPage() {
+  const userId = useSelector((state: RootState) => state.user.id);
+  const [data, setData] = useState<any>({});
+  const [error, setError] = useState("");
   const { t } = useTranslation();
+
+  async function fetchData () {
+    try{ setData(await getUser(userId)) }
+    catch(err: any) { setError(err) }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.content}>
@@ -30,23 +46,27 @@ export default function UPUserDataPage() {
       <div className={styles.dataSection}>
         <div className={styles.data}>
           <span>{t("full_name")}</span>
-          <input type="text" className={styles.input} disabled />
+          <input type="text" className={styles.input} value={data.first_name ? (data.first_name + " " + data.last_name) : ""} disabled />
         </div>
         <div className={styles.data}>
           <span>Email address:</span>
-          <input type="text" className={styles.input} disabled />
+          <input type="text" className={styles.input} value={data.email} disabled />
         </div>
         <div className={styles.data}>
           <span>{t("city")}</span>
-          <input type="text" className={styles.input} disabled />
+          <input type="text" className={styles.input} value={data.city} disabled />
         </div>
         <div className={styles.data}>
           <span>Zip code:</span>
-          <input type="text" className={styles.input} disabled />
+          <input type="text" className={styles.input} value={data.zip_code} disabled />
         </div>
         <div className={styles.data}>
           <span>{t("address")}</span>
-          <input type="text" className={styles.input} disabled />
+          <input type="text" className={styles.input} value={data.address} disabled />
+        </div>
+        <div className={styles.data}>
+          <span>{t("phone")}</span>
+          <input type="text" className={styles.input} value={data.phone} disabled />
         </div>
       </div>
     </div>

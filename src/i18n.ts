@@ -7,6 +7,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        phone: "Phone:",
         send_email: "Send Email",
         settings: "Settings",
         faq: "FAQ",
@@ -51,7 +52,7 @@ i18n.use(initReactI18next).init({
         search: "Search...",
         how_can_we_help: "How can we help?",
         contact_us_directly: "Contact Us Directly",
-        full_name: "Full name",
+        full_name: "Full name:",
         email_address: "Email address",
         subject: "Subject",
         message: "Message",
@@ -205,6 +206,7 @@ i18n.use(initReactI18next).init({
     },
     hr: {
       translation: {
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -401,6 +403,7 @@ i18n.use(initReactI18next).init({
     },
     ba: {
       translation: {
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -597,6 +600,7 @@ i18n.use(initReactI18next).init({
     },
     srb: {
       translation: {
+        phone: "Telefon:",
         settings: "Podešavanja",
         faq: "FAQ",
         signIn: "Prijava",
