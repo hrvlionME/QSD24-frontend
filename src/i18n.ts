@@ -7,6 +7,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
+        phone: "Phone:",
         send_email: "Send Email",
         settings: "Settings",
         faq: "FAQ",
@@ -51,7 +52,7 @@ i18n.use(initReactI18next).init({
         search: "Search...",
         how_can_we_help: "How can we help?",
         contact_us_directly: "Contact Us Directly",
-        full_name: "Full name",
+        full_name: "Full name:",
         email_address: "Email address",
         subject: "Subject",
         message: "Message",
@@ -190,7 +191,7 @@ i18n.use(initReactI18next).init({
         newPassword: "New Password",
         oldPassword: "Old Password",
         updateInstructions:
-          "Dear <strong>userName</strong>, to update your data, please locate the specific field that you wish to modify and input the new value.",
+          "Dear userName, to update your data, please locate the specific field that you wish to modify and input the new value.",
         firstName: "First Name:",
         lastName: "Last Name:",
         city: "City:",
@@ -205,6 +206,7 @@ i18n.use(initReactI18next).init({
     },
     hr: {
       translation: {
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -386,7 +388,7 @@ i18n.use(initReactI18next).init({
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -401,6 +403,7 @@ i18n.use(initReactI18next).init({
     },
     ba: {
       translation: {
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -582,7 +585,7 @@ i18n.use(initReactI18next).init({
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -597,6 +600,7 @@ i18n.use(initReactI18next).init({
     },
     srb: {
       translation: {
+        phone: "Telefon:",
         settings: "Podešavanja",
         faq: "FAQ",
         signIn: "Prijava",
@@ -780,7 +784,7 @@ i18n.use(initReactI18next).init({
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
+          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",

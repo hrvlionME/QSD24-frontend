@@ -9,9 +9,9 @@ export default function Card() {
     <div className={styles.card}>
       <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
       <div className={styles.cardContent}>
-        <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{t("title")}</div>
-        <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>{t("description")}</div>
-        <div className={styles.cardText} style={{ fontSize: "1.3rem", marginTop: "10px" }}>${t("price")}</div>
+        <div className={styles.cardText}>Title</div>
+        <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>Description</div>
+        <div className={styles.cardText} style={{ marginTop: "10px" }}>$100</div>
         <div className={styles.cardStars}>
           <RiStarSFill />
           <RiStarSFill />
