@@ -21,7 +21,7 @@ export default function UPUserDataPage() {
   async function fetchData () {
     try { setData(await getUser(userId)) }
     catch(err: any) { setError(err) }
-  };
+  }
 
   return (
     <div className={styles.content}>

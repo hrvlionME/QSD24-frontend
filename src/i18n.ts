@@ -190,8 +190,9 @@ i18n.use(initReactI18next).init({
         change_password: "Change Password",
         newPassword: "New Password",
         oldPassword: "Old Password",
+        dear: "Dear ",
         updateInstructions:
-          "Dear userName, to update your data, please locate the specific field that you wish to modify and input the new value.",
+          ", to update your data, please locate the specific field that you wish to modify and input the new value.",
         firstName: "First Name:",
         lastName: "Last Name:",
         city: "City:",
@@ -387,8 +388,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promijeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -584,8 +586,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promijeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -783,8 +786,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi userName, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
