@@ -18,7 +18,7 @@ export default function FavoritesPage() {
     } 
 
     fetchFavorites();
-
+    console.log(favorites)
   }, [favorites])
 
   return (
@@ -30,7 +30,7 @@ export default function FavoritesPage() {
         <div className={styles.cards}>
         {
           favorites.length > 0 ? 
-            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.description} price={favorite.products.price}/>) :
+            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.brands.name} price={favorite.products.price} image={favorite.products.images[0].name}/>) :
           <div className={styles.text}>{t("you_dont_have_any_products")}</div>
         }
         </div>

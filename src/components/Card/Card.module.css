@@ -7,19 +7,22 @@
     scale: 1.02;
     transition: 0.3s ease-in-out;
 }
+.cardContent {
+    padding: 8px 10px 2px 10px;
+}
 .cardImage {
     width: 250px;
     height: 275px;
 }
 .cardText {
     color: var(--logo-purple);
-    font-weight: 500;
+    font-weight: 550;
     font-family: "Glory", sans-serif;
 }
 .cardStars {
     text-align: center;
-    margin-top: 10px;
-    font-size: 1.35rem;
+    margin-top: 15px;
+    font-size: 1.37rem;
     color: rgb(241, 208, 69);
 }
 .cardButton {

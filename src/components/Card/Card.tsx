@@ -3,18 +3,18 @@ import { RiStarSFill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 
 interface CardProps {
-  //image: string;
+  image: string;
   title: string;
   description: string;
   price: number;
 }
 
-export default function Card({title, description , price} : CardProps) {
+export default function Card({title, description , price, image} : CardProps) {
   const { t } = useTranslation();
 
   return (
     <div className={styles.card}>
-      <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
+      <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="product" />
       <div className={styles.cardContent}>
         <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{title ? title : t("title")}</div>
         <div className={styles.cardText} style={{ fontSize: "0.9rem", fontWeight: "400" }}>{description ? description : t("description")}</div>

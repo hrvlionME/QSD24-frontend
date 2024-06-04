@@ -31,7 +31,7 @@ export default function UPFavoritesPage() {
         <div className={styles.content}>
         {
           favorites.length > 0 ? 
-            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.description} price={favorite.products.price}/>) :
+            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.brands.name} price={favorite.products.price} image={favorite.products.images[0].name}/>) :
           <div style={{ fontWeight: "600" }}>{t("noFavProducts")}</div>
         }
         </div>
