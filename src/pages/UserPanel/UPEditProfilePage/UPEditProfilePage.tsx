@@ -18,9 +18,9 @@ export default function UPEditProfilePage() {
   }, []);
 
   async function fetchData () {
-    try{ setData(await getUser(userId)) }
+    try { setData(await getUser(userId)) }
     catch(err: any) { setError(err) }
-  };
+  }
 
   async function formSubmit() {
     try { await editUser(data) }
@@ -30,7 +30,7 @@ export default function UPEditProfilePage() {
 
   return (
     <div className={styles.content}>
-      <div style={{ letterSpacing: "1px" }}>{t("updateInstructions")}</div>
+      <div style={{ letterSpacing: "1px" }}>{t("dear")}<strong>{data?.first_name}</strong>{t("updateInstructions")}</div>
       <div className={styles.dataSection}>
         <div className={styles.data}>
           <span>{t("firstName")}</span>
