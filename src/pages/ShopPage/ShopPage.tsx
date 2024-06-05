@@ -6,17 +6,23 @@ import styles from "./ShopPage.module.css";
 import { FaFilter } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import Card from "../../components/Card/Card";
+import { getProducts } from "../../services/products";
 
 export default function ShopPage() {
   const { t } = useTranslation();
   const { category, id } = useParams();
-  const [showFilter, setShowFilter] = useState(
-    window.innerWidth > 768 ? true : false
-  );
+  const [showFilter, setShowFilter] = useState(window.innerWidth > 768 ? true : false);
+  const [products, setProducts] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 5000]);
+  const genders: any = { 1: "women", 2: "men", 3: "children" };
+  const fetchData = async () => setProducts(await getProducts());
+  const [error, setError] = useState(false);
   
   useEffect(() => {
+    try { fetchData() }
+    catch(err: any) { setError(err) }
     const resizeListener = () => { window.innerWidth > 768 ? setShowFilter(true) : setShowFilter(false) }
     window.addEventListener("resize", resizeListener);
     return () => { window.removeEventListener("resize", resizeListener); }
@@ -45,9 +51,13 @@ export default function ShopPage() {
             ))
           }
           </div>
-          <div className={styles.cards}>
-            <div className={styles.text}>{t("noProducts")}</div>
-          </div>
+          {products.length > 0 && <div className={styles.cards}>
+            {products
+              .filter((item: any) => (item.price >= priceRange[0] && item.price <= priceRange[1] && (category === genders[item.gender] || category === "all")
+              && item.price >= priceRange[0] && item.price <= priceRange[1]))
+              .map((item: any) => (<Card key={item.id} title={item.name} description={item.brands.name} price={item.price} numberOfStars={item.total_rating} image={""} />))
+            }
+          </div>}
         </div>
       </div>
       <Footer />

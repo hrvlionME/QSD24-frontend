@@ -17,6 +17,7 @@ export default function UPMyOrdersPage() {
             title={"Title"}
             description={"Description"}
             price={100}
+            numberOfStars={item.total_rating}
           />
         ))}
       </div>}
