@@ -13,16 +13,13 @@ export default function APSizes() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
+  const fetchData = async () => setData(await getSizes());
   const [error, setError] = useState(null);
 
   useEffect(() => {
     try { fetchData() }
     catch (err: any) { setError(err) }
   }, []);
-
-  async function fetchData () {
-    setData(await getSizes());
-  };
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {

@@ -13,16 +13,13 @@ export default function APBrands() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
+  const fetchData = async () => setData(await getBrands());
   const [error, setError] = useState(null);
 
   useEffect(() => {
     try { fetchData() }
     catch (err: any) { setError(err) }
   }, []);
-
-  async function fetchData () {
-    setData(await getBrands());
-  };
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {

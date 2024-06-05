@@ -14,16 +14,13 @@ export default function APColors() {
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
   const [tempColor, setTempColor] = useState("");
+  const fetchData = async () => setData(await getColors());
   const [error, setError] = useState(null);
 
   useEffect(() => {
     try { fetchData() }
     catch (err: any) { setError(err) }
   }, []);
-
-  async function fetchData () {
-    setData(await getColors());
-  };
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
