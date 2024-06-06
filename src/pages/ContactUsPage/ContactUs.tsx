@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Footer from '../../components/Footer/Footer';
 import styles from './ContactUs.module.css';
+import { contactUs } from "../../services/contact";
 
 
 export default function ContactUs() {
   const { t } = useTranslation();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  async function formSubmit() {
+    const requestBody = {
+      name: name,
+      email: email,
+      subject: subject,
+      message: message
+    };
+      const re = /\S+@\S+\.\S+/;
+      if(re.test(email)) 
+        await contactUs(requestBody)
+      else 
+        alert("Invalid email format");
+  }
 
 
   return (
@@ -17,15 +37,15 @@ export default function ContactUs() {
           <div className={styles.formBox}>
             <h3>{t('contact_us_directly')}</h3>
             <label>{t("full_name")}</label>
-            <input type="text"/>
+            <input type="text" onChange={(event) => setName(event.target.value)}/>
             <label>{t("email_address")}</label>
-            <input type="text"/>
+            <input type="email" onChange={(event) => setEmail(event.target.value)}/>
             <label>{t("subject")}</label>
-            <input type="text"/>
+            <input type="text" onChange={(event) => setSubject(event.target.value)}/>
             <label>{t("message")}</label>
-            <textarea/>
+            <textarea onChange={(event) => setMessage(event.target.value)}/>
             <div className={styles.btnBox}>
-            <button className={styles.btn}>
+            <button className={styles.btn} onClick={formSubmit}>
             {t("send_message")}
             </button>
           </div>
