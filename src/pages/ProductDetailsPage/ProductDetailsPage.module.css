@@ -48,6 +48,7 @@
     margin: 10px 0;
     -webkit-user-select: none;
     user-select: none;
+    padding-left: 0;
 }
 
 .sizeGuide{
@@ -168,6 +169,6 @@
 
 }
 
-.addCartDisabled{
+.addCart:disabled{
     background-color: var(--logo-purple-disabled);
 }
