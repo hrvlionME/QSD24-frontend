@@ -93,12 +93,16 @@
   /*FAQ*/
   --selected-tab: rgba(107, 99, 255, 0.345);
   --selected-tab-icon: rgba(108, 99, 255, 1);
+
+  /*Admin Panel*/
+  --admin-text: rgb(255, 255, 255);
+  --adming-bg: rgb(40, 40, 40);
 }
 
 /* ------------------------------------------------------------------- */
 /* ------------------------------------------------------------------- */
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --white: rgb(255, 255, 255);
   --primary-text: rgb(224, 221, 221);
   --primary-color: rgb(40, 40, 40);
@@ -181,4 +185,7 @@
   /*FAQ*/
   --selected-tab: rgba(181, 177, 255, 0.771);
   --selected-tab-icon: rgba(108, 99, 255, 1);
+
+  --admin-text: rgb(0, 0, 0);
+  --adming-bg: rgb(255, 255, 255);
 }

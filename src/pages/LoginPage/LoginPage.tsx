@@ -5,7 +5,7 @@ import styles from "./LoginPage.module.css";
 import image from "../../assets/images/login-removebg-preview.png";
 import bgImg from "../../assets/images/auth_bg.jpg";
 import { useDispatch } from 'react-redux';
-import { login as loginAction } from '../../redux/userSlice'; 
+import { login as loginAction } from '../../redux/userSlice';
 import { login } from '../../services/auth';
 
 export default function LoginPage() {
@@ -32,7 +32,7 @@ export default function LoginPage() {
   }
 
   async function formSubmit() {
-    try { 
+    try {
       await login({ email: email, password: password });
       dispatch(loginAction({
         id: 0,
@@ -53,9 +53,8 @@ export default function LoginPage() {
         <img src={image} alt="login" style={{ width: "100%" }} />
         <input
           type="text"
-          className={`${styles.input} ${
-            isValidEmail ? styles.validInput : styles.invalidInput
-          }`}
+          className={`${styles.input} ${isValidEmail ? styles.validInput : styles.invalidInput
+            }`}
           onChange={validateEmail}
           placeholder="Email address"
           autoComplete="off"
@@ -70,9 +69,8 @@ export default function LoginPage() {
         <div style={{ position: "relative" }}>
           <input
             type={showPassword ? "text" : "password"}
-            className={`${styles.input} ${
-              isValidPassword ? styles.validInput : styles.invalidInput
-            }`}
+            className={`${styles.input} ${isValidPassword ? styles.validInput : styles.invalidInput
+              }`}
             onChange={validatePassword}
             placeholder="Password"
             autoComplete="off"
@@ -99,11 +97,10 @@ export default function LoginPage() {
         )}
         <button
           onClick={formSubmit}
-          className={`${styles.button} ${
-            isValidEmail && isValidPassword
-              ? styles.validButton
-              : styles.invalidButton
-          }`}
+          className={`${styles.button} ${isValidEmail && isValidPassword
+            ? styles.validButton
+            : styles.invalidButton
+            }`}
           disabled={!isValidEmail || !isValidPassword}
         >Login</button>
         <div className={styles.links}>

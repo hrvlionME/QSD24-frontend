@@ -73,35 +73,34 @@ export default function AdminPage() {
                 />
                 <p style={{ paddingRight: "5px" }}>Tin Minarik</p>
                 <div
-                  className={`${
-                    isProfileOpen
-                      ? styles.admin_content_header_arrowRight
-                      : styles.admin_content_header_arrowDown
-                  }`}
+                  className={`${isProfileOpen
+                    ? styles.admin_content_header_arrowRight
+                    : styles.admin_content_header_arrowDown
+                    }`}
                 >
                   <IoIosArrowDown />
                 </div>
               </div>
               <div
-                className={`${
-                  isProfileOpen
-                    ? styles.admin_content_header_profileBottomContainer
-                    : styles.admin_content_header_profileBottomContainerClosed
-                }`}
+                className={`${isProfileOpen
+                  ? styles.admin_content_header_profileBottomContainer
+                  : styles.admin_content_header_profileBottomContainerClosed
+                  }`}
               >
                 <button onClick={handleHomeClick}>{t("Home")}</button>
                 <button onClick={toggleTheme}>
                   {theme === "light" ? (
                     <>
-                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
-                      {t("Dark")}
-                    </>
-                  ) : (
-                    <>
                       <IoMdSunny
                         style={{ color: "orange", paddingRight: "5px" }}
                       />
                       {t("Light")}
+                    </>
+                  ) : (
+                    <>
+                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
+                      {t("Dark")}
+
                     </>
                   )}
                 </button>

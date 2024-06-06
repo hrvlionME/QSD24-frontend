@@ -20,7 +20,7 @@ export default function APCategories() {
     catch (err: any) { setError(err) }
   }, []);
 
-  async function fetchData () {
+  async function fetchData() {
     setData(await getCategories());
   };
 
@@ -55,20 +55,20 @@ export default function APCategories() {
         </div>
         {data.map((item: any) => (
           <div className={styles.row}>
-          <div className={styles.cellId}>{item.id}</div>
-          <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{item.created_at}</div>
-          <div className={`${styles.cell} ${styles.cellButtons}`}>
-            <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
-              <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
-              <div className={styles.buttonText}>Edit</div>
-            </div>
-            <div className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id) }}>
-              <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
-              <div className={styles.buttonText}>Delete</div>
+            <div className={styles.cellId}>{item.id}</div>
+            <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
+            <div className={styles.cell} style={{ marginLeft: "-40px" }}>{item.created_at}</div>
+            <div className={`${styles.cell} ${styles.cellButtons}`}>
+              <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
+                <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
+                <div className={styles.buttonText}>Edit</div>
+              </div>
+              <div className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id) }}>
+                <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
+                <div className={styles.buttonText}>Delete</div>
+              </div>
             </div>
           </div>
-        </div>
         ))}
       </div>
       {(showAddEditModal || showDeleteModal) && <div className={styles.blockContent}></div>}
