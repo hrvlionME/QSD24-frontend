@@ -1,11 +1,15 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import store from "./redux/store";
+import { RootState } from "./redux/store";
+
+const state: RootState = store.getState();
 
 i18n.use(initReactI18next).init({
   debug: true,
-  fallbackLng: "en",
+  fallbackLng: state.settings.language,
   resources: {
-    en: {
+    English: {
       translation: {
         phone: "Phone:",
         send_email: "Send Email",
@@ -205,7 +209,7 @@ i18n.use(initReactI18next).init({
         myAccount: "MY ACCOUNT",
       },
     },
-    hr: {
+    Hrvatski: {
       translation: {
         phone: "Telefon:",
         settings: "Postavke",
@@ -403,7 +407,7 @@ i18n.use(initReactI18next).init({
         myAccount: "MOJ RAČUN",
       },
     },
-    ba: {
+    Bosanski: {
       translation: {
         phone: "Telefon:",
         settings: "Postavke",
@@ -601,7 +605,7 @@ i18n.use(initReactI18next).init({
         myAccount: "MOJ RAČUN",
       },
     },
-    srb: {
+    Srpski: {
       translation: {
         phone: "Telefon:",
         settings: "Podešavanja",
@@ -802,6 +806,11 @@ i18n.use(initReactI18next).init({
       },
     },
   },
+});
+
+store.subscribe(() => {
+  const newState: RootState = store.getState();
+  i18n.changeLanguage(newState.settings.language);
 });
 
 export default i18n;

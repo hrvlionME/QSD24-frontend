@@ -6,6 +6,9 @@ import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage, toggleThemeReducer } from "../../../redux/settingsSlice";
+import { RootState } from "../../../redux/store";
 
 interface UserWindowProps {
   isOpen: boolean;
@@ -17,11 +20,15 @@ type Language = "English" | "Bosanski" | "Hrvatski" | "Srpski";
 
 const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
+
+  const settings = useSelector((state: RootState) => state.settings);
+  console.log(settings);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState("light"); // Default to "light" theme
-  const [selectedItem, setSelectedItem] = useState<Language>("English"); // Default to "English"
+  const [theme, setTheme] = useState(settings.theme); // Default to "light" theme
+  const [selectedItem, setSelectedItem] = useState<Language>(settings.language); // Default to "English"
 
   const navigate = useNavigate(); // Initialize the navigate function
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Apply the selected theme to the document
@@ -34,17 +41,19 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
+    dispatch(toggleThemeReducer());
   };
 
   const handleItemClick = (item: Language) => {
     setSelectedItem(item);
     setDropdownOpen(false);
     const languageMap: Record<Language, string> = {
-      English: "en",
-      Bosanski: "ba",
-      Hrvatski: "hr",
-      Srpski: "srb",
+      English: "English",
+      Bosanski: "Bosanski",
+      Hrvatski: "Hrvatski",
+      Srpski: "Srpski",
     };
+    dispatch(setLanguage(languageMap[item]));
     i18n.changeLanguage(languageMap[item]);
   };
 
