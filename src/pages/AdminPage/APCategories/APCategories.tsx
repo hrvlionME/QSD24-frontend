@@ -21,13 +21,6 @@ export default function APCategories() {
     catch (err: any) { setError(err) }
   }, []);
 
-<<<<<<< HEAD
-  async function fetchData() {
-    setData(await getCategories());
-  };
-
-=======
->>>>>>> 254a852fbe4b4ae147820ccd77de05da6c27f292
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
       try { await addCategory({ name: inputValue }) }
@@ -64,10 +57,9 @@ export default function APCategories() {
         </div>
         {data.map((item: any) => (
           <div className={styles.row}>
-<<<<<<< HEAD
             <div className={styles.cellId}>{item.id}</div>
             <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-            <div className={styles.cell} style={{ marginLeft: "-40px" }}>{item.created_at}</div>
+            <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>
             <div className={`${styles.cell} ${styles.cellButtons}`}>
               <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
                 <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
@@ -77,19 +69,6 @@ export default function APCategories() {
                 <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
                 <div className={styles.buttonText}>Delete</div>
               </div>
-=======
-          <div className={styles.cellId}>{item.id}</div>
-          <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>
-          <div className={`${styles.cell} ${styles.cellButtons}`}>
-            <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
-              <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
-              <div className={styles.buttonText}>Edit</div>
-            </div>
-            <div className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id) }}>
-              <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
-              <div className={styles.buttonText}>Delete</div>
->>>>>>> 254a852fbe4b4ae147820ccd77de05da6c27f292
             </div>
           </div>
         ))}
