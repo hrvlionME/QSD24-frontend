@@ -6,24 +6,28 @@ import 'swiper/css/pagination';
 import styles from './NewInThisWeek.module.css';
 import { FaRegHeart } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { getProducts } from '../../../services/products';
 
 export default function NewInThisWeek() {
+    const [products, setProducts] = useState<any>([]);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const cardsPerRow = Math.floor(windowWidth / 300) < products.length ? Math.floor(windowWidth / 300) : products.length;
+    const [error, setError] = useState(null);
+    const fetchData = async () => setProducts(await getProducts());
     const { t } = useTranslation();
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
     useEffect(() => {
+        try { fetchData() }
+        catch (err: any) { setError(err) }
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const cardsPerRow = Math.floor(windowWidth / 300);
-
     return (
-        <div className={styles.section}>
-            <div className={styles.title}>{t("new_in_this_week")}</div>
-            <div className={styles.cardsContainer}>
+        <>
+            {products.length > 0 && <div className={styles.section}>
+                <div className={styles.title}>{t("new_in_this_week")}</div>
                 <Swiper
                     style={{ width: cardsPerRow * 245 + (cardsPerRow - 1) * 30, padding: "10px" }}
                     modules={[Pagination, Autoplay]}
@@ -32,7 +36,7 @@ export default function NewInThisWeek() {
                     slidesPerView={cardsPerRow}
                     autoplay={{ delay: 5000, disableOnInteraction: false }}
                 >
-                {[1,2,3,4,5,6,7,8,9,0].map(() => (
+                {products.map((item: any) => (
                     <SwiperSlide className={styles.card}>
                         <div className={styles.cardImageWrapper}>
                             <img src="https://picsum.photos/200/300" className={styles.cardImage} alt="product" />
@@ -40,9 +44,9 @@ export default function NewInThisWeek() {
                         </div>
                         <div className={styles.cardContent}>
                             <button className={styles.productPrice}>100$</button>
-                            <div className={styles.productName}>{t("title")}</div>
-                            <div className={styles.productDescription}>{t("description")}</div>
-                            <div className={styles.productDescription}>{t("brand")} : {t("description")}</div>
+                            <div className={styles.productName}>{item.name}</div>
+                            <div className={styles.productDescription}>{item.description}</div>
+                            <div className={styles.productDescription}>{t("brand")}: {item.brands.name}</div>
                             <div className={styles.cardFooter}>
                                 <FaRegHeart style={{ cursor: "pointer" }} />
                                 <div style={{ cursor: "pointer" }}>{t("buy")}</div>
@@ -51,7 +55,7 @@ export default function NewInThisWeek() {
                     </SwiperSlide>
                 ))}
                 </Swiper>
-            </div>
-        </div>
+            </div>}
+        </>
     )
 }

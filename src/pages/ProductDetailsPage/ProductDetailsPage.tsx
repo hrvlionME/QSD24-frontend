@@ -11,8 +11,23 @@ import { getProduct } from '../../services/product';
 import { useParams } from 'react-router-dom';
 import { getFavorites, handleFavorite } from '../../services/favorite';
 import { useTranslation } from "react-i18next";
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../../redux/cartSlice';
 
-
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  images: { name: string }[];
+  color: string;
+  selectedSize: any;
+  sizes: { name: string }[];
+  brand: string[];
+  gender: string;
+  description: string;
+  amount: number;
+  totalPrice: number;
+}
 
 export default function ProductDetailsPage()  {
 
@@ -22,10 +37,11 @@ export default function ProductDetailsPage()  {
   const [gender, setGender] = useState('')
   const [sizes, setSizes] = useState([]);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [product, setProduct] = useState<{ name?: string, price?: number, brands?: { name?: string } | null } | null>({});
+  const [product, setProduct] = useState<Product>({} as Product);
   const [favorite, setFavorite] = useState(false);
   const [images, setImages] = useState([]);
 
+  const dispatch = useDispatch();
 
   useEffect(() => {
 
@@ -34,7 +50,6 @@ export default function ProductDetailsPage()  {
       setProduct(product);
       setSizes(product.sizes);
       if (product.sizes.length > 0) {
-        setSelectedSize(product.sizes[0]);
         setGender(product.gender);
         setImages(product.images);
       }
@@ -70,6 +85,25 @@ export default function ProductDetailsPage()  {
     
   }
 
+  const addToCart = async () => {
+    const productPayload: Product = {
+      id: Number(id),
+      name: product.name,
+      price: product.price,
+      images: images,
+      sizes: product.sizes,
+      color: product.color,
+      selectedSize: selectedSize,
+      brand: product.brand,
+      gender: product.gender,
+      description: product.description,
+      amount: quantity,
+      totalPrice: 0, // it is calculated in the reducer
+    }
+    console.log("Adding to cart:", productPayload);
+    dispatch(addProductToCart(productPayload));
+  }
+
   return (
     <>
         <div className={styles.container}>
@@ -78,14 +112,14 @@ export default function ProductDetailsPage()  {
             </div>
             <div className={styles.right}>
               <div>
-                <h3 className={styles.text}>{product?.name || t("productName")}</h3>
-                <h4 className={styles.text}>{product?.brands?.name || t("brandName")}</h4>
+                <h3 className={styles.text}>{product.name || t("productName")}</h3>
+                <h4 className={styles.text}>{product.brand || t("brandName")}</h4>
               </div>
               <div className={styles.priceContainer}>
-                <h4 className={styles.text}>${product?.price ? `${(product.price).toFixed(2)}` : "0.00"}</h4>
+                <h4 className={styles.text}>${product.price ? `${(product.price).toFixed(2)}` : "0.00"}</h4>
               </div>
               <div className={styles.sizeGuide}>
-                <h4 className={styles.text}>t("selectSize")</h4>
+                <h4 className={styles.text}> {t("selectSize")}</h4>
                 <SizeGuide gender={gender}/>
               </div>
               <div className={styles.sizeContainer}>
@@ -101,9 +135,9 @@ export default function ProductDetailsPage()  {
               </div>
               <div className={styles.amountFavorites}>
                 <div className={styles.amount}>
-                <FiMinus onClick={() => {if(quantity > 1) setQuantity(quantity - 1)}}/>
+                <FiMinus style={{cursor: "pointer"}} onClick={() => {if(quantity > 1) setQuantity(quantity - 1)}}/>
                 <span>{quantity}</span>
-                 <FiPlus onClick={() => setQuantity(quantity + 1)}/>
+                 <FiPlus style={{cursor: "pointer"}} onClick={() => setQuantity(quantity + 1)}/>
                 </div>
                 <div>
                   <button className={styles.favorite} onClick={handleSubmit}>
@@ -112,7 +146,7 @@ export default function ProductDetailsPage()  {
                 </div>
               </div>
               <div className={styles.addCartContainer}>
-                <button className={styles.addCart} disabled><PiShoppingCartLight/>{t("addToCart")}</button>
+                <button className={styles.addCart} onClick={addToCart} disabled={!selectedSize}><PiShoppingCartLight/>{t("addToCart")}</button>
               </div>
             </div>
            </div>

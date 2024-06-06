@@ -13,16 +13,13 @@ export default function APSizes() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
+  const fetchData = async () => setData(await getSizes());
   const [error, setError] = useState(null);
 
   useEffect(() => {
     try { fetchData() }
     catch (err: any) { setError(err) }
   }, []);
-
-  async function fetchData () {
-    setData(await getSizes());
-  };
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
@@ -38,6 +35,11 @@ export default function APSizes() {
       catch (err: any) { setError(err) }
     }
     fetchData();
+  }
+
+  function formatDate(date: string) {
+    const d = new Date(date);
+    return `${d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()}.${(d.getMonth() < 9) ? `0${d.getMonth() + 1}` : d.getMonth() + 1}.${d.getFullYear()} ${d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}`;
   }
 
   return (
@@ -57,7 +59,7 @@ export default function APSizes() {
           <div className={styles.row}>
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{item.created_at}</div>
+          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>
           <div className={`${styles.cell} ${styles.cellButtons}`}>
             <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
               <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>

@@ -2,7 +2,13 @@ import axiosClient from '../axios-client';
 
 export const getProduct = async (id: number) => {
   try {
-    const response = await axiosClient.get(`/getProduct/${id}`);
+    const response = await axiosClient.get(`/getProduct/${id}`, 
+    {
+      params: {
+        id: id
+      }
+    }
+    );
     return response.data;
   }
   catch (error: any) {

@@ -59,13 +59,13 @@ export default function SignupPage() {
       <div className={styles.box}>
         <img src={image} alt="login" style={{ width: "100%" }} />
         <div className={styles.inputGroup}>
-          <input type="text" onChange={(event) => setFirstName(event.target.value)} className={`${styles.input} ${styles.inputGroupInput}`} placeholder="First name" autoComplete="off" spellCheck="false" required />
-          <input type="text" onChange={(event) => setLastName(event.target.value)} className={`${styles.input} ${styles.inputGroupInput}`} placeholder="Last name" autoComplete="off" spellCheck="false" required />
+          <input type="text" onChange={(event) => setFirstName(event.target.value)} className={`${styles.input} ${styles.inputGroupInput}`} placeholder="First name" spellCheck="false" required />
+          <input type="text" onChange={(event) => setLastName(event.target.value)} className={`${styles.input} ${styles.inputGroupInput}`} placeholder="Last name" spellCheck="false" required />
         </div>
-        <input type="text" className={`${styles.input} ${isValidEmail ? styles.validInput : styles.invalidInput}`} onChange={validateEmail} placeholder="Email address" autoComplete="off" spellCheck="false" required />
+        <input type="text" className={`${styles.input} ${isValidEmail ? styles.validInput : styles.invalidInput}`} onChange={validateEmail} placeholder="Email address" spellCheck="false" required />
         {!isValidEmail && <p className={styles.errorMessage}>Required field, invalid email format.</p>}
         <div style={{ position: "relative" }}>
-          <input type={showPassword ? "text" : "password"} onChange={validatePassword} className={`${styles.input} ${isValidPassword ? styles.validInput : styles.invalidInput}`} placeholder="Password" autoComplete="off" spellCheck="false" required />
+          <input type={showPassword ? "text" : "password"} onChange={validatePassword} className={`${styles.input} ${isValidPassword ? styles.validInput : styles.invalidInput}`} placeholder="Password" spellCheck="false" required />
           {showPassword ?
             <AiFillEyeInvisible onClick={() => setShowPassword(prev => !prev)} className={styles.icon} /> :
             <AiFillEye onClick={() => setShowPassword(prev => !prev)} className={styles.icon} />
@@ -73,7 +73,7 @@ export default function SignupPage() {
         </div>
         {!isValidPassword && <p className={styles.errorMessage}>Password must have at least 8 characters, one capital letter, one small letter, one number, and one special character.</p>}
         <div style={{ position: "relative" }}>
-          <input type={showPasswordConfirm ? "text" : "password"} onChange={validatePasswordConfirm} className={`${styles.input} ${isValidPasswordConfirm ? styles.validInput : styles.invalidInput}`} placeholder="Confirm password" autoComplete="off" spellCheck="false" required />
+          <input type={showPasswordConfirm ? "text" : "password"} onChange={validatePasswordConfirm} className={`${styles.input} ${isValidPasswordConfirm ? styles.validInput : styles.invalidInput}`} placeholder="Confirm password" spellCheck="false" required />
           {showPasswordConfirm ?
             <AiFillEyeInvisible onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} /> :
             <AiFillEye onClick={() => setShowPasswordConfirm(prev => !prev)} className={styles.icon} />

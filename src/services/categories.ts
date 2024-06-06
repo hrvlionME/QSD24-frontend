@@ -20,7 +20,7 @@ export const addCategory = async (req: any) => {
     catch (error: any) {
         if (error.response) throw new Error(error.response.data.message);
         else if (error.request) throw new Error("No response received from server");
-        else throw new Error("Failed to get data");
+        else throw new Error("Failed to add data");
     }
 }
 
@@ -32,7 +32,7 @@ export const editCategory = async (req: any) => {
     catch (error: any) {
         if (error.response) throw new Error(error.response.data.message);
         else if (error.request) throw new Error("No response received from server");
-        else throw new Error("Failed to get data");
+        else throw new Error("Failed to update data");
     }
 }
 
@@ -44,6 +44,6 @@ export const deleteCategory = async (id: any) => {
     catch (error: any) {
         if (error.response) throw new Error(error.response.data.message);
         else if (error.request) throw new Error("No response received from server");
-        else throw new Error("Failed to get data");
+        else throw new Error("Failed to delete data");
     }
 }

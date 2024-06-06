@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import { FaCirclePlus } from 'react-icons/fa6'
-import styles from './APBrands.module.css'
+import styles from './APColors.module.css'
 import { LuPenLine, LuTrash } from 'react-icons/lu'
-import APAddEditModal from '../APAddEditModal/APAddEditModal'
 import APDeleteModal from '../APDeleteModal/APDeleteModal'
-import { addBrand, editBrand, getBrands, deleteBrand } from '../../../services/brands'
+import { getColors, addColor, editColor, deleteColor } from '../../../services/colors'
+import APAddEditModal from '../APAddEditModal/APAddEditModal'
 
-export default function APBrands() {
+export default function APColors() {
   const [showAddEditModal, setShowAddEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [data, setData] = useState([]);
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
-  const fetchData = async () => setData(await getBrands());
+  const [tempColor, setTempColor] = useState("");
+  const fetchData = async () => setData(await getColors());
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,15 +24,15 @@ export default function APBrands() {
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
-      try { await addBrand({ name: inputValue }) }
+      try { await addColor({ name: inputValue }) }
       catch (err: any) { setError(err) }
     }
     else if (operation === "edit") {
-      try { await editBrand({ id: tempId, name: inputValue }) }
+      try { await editColor({ id: tempId, name: inputValue }) }
       catch (err: any) { setError(err) }
     }
     else {
-      try { await deleteBrand(tempId) }
+      try { await deleteColor(tempId) }
       catch (err: any) { setError(err) }
     }
     fetchData();
@@ -46,21 +47,25 @@ export default function APBrands() {
     <>
       <div className={styles.addButton} onClick={() => { setShowAddEditModal(true); setOperation("add") }}>
         <FaCirclePlus />
-        <div className={styles.buttonText}>Add new brand</div>
+        <div className={styles.buttonText}>Add new color</div>
       </div>
       <div className={styles.table}>
-        <div className={styles.row} style={{ fontWeight: "700" }}>
+        <div className={styles.row} style={{ fontWeight: "700", padding: "20px" }}>
           <div className={styles.cellId}>ID</div>
-          <div className={styles.cell} style={{ marginLeft: "40px" }}>Name</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>Created at</div>
-          <div className={styles.cell}>Options</div>
+          <div className={styles.cell}>Name</div>
+          <div className={styles.cell} style={{ marginLeft: "-70px" }}>Color</div>
+          <div className={styles.cell} style={{ marginLeft: "-60px" }}>Created at</div>
+          <div className={styles.cell} style={{ marginLeft: "30px" }}>Options</div>
         </div>
         {data.map((item: any) => (
           <div className={styles.row}>
           <div className={styles.cellId}>{item.id}</div>
-          <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
-          <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>
-          <div className={`${styles.cell} ${styles.cellButtons}`}>
+          <div className={styles.cell}>{item.name}</div>
+          <div className={styles.cell} style={{ marginLeft: "-70px" }}>
+            <div className={styles.colorWrapper} style={{ backgroundColor: item.hex_code }}></div>  
+          </div>
+          <div className={styles.cell} style={{ marginLeft: "-60px" }}>{formatDate(item.created_at)}</div>
+          <div className={`${styles.cell} ${styles.cellButtons}`} style={{ marginLeft: "30px" }}>
             <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValue(item.name) }}>
               <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
               <div className={styles.buttonText}>Edit</div>
@@ -74,7 +79,7 @@ export default function APBrands() {
         ))}
       </div>
       {(showAddEditModal || showDeleteModal) && <div className={styles.blockContent}></div>}
-      {showAddEditModal && <APAddEditModal value={tempValue} operation={operation} formSubmit={formSubmit} setShowModal={setShowAddEditModal} />}
+      {showAddEditModal && <APAddEditModal value={tempValue} color={tempColor} operation={operation} formSubmit={formSubmit} setShowModal={setShowAddEditModal} />}
       {showDeleteModal && <APDeleteModal formSubmit={formSubmit} setShowModal={setShowDeleteModal} />}
     </>
   )

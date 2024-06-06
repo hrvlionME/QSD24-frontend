@@ -11,12 +11,14 @@ import APCategories from "./APCategories/APCategories";
 import { useTranslation } from "react-i18next";
 import APBrands from "./APBrands/APBrands";
 import APSizes from "./APSizes/APSizes";
+import APColors from "./APColors/APColors";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
-  users: APUsers,
-  categories: APCategories,
-  brands: APBrands,
-  sizes: APSizes
+  "users": APUsers,
+  "categories": APCategories,
+  "brands": APBrands,
+  "colors": APColors,
+  "sizes": APSizes
 };
 
 function capitalizeFirstLetter(string: string) {
