@@ -26,7 +26,7 @@ export default function UPFavoritesPage() {
       {favorites.length === 0 && <div className={styles.text}>{t("noFavProducts")}</div>}
       {favorites.length > 0 && <div className={styles.content}>
         {favorites.map((item: any) => (
-          <Card key={item.id} title={item.products.name} description={item.products.brands.name} price={item.products.price} numberOfStars={item.total_rating} image={item.products.images[0].name}/>
+          <Card key={item.id} title={item.products.name} description={item.products.brands.name} price={item.products.price} numberOfStars={item.average_rating} image={item.products.images[0].name}/>
         ))}
       </div>}
     </>

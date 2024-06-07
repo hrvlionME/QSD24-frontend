@@ -7,7 +7,7 @@ import { FaFilter } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import Card from "../../components/Card/Card";
-import { getProducts } from "../../services/products";
+import { filterProducts } from "../../services/products";
 
 export default function ShopPage() {
   const { t } = useTranslation();
@@ -16,23 +16,39 @@ export default function ShopPage() {
   const [products, setProducts] = useState([]);
   const [filterItems, setFilterItems] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 5000]);
-  const genders: any = { 1: "women", 2: "men", 3: "children" };
-  const fetchData = async () => setProducts(await getProducts());
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const fetchData = async () => setProducts(await filterProducts(priceRange[0], priceRange[1], selectedCategories, selectedBrands, selectedSizes, selectedColors, category))
   const [error, setError] = useState(false);
   
   useEffect(() => {
     try { fetchData() }
-    catch(err: any) { setError(err) }
+    catch (err: any) { setError(err) }
     const resizeListener = () => { window.innerWidth > 768 ? setShowFilter(true) : setShowFilter(false) }
     window.addEventListener("resize", resizeListener);
     return () => { window.removeEventListener("resize", resizeListener); }
-  }, []);
+  }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors]);
 
   return (
     <>
       <div className={styles.page}>
         <div style={{ display: showFilter ? "flex" : "none" }}>
-          <Filter filterItems={filterItems} setFilterItems={setFilterItems} priceRange={priceRange} setPriceRange={setPriceRange} />
+          <Filter
+            filterItems={filterItems}
+            setFilterItems={setFilterItems}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+            selectedBrands={selectedBrands}
+            setSelectedBrands={setSelectedBrands}
+            selectedSizes={selectedSizes}
+            setSelectedSizes={setSelectedSizes}
+            selectedColors={selectedColors}
+            setSelectedColors={setSelectedColors}
+          />
           {window.innerWidth <= 768 && <div className={styles.blockContent} onClick={() => setShowFilter(false)}></div>}
         </div>
         <div className={styles.content}>
@@ -48,16 +64,13 @@ export default function ShopPage() {
                 <FiXCircle />
               </div>
             </div>
-            ))
-          }
+          ))}
           </div>
-          {products.length > 0 && <div className={styles.cards}>
-            {products
-              .filter((item: any) => (item.price >= priceRange[0] && item.price <= priceRange[1] && (category === genders[item.gender] || category === "all")
-              && item.price >= priceRange[0] && item.price <= priceRange[1]))
-              .map((item: any) => (<Card key={item.id} title={item.name} description={item.brands.name} price={item.price} numberOfStars={item.total_rating} image={""} />))
-            }
-          </div>}
+          <div className={styles.cards}>
+            {products.map((item: any) => (
+              <Card key={item?.id} title={item?.name} description={item?.description} price={item?.price} numberOfStars={item?.average_rating} image={item?.images?.name} />)
+            )}
+          </div>
         </div>
       </div>
       <Footer />
