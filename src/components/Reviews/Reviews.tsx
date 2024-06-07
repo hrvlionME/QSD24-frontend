@@ -46,7 +46,7 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
         >
           <h4>{t("reviews")}({totalRating})</h4>
           <div>
-            <Rating size={22} initialValue={averageRating} allowHover={false} fillColor={"#cccccc"} />
+            <Rating size={22} initialValue={averageRating} allowHover={false} />
             {showReviews ? <MdKeyboardArrowRight /> : <IoIosArrowDown />}
           </div>
         </div>
