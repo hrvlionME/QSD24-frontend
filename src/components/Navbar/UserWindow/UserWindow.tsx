@@ -9,6 +9,8 @@ import i18n from "../../../i18n";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage, toggleThemeReducer } from "../../../redux/settingsSlice";
 import { RootState } from "../../../redux/store";
+import userImg from "../../../assets/images/user-icon.png";
+
 
 interface UserWindowProps {
   isOpen: boolean;
@@ -20,8 +22,10 @@ type Language = "English" | "Bosanski" | "Hrvatski" | "Srpski";
 
 const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
-
   const settings = useSelector((state: RootState) => state.settings);
+  const user = useSelector((state: RootState) => state.user);
+  console.log(user);
+
   console.log(settings);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [theme, setTheme] = useState(settings.theme); // Default to "light" theme
@@ -67,6 +71,14 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className={`${styles.user_window} ${isOpen ? styles.open : ""}`}>
+      <p className={styles.user_window_profileTitle}>{t("profil")}</p>
+      <div className={styles.user_window_profileInfo}>
+        <img className={styles.user_window_profileInfo_image} src={userImg} alt="User image" />
+        <div>
+          <p className={styles.user_window_profileInfo_name}>{user.first_name} {user.last_name}</p>
+          <p className={styles.user_window_profileTitle_email}>{user.email}</p>
+        </div>
+      </div>
       <div className={styles.user_window_settings}>
         <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
