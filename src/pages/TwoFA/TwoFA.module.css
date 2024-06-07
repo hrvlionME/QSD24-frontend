@@ -78,12 +78,13 @@
     color: var(--auth-submit-btn-color);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 .btn:disabled{
     opacity: 0.5;
+    cursor: not-allowed;
 }
 .btn:hover{
-    opacity: 0.5;
     transform: scale(1.01);
 }
 .links {

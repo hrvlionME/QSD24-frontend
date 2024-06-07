@@ -123,7 +123,7 @@ export default function TwoFA() {
           </div>
           <p className={styles.message}>Enter 6-digit code that has been sent to your mail.</p>
           {isFromForgotPassword ?<ResetPassword password={password} passwordConfirm={passwordConfirm} setPassword={setPassword} setPasswordConfirm={setPasswordConfirm}/> : <div></div>}
-          <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>CONFIRM</button>
+          <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>Confirm</button>
         </div>
     </>
   );

@@ -1,23 +1,26 @@
-import UPNav from "../UPNav/UPNav";
-import UPTitle from "../UPTitle/UPTitle";
+import { useState } from "react";
 import styles from "./UPMyOrdersPage.module.css";
-import Footer from "../../../components/Footer/Footer";
 import { useTranslation } from "react-i18next";
+import Card from "../../../components/Card/Card";
 
 export default function UPMyOrdersPage() {
+  const [orders, setOrders] = useState([]);
   const { t } = useTranslation();
 
   return (
-    <div style={{ backgroundColor: "var(--primary-color-2)" }}>
-      <UPTitle />
-      <div className={styles.page}>
-        <UPNav active="4" />
-        <div className={styles.content}>
-          <div style={{ fontWeight: "600" }}>{t("noOrders")}</div>
-          <button className={styles.button}>1</button>
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <>
+      {orders.length === 0 && <div className={styles.text}>{t("noOrders")}</div>}
+      {orders.length > 0 && <div className={styles.content}>
+        {orders.map((item: any) => (
+          <Card 
+            image={"test"}
+            title={"Title"}
+            description={"Description"}
+            price={100}
+            numberOfStars={item.average_rating}
+          />
+        ))}
+      </div>}
+    </>
   );
 }

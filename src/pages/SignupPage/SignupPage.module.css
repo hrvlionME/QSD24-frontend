@@ -24,7 +24,7 @@
   border-radius: 5px;
   outline: none;
 }
-.validInput:focus {
+.validInput:focus, .inputGroupInput:focus {
   background-color: var(--auth-input-focus);
 }
 .invalidInput {

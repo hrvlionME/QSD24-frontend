@@ -1,12 +1,21 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import store from "./redux/store";
+import { RootState } from "./redux/store";
+
+const state: RootState = store.getState();
 
 i18n.use(initReactI18next).init({
   debug: true,
-  fallbackLng: "en",
+  fallbackLng: state.settings.language,
   resources: {
-    en: {
+    English: {
       translation: {
+        logOut: "Log out",
+        superAdminPanel: "Super admin panel",
+        profile: "Profile",
+        phone: "Phone:",
+        send_email: "Send Email",
         settings: "Settings",
         faq: "FAQ",
         signIn: "Sign In",
@@ -50,7 +59,7 @@ i18n.use(initReactI18next).init({
         search: "Search...",
         how_can_we_help: "How can we help?",
         contact_us_directly: "Contact Us Directly",
-        full_name: "Full name",
+        full_name: "Full name:",
         email_address: "Email address",
         subject: "Subject",
         message: "Message",
@@ -188,8 +197,9 @@ i18n.use(initReactI18next).init({
         change_password: "Change Password",
         newPassword: "New Password",
         oldPassword: "Old Password",
+        dear: "Dear ",
         updateInstructions:
-          "Dear <strong>userName</strong>, to update your data, please locate the specific field that you wish to modify and input the new value.",
+          ", to update your data, please locate the specific field that you wish to modify and input the new value.",
         firstName: "First Name:",
         lastName: "Last Name:",
         city: "City:",
@@ -202,8 +212,12 @@ i18n.use(initReactI18next).init({
         myAccount: "MY ACCOUNT",
       },
     },
-    hr: {
+    Hrvatski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -384,8 +398,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promijeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -398,8 +413,12 @@ i18n.use(initReactI18next).init({
         myAccount: "MOJ RAČUN",
       },
     },
-    ba: {
+    Bosanski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile:"Profil",
+        phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
         signIn: "Prijava",
@@ -580,8 +599,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promijeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promijeniti i unesite novu vrijednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -594,8 +614,12 @@ i18n.use(initReactI18next).init({
         myAccount: "MOJ RAČUN",
       },
     },
-    srb: {
+    Srpski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
+        phone: "Telefon:",
         settings: "Podešavanja",
         faq: "FAQ",
         signIn: "Prijava",
@@ -778,8 +802,9 @@ i18n.use(initReactI18next).init({
         change_password: "Promeni lozinku",
         newPassword: "Nova lozinka",
         oldPassword: "Stara lozinka",
+        dear: "Zdravo ",
         updateInstructions:
-          "Dragi <strong>userName</strong>, kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
+          ", kako biste ažurirali svoje podatke, pronađite određeno polje koje želite promeniti i unesite novu vrednost.",
         firstName: "Ime:",
         lastName: "Prezime:",
         city: "Grad:",
@@ -793,6 +818,11 @@ i18n.use(initReactI18next).init({
       },
     },
   },
+});
+
+store.subscribe(() => {
+  const newState: RootState = store.getState();
+  i18n.changeLanguage(newState.settings.language);
 });
 
 export default i18n;

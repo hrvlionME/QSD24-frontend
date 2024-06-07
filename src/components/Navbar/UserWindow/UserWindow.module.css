@@ -60,6 +60,7 @@
   margin: 0;
   padding: 0 10px;
   text-decoration: none;
+  margin-bottom: 10px;
 }
 
 .user_window_theme:hover {
@@ -197,4 +198,36 @@
 
 .dropdownItem:hover {
   background-color: var(--dropdown-hover);
+}
+.user_window_profileInfo{
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px;
+  color: var(--primary-color-1);
+  border-bottom: 1.5px solid var(--search-border-bottom);
+
+}
+.user_window_profileInfo_image{
+  border-radius: 50%;
+  height: 40px;
+  margin-right: 10px;
+  width: 40px;
+  align-self: center;
+}
+.user_window_profileTitle{
+  color: var(--primary-color-1);
+    font-family: Glory, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0 0 20px 10px;
+    text-transform: uppercase;
+}
+.user_window_profileInfo_name{
+  color: var(--primary-text);
+  font-size: 14px;
+}
+.user_window_profileTitle_email{
+  color: var(--dropdown-header-text);
+  font-size: 12px;
 }

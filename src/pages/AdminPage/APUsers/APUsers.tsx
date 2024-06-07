@@ -1,10 +1,70 @@
-import React from "react";
-import styles from "./APUsers.module.css";
+import { useEffect, useState } from 'react'
+import { FaCirclePlus } from 'react-icons/fa6'
+import styles from './APUsers.module.css'
+import { LuPenLine, LuTrash } from 'react-icons/lu'
+import APAddEditModal from '../APAddEditModal/APAddEditModal'
+import APDeleteModal from '../APDeleteModal/APDeleteModal'
+import { getUsers, deleteUser } from '../../../services/users'
 
 export default function APUsers() {
+  const [showAddEditModal, setShowAddEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [data, setData] = useState([]);
+  const [operation, setOperation] = useState("");
+  const [tempId, setTempId] = useState(0);
+  const [tempValue, setTempValue] = useState("");
+  const fetchData = async () => setData(await getUsers());
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    try { fetchData() }
+    catch (err: any) { setError(err) }
+  }, []);
+
+  async function formSubmit(inputValue: string) {
+    if (operation === 'delete') {
+      try { await deleteUser(tempId) }
+      catch (err: any) { setError(err) }
+    }
+    fetchData();
+  }
+
+  function formatDate(date: string) {
+    const d = new Date(date);
+    return `${d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()}.${(d.getMonth() < 9) ? `0${d.getMonth() + 1}` : d.getMonth() + 1}.${d.getFullYear()} ${d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}`;
+  }
+
   return (
-    <div className={styles.table_tableWraper}>
-      <table className={styles.table_table}></table>
-    </div>
-  );
+    <>
+      <div className={styles.table}>
+        <div className={styles.row} style={{ fontWeight: "700" }}>
+          <div className={styles.cellId}>ID</div>
+          <div className={styles.cell}>Email</div>
+          <div className={styles.cell}>Created at</div>
+          <div className={styles.cell}>Role</div>
+          <div className={styles.cell}>Activate/Deactivate</div>
+          <div className={styles.cell}>Options</div>
+
+        </div>
+        {data.map((item: any) => (
+          <div className={styles.row}>
+            <div className={styles.cellId}>{item.id}</div>
+            <div className={styles.cell} style={{ marginLeft: "25px" }}>{item.email}</div>
+            <div className={styles.cell} style={{ marginLeft: "-15px" }}>{formatDate(item.created_at)}</div>
+            <div className={styles.cell} style={{ marginLeft: "-5px" }}><button className={styles.adminButton}>Superadmin</button></div>
+            <div className={styles.cell} style={{ marginLeft: "-5px" }}><button className={styles.adminButton}>Activate</button></div>
+            <div className={`${styles.cell} ${styles.cellButtons}`} style={{ marginLeft: "-5px" }}>
+              <div className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id) }}>
+                <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
+                <div className={styles.buttonText}>Delete</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {(showAddEditModal || showDeleteModal) && <div className={styles.blockContent}></div>}
+      {showAddEditModal && <APAddEditModal value={tempValue} operation={operation} formSubmit={formSubmit} setShowModal={setShowAddEditModal} />}
+      {showDeleteModal && <APDeleteModal formSubmit={formSubmit} setShowModal={setShowDeleteModal} />}
+    </>
+  )
 }

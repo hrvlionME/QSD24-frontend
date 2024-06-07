@@ -3,10 +3,13 @@ import styles from './Filter.module.css'
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FiXCircle } from "react-icons/fi";
 import MultiRangeSlider from "multi-range-slider-react";
-import { getCategories, getBrands, getSizes, getColors } from '../../../services/filter';
+import { getCategories } from '../../../services/categories';
+import { getBrands } from '../../../services/brands';
+import { getSizes } from '../../../services/sizes';
+import { getColors } from '../../../services/colors';
 import { useTranslation } from "react-i18next";
 
-export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange }: any) {
+export default function Filter({ filterItems, setFilterItems, priceRange, setPriceRange, selectedCategories, setSelectedCategories, selectedBrands, setSelectedBrands, selectedSizes, setSelectedSizes, selectedColors, setSelectedColors }: any) {
     const { t } = useTranslation();
     const [isExpended, setIsExpended] = useState([true, true, true, true]);
     const [categories, setCategories] = useState([]);
@@ -15,26 +18,48 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
     const [colors, setColors] = useState([]);
     const [error, setError] = useState(null);
 
-    function addItemFilter(item: string) {
-        if(filterItems.includes(item)) setFilterItems(filterItems.filter((i: string) => i !== item))
-        else setFilterItems([...filterItems, item]);
+    useEffect(() => {
+        try {fetchData() }
+        catch (err: any) { setError(err) }
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            setCategories(await getCategories());
+            setBrands(await getBrands());
+            setSizes(await getSizes());
+            setColors(await getColors());
+        } 
+        catch (err: any) {
+            setError(err)
+        }
+    };
+
+    function addItemFilter(id: number, name: string, category: string) {
+        if (filterItems.includes(name)) setFilterItems(filterItems.filter((i: string) => i !== name));
+        else setFilterItems([...filterItems, name]);
+        if (category === "category") {
+            if (selectedCategories.includes(id)) setSelectedCategories(selectedCategories.filter((i: number) => i !== id));
+            else setSelectedCategories([...selectedCategories, id]);
+        }
+        else if (category === "brand") {
+            if (selectedBrands.includes(id)) setSelectedBrands(selectedBrands.filter((i: number) => i !== id));
+            else setSelectedBrands([...selectedBrands, id]);
+        }
+        else if (category === "size") {
+            if (selectedSizes.includes(id)) setSelectedSizes(selectedSizes.filter((i: number) => i !== id));
+            else setSelectedSizes([...selectedSizes, id]);
+        }
+        else if (category === "color") {
+            if (selectedColors.includes(id)) setSelectedColors(selectedColors.filter((i: number) => i !== id));
+            else setSelectedColors([...selectedColors, id]);
+        }
     }
 
     function resetFilter() {
         setPriceRange([0, 5000]);
         setFilterItems([]);
     }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setCategories(await getCategories());
-            setBrands(await getBrands());
-            setSizes(await getSizes());
-            setColors(await getColors());
-        };
-        try { fetchData() }
-        catch (err: any) { setError(err) }
-    }, []);
 
     return (
         <div className={styles.filter}>
@@ -46,7 +71,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                 </div>
                 {isExpended[0] && <div className={styles.subCategoryBox}>
                     {categories.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "category")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -58,7 +83,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
                 {isExpended[1] && <div className={styles.subCategoryBox}>
                     {brands.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "brand")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -70,7 +95,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
                 {isExpended[2] && <div className={styles.subCategoryBox}>
                     {sizes.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "size")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -82,7 +107,7 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
             </div>
                 {isExpended[3] && <div className={styles.subCategoryBox}>
                     {colors.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.name)}>{item.name}</div>
+                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "color")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
