@@ -27,6 +27,7 @@ interface Product {
   description: string;
   amount: number;
   totalPrice: number;
+  rating: any[];
 }
 
 export default function ProductDetailsPage()  {
@@ -98,11 +99,13 @@ export default function ProductDetailsPage()  {
       gender: product.gender,
       description: product.description,
       amount: quantity,
-      totalPrice: 0, // it is calculated in the reducer
+      totalPrice: 0,
+      rating: product.rating,
     }
-    console.log("Adding to cart:", productPayload);
     dispatch(addProductToCart(productPayload));
   }
+  
+  console.log(product)
 
   return (
     <>
@@ -150,7 +153,7 @@ export default function ProductDetailsPage()  {
               </div>
             </div>
            </div>
-           <Reviews/>
+           <Reviews id={Number(id)} reviews={product.rating}/>
         <Footer/>
     </>
   );

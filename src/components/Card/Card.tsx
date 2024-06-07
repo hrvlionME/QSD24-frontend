@@ -11,7 +11,7 @@ interface CardProps {
 
 export default function Card({title, description , price, image} : CardProps) {
   const { t } = useTranslation();
-
+  
   return (
     <div className={styles.card}>
       <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="product" />

@@ -53,3 +53,10 @@
     margin-top: 10px;
     padding: 7px 15px;
 }
+
+.date{
+    color: var(--rating-date-text);
+    font-size: 10px;
+    margin-left: 10px;
+}
+
