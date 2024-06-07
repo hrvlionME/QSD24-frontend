@@ -111,7 +111,7 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
-        <div className={styles.admin_content_line}></div>
+        <div></div>
         <Component />
       </div>
     </div>

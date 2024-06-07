@@ -11,6 +11,9 @@ i18n.use(initReactI18next).init({
   resources: {
     English: {
       translation: {
+        logOut: "Log out",
+        superAdminPanel: "Super admin panel",
+        profile: "Profile",
         phone: "Phone:",
         send_email: "Send Email",
         settings: "Settings",
@@ -211,6 +214,9 @@ i18n.use(initReactI18next).init({
     },
     Hrvatski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
         phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
@@ -409,6 +415,9 @@ i18n.use(initReactI18next).init({
     },
     Bosanski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile:"Profil",
         phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
@@ -607,6 +616,9 @@ i18n.use(initReactI18next).init({
     },
     Srpski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
         phone: "Telefon:",
         settings: "Podešavanja",
         faq: "FAQ",
