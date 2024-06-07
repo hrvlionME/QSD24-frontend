@@ -6,7 +6,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { rateProduct } from "../../services/product";
 
-export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
+export default function Reviews({id, reviews, totalRating, averageRating}: {id: number, reviews: any[], totalRating: number, averageRating: number}) {
   const { t } = useTranslation();
   const [showReviews, setShowReviews] = useState(false);
   const [rating, setRating] = useState(0); 
@@ -37,8 +37,6 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
     return new Date(dateString).toLocaleDateString('en-GB', options).replace(/\//g, '.');
 };
 
-  console.log(reviews)
-
   return (
     <>
       <div className={styles.container}>
@@ -46,9 +44,9 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
           className={styles.header}
           onClick={() => setShowReviews(!showReviews)}
         >
-          <h4>{t("reviews")}(0)</h4>
+          <h4>{t("reviews")}({totalRating})</h4>
           <div>
-            <Rating size={22} allowHover={false} fillColor={"#cccccc"} />
+            <Rating size={22} initialValue={averageRating} allowHover={false} fillColor={"#cccccc"} />
             {showReviews ? <MdKeyboardArrowRight /> : <IoIosArrowDown />}
           </div>
         </div>
