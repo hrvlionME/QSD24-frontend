@@ -20,8 +20,6 @@ export default function ImageProduct({ productImages } : {productImages : any}) 
 
     }, [productImages]);
 
-    console.log(productImages)
-    console.log(productImages[0])
 
     return (
     <>

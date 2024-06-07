@@ -49,7 +49,6 @@ export default function MenSizeGuide() {
           <SwiperSlide>
             <button onClick={closeModal} className={styles.closeButton}>
               <LuXCircle />
-              {t("close")}
             </button>
             <div className={styles.sizeGuideContent}>
               <h2>{t("sizeGuide")}</h2>
@@ -172,7 +171,6 @@ export default function MenSizeGuide() {
           <SwiperSlide>
             <button onClick={closeModal} className={styles.closeButton}>
               <LuXCircle />
-              {t("close")}
             </button>
             <div className={styles.sizeGuideContent}>
               <h2>{t("sizeGuide")}</h2>

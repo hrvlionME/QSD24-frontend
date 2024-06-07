@@ -1,22 +1,34 @@
-import UPNav from "../UPNav/UPNav";
-import UPTitle from "../UPTitle/UPTitle";
+import { useState, useEffect } from "react";
 import styles from "./UPFavoritesPage.module.css";
-import Footer from "../../../components/Footer/Footer";
 import { useTranslation } from "react-i18next";
+import Card from "../../../components/Card/Card";
+import { getFavorites } from "../../../services/favorite";
+
 
 export default function UPFavoritesPage() {
+  const [favorites, setFavorites] = useState([]);
   const { t } = useTranslation();
 
+  useEffect(() => {
+
+    const fetchFavorites = async () => {
+        const response = await getFavorites();
+        const favorites = response[0];
+        setFavorites(favorites);
+    } 
+
+    fetchFavorites();
+
+  }, [])
+
   return (
-    <div style={{ backgroundColor: "var(--primary-color-2)" }}>
-      <UPTitle />
-      <div className={styles.page}>
-        <UPNav active="5" />
-        <div className={styles.content}>
-          <div style={{ fontWeight: "600" }}>{t("noFavProducts")}</div>
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <>
+      {favorites.length === 0 && <div className={styles.text}>{t("noFavProducts")}</div>}
+      {favorites.length > 0 && <div className={styles.content}>
+        {favorites.map((item: any) => (
+          <Card key={item.id} title={item.products.name} description={item.products.brands.name} price={item.products.price} numberOfStars={item.products.average_rating} image={item.products.images[0].name}/>
+        ))}
+      </div>}
+    </>
   );
 }

@@ -23,6 +23,88 @@
     flex: 3 1;
 }
 
+.item {
+    border-top: 1px solid var(--dark-transparent-3);
+    display: flex;
+    padding: 20px 0;
+}
+
+.imgContainer {
+    flex: 1 1;
+}
+
+.imgContainer img {
+    height: 100px;
+}
+
+.detailsContainer {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.amountContainer{
+    align-items: center;
+    border: 1px solid var(--dark-transparent-3);
+    border-radius: 5px;
+    color: var(--primary-text);
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    padding: 5px 0;
+    width: 100px;
+}
+
+.selectContainer {
+    color: var(--primary-text);
+    margin-top: 15px;
+}
+
+.selectContainer select {
+    background-color: var(--primary-color-3);
+    border: 1px solid var(--dark-transparent-3);
+    border-radius: 5px;
+    color: var(--primary-text);
+    padding: 5px 0 5px 10px;
+    transition: all .5s ease;
+    width: 100px;
+}
+
+.trash {
+    stroke: currentcolor;
+    fill: currentcolor;
+    stroke-width: 0;
+    height: 16px;
+    width: 16px;
+}
+
+.itemPrice {
+font-size: 13px;
+}
+
+.detailsContainer span {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+.priceContainer{
+    align-items: flex-end;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.deleteContainer {
+    align-items: center;
+    color: var(--primary-text);
+    cursor: pointer;
+    display: flex;
+    gap: 3px;
+}
+
 .subTotal div{
     align-items: center;
     color: var(--dark-transparent-2);
@@ -141,7 +223,7 @@
     width: 100%;
     background-color: var(--primary-color-3);
     border: 1px solid var(--dark-transparent-3);
-    color: var(--primary-text);
+    cursor: pointer;
 }
 
 .clear{
@@ -153,7 +235,7 @@
     width: 100%;
     background-color: var(--primary-color-3);
     border: 1px solid var(--dark-transparent-3);
-    color: var(--primary-text);
+    cursor: pointer;
 }
 
 .checkout{
@@ -165,6 +247,7 @@
     width: 100%;
     background-color: var(--logo-purple);
     border: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 992px) {

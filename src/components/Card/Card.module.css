@@ -1,5 +1,5 @@
 .card {
-    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     width: 250px;
 }
@@ -7,20 +7,31 @@
     scale: 1.02;
     transition: 0.3s ease-in-out;
 }
-.cardImage {
+.cardContent {
+    padding: 7px 7px 3px 7px;
+}
+.cardImageWrapper {
     width: 250px;
-    height: 275px;
+    height: 300px;
+}
+.cardImage {
+    width: 100%;
+    height: 100%;
 }
 .cardText {
+    font-size: 1.42rem;
     color: var(--logo-purple);
-    font-weight: 500;
+    font-weight: 550;
     font-family: "Glory", sans-serif;
 }
 .cardStars {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 1.35rem;
-    color: rgb(241, 208, 69);
+    color: #ccc;
+}
+.activeStar {
+    color: #f1d045;
 }
 .cardButton {
     width: 100%;

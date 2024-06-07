@@ -1,14 +1,6 @@
-.page {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 auto;
-    font-family: Glory, sans-serif;
-    min-height: 600px;
-}
 .content {
     width: calc(95% - 180px);
-    margin-top: 50px;
+    margin-top: 30px;
 }
 .dataSection {
     padding: 40px 0;
@@ -52,12 +44,8 @@
 }
 
 @media (max-width: 768px) {
-    .page {
-        flex-direction: column;
-    }
     .content {
         width: 100%;
-        margin-top: 30px;
     }
     .dataSection {
         padding: 30px 0;

@@ -6,7 +6,6 @@ import styles from './FavoritesPage.module.css'
 import { useTranslation } from "react-i18next";
 
 
-
 export default function FavoritesPage() {
   const { t } = useTranslation();
   const [favorites, setFavorites] = useState([]);
@@ -21,10 +20,10 @@ export default function FavoritesPage() {
 
     fetchFavorites();
 
-  }, [favorites])
+  }, [])
 
 
-  favorites.map((favorite: any) => console.log(favorite));
+  console.log(favorites)
 
   return (
     <>
@@ -33,11 +32,11 @@ export default function FavoritesPage() {
           <div className={styles.title}>{t("favorites")}</div>
         </div>
         <div className={styles.cards}>
-          {
+        {
           favorites.length > 0 ? 
-            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.description} price={favorite.products.price}/>) :
+            favorites.map((favorite : any) => <Card key={favorite.id} title={favorite.products.name} description={favorite.products.brands.name} price={favorite.products.price} image={favorite.products.images[0].name} numberOfStars={favorite.products.average_rating}/>) :
           <div className={styles.text}>{t("you_dont_have_any_products")}</div>
-          }
+        }
         </div>
       </div>
       <Footer />

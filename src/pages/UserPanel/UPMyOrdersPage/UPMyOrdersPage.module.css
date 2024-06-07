@@ -1,35 +1,26 @@
-.page {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 auto;
-    min-height: 600px;
-}
-.content {
+.text {
     text-align: center;
     width: 80%;
-    margin: 80px 0;
-}
-.button {
-    border: none;
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    margin-top: 25px;
-    background-color: rgb(225, 224, 250);
-    color: var(--logo-purple);
-    font-family: Glory, sans-serif;
-    font-size: 1.01rem;
+    margin: 100px 0;
     font-weight: 600;
-    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+}
+.content {
+    width: calc(95% - 180px);
+    margin: 40px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px 20px;
 }
 
-@media (max-width: 768px) {
-    .page {
-        flex-direction: column;
-        justify-content: start;
+@media screen and (max-width: 768px) {
+    .text {
+        width: 100%;
+        margin-top: 50px;
     }
     .content {
-        margin: 30px auto 100px auto;
+        width: 100%;
     }
 }

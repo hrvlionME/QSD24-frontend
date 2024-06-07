@@ -11,12 +11,14 @@ import APCategories from "./APCategories/APCategories";
 import { useTranslation } from "react-i18next";
 import APBrands from "./APBrands/APBrands";
 import APSizes from "./APSizes/APSizes";
+import APColors from "./APColors/APColors";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
-  users: APUsers,
-  categories: APCategories,
-  brands: APBrands,
-  sizes: APSizes
+  "users": APUsers,
+  "categories": APCategories,
+  "brands": APBrands,
+  "colors": APColors,
+  "sizes": APSizes,
 };
 
 function capitalizeFirstLetter(string: string) {
@@ -73,35 +75,34 @@ export default function AdminPage() {
                 />
                 <p style={{ paddingRight: "5px" }}>Tin Minarik</p>
                 <div
-                  className={`${
-                    isProfileOpen
-                      ? styles.admin_content_header_arrowRight
-                      : styles.admin_content_header_arrowDown
-                  }`}
+                  className={`${isProfileOpen
+                    ? styles.admin_content_header_arrowRight
+                    : styles.admin_content_header_arrowDown
+                    }`}
                 >
                   <IoIosArrowDown />
                 </div>
               </div>
               <div
-                className={`${
-                  isProfileOpen
-                    ? styles.admin_content_header_profileBottomContainer
-                    : styles.admin_content_header_profileBottomContainerClosed
-                }`}
+                className={`${isProfileOpen
+                  ? styles.admin_content_header_profileBottomContainer
+                  : styles.admin_content_header_profileBottomContainerClosed
+                  }`}
               >
                 <button onClick={handleHomeClick}>{t("Home")}</button>
                 <button onClick={toggleTheme}>
                   {theme === "light" ? (
                     <>
-                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
-                      {t("Dark")}
-                    </>
-                  ) : (
-                    <>
                       <IoMdSunny
                         style={{ color: "orange", paddingRight: "5px" }}
                       />
                       {t("Light")}
+                    </>
+                  ) : (
+                    <>
+                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
+                      {t("Dark")}
+
                     </>
                   )}
                 </button>
@@ -110,6 +111,7 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
+        <div></div>
         <Component />
       </div>
     </div>

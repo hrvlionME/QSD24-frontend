@@ -26,15 +26,23 @@
     align-items: center;
     gap: 15px;
     border-bottom: 1px solid lightgray;
-    padding: 20px;
+    padding: 6px 20px;
 }
 .cellId {
     width: 50px;
     text-align: center;
 }
 .cell {
-    width: 300px;
+    width: 250px;
     text-align: center;
+}
+.colorWrapper {
+    width: 100px;
+    height: 60px;
+    border: 2px solid black;
+    border-radius: 20px;
+    align-self: center;
+    margin: 0 auto;
 }
 .cellButtons {
     display: flex;
