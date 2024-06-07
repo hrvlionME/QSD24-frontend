@@ -11,6 +11,7 @@ import { RootState } from "../../../redux/store";
 export default function UPUserDataPage() {
   const userId = useSelector((state: RootState) => state.user.id);
   const [data, setData] = useState<any>({});
+  const fetchData = async () => setData(await getUser(userId));
   const [error, setError] = useState("");
   const { t } = useTranslation();
 
@@ -18,10 +19,13 @@ export default function UPUserDataPage() {
     fetchData();
   }, []);
 
-  async function fetchData() {
-    try { setData(await getUser(userId)) }
-    catch (err: any) { setError(err) }
-  }
+  // async function fetchData() {
+  //   try { setData(await getUser(userId)) }
+  //   catch (err: any) { setError(err) }
+  // }
+  //   try { fetchData() }
+  //   catch(err: any) { setError(err) }
+  // }, []);
 
   return (
     <div className={styles.content}>

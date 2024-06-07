@@ -13,6 +13,7 @@ interface Product {
     description: string;
     amount: number;
     totalPrice: number;
+    rating: any[];
   }
   
 

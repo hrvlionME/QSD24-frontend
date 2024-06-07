@@ -6,7 +6,7 @@ import { getFavorites } from "../../../services/favorite";
 
 
 export default function UPFavoritesPage() {
-  const [orders, setOrders] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function UPFavoritesPage() {
     const fetchFavorites = async () => {
         const response = await getFavorites();
         const favorites = response[0];
-        setOrders(favorites);
+        setFavorites(favorites);
     } 
 
     fetchFavorites();
@@ -23,10 +23,10 @@ export default function UPFavoritesPage() {
 
   return (
     <>
-      {orders.length === 0 && <div className={styles.text}>{t("noFavProducts")}</div>}
-      {orders.length > 0 && <div className={styles.content}>
-        {orders.map((item: any) => (
-          <Card key={item.id} title={item.products.name} description={item.products.brands.name} price={item.products.price} image={item.products.images[0].name}/>
+      {favorites.length === 0 && <div className={styles.text}>{t("noFavProducts")}</div>}
+      {favorites.length > 0 && <div className={styles.content}>
+        {favorites.map((item: any) => (
+          <Card key={item.id} title={item.products.name} description={item.products.brands.name} price={item.products.price} numberOfStars={item.average_rating} image={item.products.images[0].name}/>
         ))}
       </div>}
     </>
