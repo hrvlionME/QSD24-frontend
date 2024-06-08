@@ -12,6 +12,42 @@ export const getProducts = async () => {
     }
 }
 
+export const addProduct = async (req: any) => {
+    try {
+        const response = await axiosClient.post("/addProduct", req);
+        return response.data;
+    }
+    catch (error: any) {
+        if (error.response) throw new Error(error.response.data.message);
+        else if (error.request) throw new Error("No response received from server");
+        else throw new Error("Failed to add data");
+    }
+}
+
+export const editProduct = async (req: any) => {
+    try {
+        const response = await axiosClient.put("/updateProduct/", req);
+        return response.data;
+    }
+    catch (error: any) {
+        if (error.response) throw new Error(error.response.data.message);
+        else if (error.request) throw new Error("No response received from server");
+        else throw new Error("Failed to update data");
+    }
+}
+
+export const deleteProduct = async (id: any) => {
+    try {
+        const response = await axiosClient.delete(`/deleteProduct/${id}`);
+        return response.data;
+    }
+    catch (error: any) {
+        if (error.response) throw new Error(error.response.data.message);
+        else if (error.request) throw new Error("No response received from server");
+        else throw new Error("Failed to delete data");
+    }
+}
+
 export const filterProducts = async (minPrice: any, maxPrice: any, selectedCategories: any, selectedBrands: any, selectedSizes: any, selectedColors: any, category: any) => {
     try {
         let route: string;

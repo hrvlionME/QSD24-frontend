@@ -19,20 +19,15 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        try {fetchData() }
+        try { fetchData() }
         catch (err: any) { setError(err) }
     }, []);
 
     const fetchData = async () => {
-        try {
-            setCategories(await getCategories());
-            setBrands(await getBrands());
-            setSizes(await getSizes());
-            setColors(await getColors());
-        } 
-        catch (err: any) {
-            setError(err)
-        }
+        setCategories(await getCategories());
+        setBrands(await getBrands());
+        setSizes(await getSizes());
+        setColors(await getColors());
     };
 
     function addItemFilter(id: number, name: string, category: string) {
