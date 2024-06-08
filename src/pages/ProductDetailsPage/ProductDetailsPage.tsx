@@ -13,6 +13,7 @@ import { getFavorites, handleFavorite } from '../../services/favorite';
 import { useTranslation } from "react-i18next";
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../redux/cartSlice';
+import { Circles } from 'react-loader-spinner';
 
 interface Product {
   id: number;
@@ -42,12 +43,14 @@ export default function ProductDetailsPage()  {
   const [selectedSize, setSelectedSize] = useState(null);
   const [product, setProduct] = useState<Product>({} as Product);
   const [favorite, setFavorite] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
 
+    setLoading(true);
     const fetchProduct = async () => {
       const product = await getProduct(Number(id));
       setProduct(product);
@@ -69,6 +72,8 @@ export default function ProductDetailsPage()  {
 
     fetchProduct();
     fetchFavorites();
+
+    setLoading(false);
 
   }, [id])
 
@@ -109,10 +114,9 @@ export default function ProductDetailsPage()  {
     dispatch(addProductToCart(productPayload));
   }
   
-  console.log(product)
-
   return (
     <>
+    {loading ? <div className={styles.loader}><Circles color="#6C63FF" height={60} width={60}/></div> : <div>
         <div className={styles.container}>
             <div className={styles.left}>
               <ImageProduct productImages={images}/>
@@ -159,6 +163,7 @@ export default function ProductDetailsPage()  {
            </div>
            <Reviews id={Number(id)} reviews={product.rating} totalRating={product.total_rating} averageRating={product.average_rating}/>
         <Footer/>
+      </div>}
     </>
   );
 };

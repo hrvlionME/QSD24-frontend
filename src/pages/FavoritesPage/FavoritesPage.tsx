@@ -4,13 +4,16 @@ import Footer from '../../components/Footer/Footer'
 import { getFavorites } from '../../services/favorite';
 import styles from './FavoritesPage.module.css'
 import { useTranslation } from "react-i18next";
+import { Circles } from 'react-loader-spinner';
 
 
 export default function FavoritesPage() {
   const { t } = useTranslation();
   const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
 
     const fetchFavorites = async () => {
         const response = await getFavorites();
@@ -19,7 +22,7 @@ export default function FavoritesPage() {
     } 
 
     fetchFavorites();
-
+    setLoading(false);
   }, [])
 
 
@@ -27,6 +30,7 @@ export default function FavoritesPage() {
 
   return (
     <>
+     {loading ? <div className={styles.loader}><Circles color="#6C63FF" height={60} width={60}/></div> : <div>
       <div className={styles.page}>
         <div className={styles.titleWrapper}>
           <div className={styles.title}>{t("favorites")}</div>
@@ -40,6 +44,7 @@ export default function FavoritesPage() {
         </div>
       </div>
       <Footer />
+      </div>}
     </>
   );
 }

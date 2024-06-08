@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { login } from '../../redux/userSlice'; 
 import ResetPassword from '../../components/ResetPassword/ResetPassword';
+import { BallTriangle } from 'react-loader-spinner';
 
 
 export default function TwoFA() {
@@ -17,6 +18,7 @@ export default function TwoFA() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const { isFromForgotPassword } = location.state || {};
@@ -47,6 +49,7 @@ export default function TwoFA() {
   }
   
   async function handleSubmit(event: any){
+    setLoading(true);
     const codeAsString = code.join("");
     const validationKey = parseInt(codeAsString, 10);
 
@@ -85,7 +88,10 @@ export default function TwoFA() {
 
       navigate('/'); 
     }
-    catch (error: any) { setError(error.response ? error.response.data.message : "Login failed"); }
+    catch (error: any) { 
+      setLoading(false);
+      setError(error.response ? error.response.data.message : "Login failed"); 
+    }
   }
   }
 
@@ -125,6 +131,18 @@ export default function TwoFA() {
           {isFromForgotPassword ?<ResetPassword password={password} passwordConfirm={passwordConfirm} setPassword={setPassword} setPasswordConfirm={setPasswordConfirm}/> : <div></div>}
           <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>Confirm</button>
         </div>
+        {loading && 
+      <div className={styles.loader}>
+      <BallTriangle
+        height={80}
+        width={80}
+        radius={5}
+        color="#2573E7"
+        ariaLabel="ball-triangle-loading"
+        visible={true}
+      />
+      </div>
+      }
     </>
   );
 }

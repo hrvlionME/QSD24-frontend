@@ -8,6 +8,7 @@ import { FiXCircle } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import Card from "../../components/Card/Card";
 import { filterProducts } from "../../services/products";
+import { Circles } from "react-loader-spinner";
 
 export default function ShopPage() {
   const { t } = useTranslation();
@@ -20,19 +21,23 @@ export default function ShopPage() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
+  const [loading, setLoading] = useState(true);
   const fetchData = async () => setProducts(await filterProducts(priceRange[0], priceRange[1], selectedCategories, selectedBrands, selectedSizes, selectedColors, category))
   const [error, setError] = useState(false);
   
   useEffect(() => {
+    setLoading(true);
     try { fetchData() }
     catch (err: any) { setError(err) }
     const resizeListener = () => { window.innerWidth > 768 ? setShowFilter(true) : setShowFilter(false) }
     window.addEventListener("resize", resizeListener);
+    setLoading(false);
     return () => { window.removeEventListener("resize", resizeListener); }
   }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors]);
 
   return (
     <>
+       {loading ? <div className={styles.loader}><Circles color="#6C63FF" height={60} width={60}/></div> : <div>
       <div className={styles.page}>
         <div style={{ display: showFilter ? "flex" : "none" }}>
           <Filter
@@ -74,6 +79,7 @@ export default function ShopPage() {
         </div>
       </div>
       <Footer />
+      </div>}
     </>
   );
 };

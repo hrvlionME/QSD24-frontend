@@ -5,6 +5,7 @@ import styles from './SignupPage.module.css'
 import image from '../../assets/images/avatar-removebg-preview.png'
 import bgImg from '../../assets/images/auth_bg.jpg';
 import { register } from '../../services/auth';
+import { BallTriangle } from 'react-loader-spinner';
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,7 @@ export default function SignupPage() {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [isValidPasswordConfirm, setIsValidPasswordConfirm] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ export default function SignupPage() {
   }
 
   async function formSubmit() {
+    setLoading(true);
     const requestBody = {
       first_name: firstName,
       last_name: lastName,
@@ -51,7 +54,10 @@ export default function SignupPage() {
       await register(requestBody)
       navigate('/login'); 
     }
-    catch (err: any) { setError(err) }
+    catch (err: any) { 
+      setLoading(false);
+      setError(err) 
+    }
   }
 
   return (
@@ -86,6 +92,18 @@ export default function SignupPage() {
           <Link to="/forgot-password" className={styles.link}>Forgot password?</Link>
         </div>
       </div>
+      {loading && 
+      <div className={styles.loader}>
+      <BallTriangle
+        height={80}
+        width={80}
+        radius={5}
+        color="#2573E7"
+        ariaLabel="ball-triangle-loading"
+        visible={true}
+      />
+      </div>
+      }
     </div>
   )
 }
