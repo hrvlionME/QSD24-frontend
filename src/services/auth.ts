@@ -71,3 +71,15 @@ export const requestValidationKey = async (req: any) => {
     else throw new Error("Email doesn't exist");
   }
 }
+
+export const refreshAuthToken = async () => {
+  try {
+    const response = await axiosClient.post("/refresh");
+    return response.data;
+  }
+  catch (error: any) {
+    if (error.response) throw new Error(error.response.data.message);
+    else if (error.request) throw new Error("No response received from server");
+    else throw new Error("Refresh token failed");
+  }
+}
