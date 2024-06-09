@@ -16,10 +16,17 @@ export default function CartPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [products, setProducts] = useState(initialProductsState);
+    const [subTotal, setSubtotal] = useState(0);
 
 
     useEffect(() => {
         setProducts(initialProductsState);
+
+        let total: number = 0;
+        initialProductsState.forEach(product => {
+            total += product.totalPrice;
+        });
+        setSubtotal(total);
     }, [initialProductsState]);
 
     const handleClearCart = () => {
@@ -28,6 +35,10 @@ export default function CartPage() {
 
     const handleContinue = () => {
         navigate("/shop/all/1");
+    }
+
+    const handleCheckout = () => {
+        navigate("/payment");
     }
 
     const handleDecreaseAmount = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
@@ -129,7 +140,7 @@ export default function CartPage() {
                 <div className={styles.subTotal}>
                     <div>
                         <span>Subtotal</span>
-                        <span>$0.00</span>
+                        <span>${subTotal.toFixed(2)}</span>
                     </div>
                     <div>
                         <span>Delivery</span>
@@ -138,10 +149,10 @@ export default function CartPage() {
                 </div>
                 <div className={styles.total}>
                         <span>Total</span>
-                        <span>$0.00</span>
+                        <span>${subTotal.toFixed(2)}</span>
                 </div>
                 <div>
-                    <button className={styles.checkout}>Proceed to Checkout</button>
+                    <button className={styles.checkout} onClick={handleCheckout}>Proceed to Checkout</button>
                     <button className={styles.continue} onClick={handleContinue}>Continue Shopping</button>
                     <button className={styles.clear} onClick={handleClearCart}>Clear Cart</button>
                 </div>
