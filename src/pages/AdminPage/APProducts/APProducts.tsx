@@ -26,9 +26,23 @@ export default function APProducts() {
     catch (err: any) { setError(err) }
   }, []);
 
-  async function formSubmit() {
+  async function formSubmit(selectedValues: any) {
     if (operation === "add") {
-      try { await addProduct({ }) }
+      const req = {
+        name: selectedValues.name,
+        description: selectedValues.description,
+        price: selectedValues.price,
+        gender: selectedValues.gender,
+        brand_id: selectedValues.brands?.id,
+        color_id: selectedValues.colors?.id,
+        categories: selectedValues.categories ? selectedValues.categories.map((category: any) => category?.id) : [],
+        sizes: selectedValues.sizes ? selectedValues.sizes.map((size: any) => ({ size_id: size?.id, amount: size?.amount })) : [],
+        images: selectedValues.images ? selectedValues.images.map((image: any) => image?.name) : [],
+      }
+      try {
+        await addProduct({ ...req });
+        setShowAddEditModal(false);
+      }
       catch (err: any) { setError(err) }
     }
     // else if (operation === "edit") {
@@ -36,7 +50,7 @@ export default function APProducts() {
     //   catch (err: any) { setError(err) }
     // }
     else {
-      try { await deleteProduct(tempId) }
+      try { console.log(tempId); await deleteProduct(tempId) }
       catch (err: any) { setError(err) }
     }
     fetchData();
@@ -91,14 +105,15 @@ export default function APProducts() {
 
 function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
   const [selectedValues, setSelectedValues] = useState<any>({
-    productName: (operation === "edit") ? values.name : "",
-    productPrice: (operation === "edit") ? values.price : "",
-    productGender: (operation === "edit") ? values.gender : 0,
-    productCategory: (operation === "edit") ? values.category : 0,
-    productBrand: (operation === "edit") ? values.brand : 0,
-    productSize: (operation === "edit") ? values.size : 0,
-    productDescription: (operation === "edit") ? values.description : "",
-    selectedGender: (operation === "edit") ? values.gender : null,
+    name: (operation === "edit") ? values.name : "",
+    price: (operation === "edit") ? values.price : "",
+    gender: (operation === "edit") ? values.gender : 0,
+    categories: (operation === "edit") ? values.categories : [],
+    brand: (operation === "edit") ? values.brands : 0,
+    sizes: (operation === "edit") ? values.sizes : [],
+    color: (operation === "edit") ? values.color : 0,
+    description: (operation === "edit") ? values.description : "",
+    images: (operation === "edit") ? values.images : []
   });
   const [categories, setCategories] = useState<any>([]);
   const [brands, setBrands] = useState<any>([]);
@@ -122,26 +137,111 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
     catch (err: any) { setError(err) }
   };
 
+  const handleFileChange = (event: any) => {
+    const files = event.target.files;
+    const imagesArray: any = [];
+
+    Array.from(files).forEach((file: any) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        imagesArray.push(e.target.result);
+        if (imagesArray.length === files.length) {
+          setSelectedValues((prevValues: any) => ({
+            ...prevValues,
+            images: imagesArray,
+          }));
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   return (
     <div className={styles.modal}>
       <FiXCircle className={styles.xButton} onClick={() => setShowModal(false)} />
       <div className={styles.text}>Enter product name:</div>
-      <input type="text" className={styles.input} placeholder="Product name" value={selectedValues.productName} onChange={(event) => setSelectedValues({...selectedValues, productName: event.target.value})} />
+      <input
+        type="text"
+        className={styles.input}
+        placeholder="Product name"
+        value={selectedValues.name}
+        onChange={(event) => setSelectedValues({ ...selectedValues, name: event.target.value })}
+        spellCheck="false"
+      />
       <div className={styles.text}>Enter product price in $:</div>
-      <input type="number" className={styles.input} placeholder="Product price" value={selectedValues.productPrice} onChange={(event) => setSelectedValues({...selectedValues, productPrice: event.target.value})} />
+      <input
+        type="number"
+        className={styles.input}
+        placeholder="Product price"
+        value={selectedValues.price}
+        onChange={(event) => setSelectedValues({ ...selectedValues, price: event.target.value })}
+        spellCheck="false"
+      />
       <div className={styles.text}>Select gender:</div>
-      <Select options={genders} className={styles.selectInput} defaultValue={ selectedValues.productGender && { value: selectedValues.productGender, label: genders[selectedValues.productGender - 1]?.label }} onChange={(event: any) => setSelectedValues({...selectedValues, selectedGender: event.value})} />
+      <Select
+        options={genders}
+        className={styles.selectInput}
+        defaultValue={selectedValues.gender && { value: selectedValues.gender, label: genders[selectedValues.gender - 1]?.label }}
+        onChange={(event) => setSelectedValues({ ...selectedValues, gender: event.value })}
+      />
       <div className={styles.text}>Select categories:</div>
-      <Select options={categories} className={styles.selectInput} isMulti />
+      <Select
+        options={categories}
+        className={styles.selectInput}
+        defaultValue={selectedValues.categories && selectedValues.categories.map((item: any) => ({ value: item.id, label: item.name }))}
+        onChange={(selectedOptions) => setSelectedValues({ ...selectedValues, categories: selectedOptions.map(option => ({ id: option.value, name: option.label })) })}
+        isMulti
+      />
       <div className={styles.text}>Select brand:</div>
-      <Select options={brands} className={styles.selectInput} />
+      <Select
+        options={brands}
+        className={styles.selectInput}
+        defaultValue={selectedValues.brand.id && { value: selectedValues.brand.id, label: selectedValues.brand.name }}
+        onChange={(event) => setSelectedValues({ ...selectedValues, brands: { id: event.value, name: event.label } })}
+      />
+      <div className={styles.text}>Select color:</div>
+      <Select
+        options={colors}
+        className={styles.selectInput}
+        defaultValue={selectedValues.color.id && { value: selectedValues.color.id, label: selectedValues.color.name }}
+        onChange={(event) => setSelectedValues({ ...selectedValues, colors: { id: event.value, name: event.label } })}
+      />
       <div className={styles.text}>Select sizes:</div>
-      <Select options={sizes} className={styles.selectInput} isMulti />
+      <Select
+        options={sizes}
+        className={styles.selectInput}
+        defaultValue={selectedValues.sizes && selectedValues.sizes.map((item: any) => ({ value: item.id, label: item.name }))}
+        onChange={(selectedOptions) => setSelectedValues({ ...selectedValues, sizes: selectedOptions.map(option => ({ id: option.value, name: option.label })) })}
+        isMulti
+      />
       <div className={styles.text}>Description:</div>
-      <textarea className={styles.input} placeholder="Product description" rows={3} value={selectedValues.productDescription} onChange={(event) => setSelectedValues({...selectedValues, productDescription: event.target.value})} />
+      <textarea
+        className={styles.input}
+        placeholder="Product description"
+        rows={3}
+        value={selectedValues.description}
+        onChange={(event) => setSelectedValues({ ...selectedValues, description: event.target.value })}
+        spellCheck="false"
+      />
+      {selectedValues.sizes.length > 0 && <div style={{ marginBottom: "20px" }}>
+        <div className={styles.text}>Enter amount of products for each size:</div>
+        {selectedValues.sizes.map((item: any) => (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "250px", margin: "10px 0" }}>
+            <div style={{ fontWeight: "600" }}>{item.name}:</div>
+            <input type="number" className={styles.amoutInput} value={item.amount} onChange={(event) => setSelectedValues({ ...selectedValues, sizes: selectedValues.sizes.map((size: any) => size.id === item.id ? { ...size, amount: event.target.value } : size) })} />
+          </div>
+        ))}
+      </div>}
+      <div className={styles.text}>Select images:</div>
+      <div className={styles.images}>
+        {selectedValues.images && selectedValues.images.map((item: any) => (
+          <img key={item} src={item} alt="product" className={styles.image} />
+        ))}
+      </div>
+      <input type="file" className={styles.fileInput} onChange={handleFileChange} accept="image/jpeg,image/png,image/jpg,image/webp" multiple />
       <div className={styles.buttons}>
         <button className={styles.button} style={{ backgroundColor: "red" }} onClick={() => setShowModal(false)}>Cancel</button>
-        <button className={styles.button} style={{ backgroundColor: "green" }} onClick={() => { formSubmit(selectedValues); setShowModal(false)}}>Confirm</button>
+        <button className={styles.button} style={{ backgroundColor: "green" }} onClick={() => { formSubmit(selectedValues) }}>Confirm</button>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import { Rating } from "react-simple-star-rating";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import { rateProduct } from "../../services/product";
+import { rateProduct } from "../../services/products";
 
 export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
   const { t } = useTranslation();
