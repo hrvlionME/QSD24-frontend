@@ -9,8 +9,9 @@ import { useTranslation } from "react-i18next";
 import Card from "../../components/Card/Card";
 import { filterProducts } from "../../services/products";
 import { Circles } from "react-loader-spinner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { setSearchTerm } from "../../redux/searchSlice";
 
 export default function ShopPage() {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ export default function ShopPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
+  const dispatch = useDispatch();
 
   const fetchData = async () => {
     const fetchedProducts = await filterProducts(
@@ -52,6 +54,10 @@ export default function ShopPage() {
     setLoading(false);
     return () => { window.removeEventListener("resize", resizeListener); }
   }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors, searchTerm]);
+
+  useEffect(() => {
+    dispatch(setSearchTerm(""));
+  }, [])
 
   return (
     <>
