@@ -90,7 +90,6 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
           </div>
         )}
       </div>
-      <ToastContainer />
     </>
   );
 }
