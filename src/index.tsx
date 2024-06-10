@@ -67,7 +67,7 @@ function Main() {
   const location = useLocation();
 
   const isAuthPage =
-    ["/login", "/signup", "/forgot-password", "/admin/:category"].includes(
+    ["/login", "/signup", "/forgot-password", "/admin/:category", "/payment", "/send-code"].includes(
       location.pathname
     ) || location.pathname.startsWith("/admin");
 
