@@ -12,9 +12,11 @@ import { useTranslation } from "react-i18next";
 import APBrands from "./APBrands/APBrands";
 import APSizes from "./APSizes/APSizes";
 import APColors from "./APColors/APColors";
+import APProducts from "./APProducts/APProducts";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   "users": APUsers,
+  "products": APProducts,
   "categories": APCategories,
   "brands": APBrands,
   "colors": APColors,

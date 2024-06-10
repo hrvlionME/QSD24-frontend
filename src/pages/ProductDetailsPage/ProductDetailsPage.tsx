@@ -7,7 +7,7 @@ import { FiPlus, FiMinus, FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { PiShoppingCartLight } from "react-icons/pi";
 import Reviews from '../../components/Reviews/Reviews';
-import { getProduct } from '../../services/product';
+import { getProduct } from '../../services/products';
 import { useParams } from 'react-router-dom';
 import { getFavorites, handleFavorite } from '../../services/favorite';
 import { useTranslation } from "react-i18next";
