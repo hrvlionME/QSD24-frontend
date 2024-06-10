@@ -11,7 +11,7 @@ export default function Card({id, title, description , price, image, numberOfSta
   return (
     <div className={styles.card} onClick={() => {navigate(`/product/${id}`)}}>
       <div className={styles.cardImageWrapper}>
-        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="product" />
+        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="" />
       </div>
       <div className={styles.cardContent}>
         <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{title ? title : t("title")}</div>
