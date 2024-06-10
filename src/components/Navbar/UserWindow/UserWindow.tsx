@@ -76,6 +76,10 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
     navigate("/admin/users");
   };
 
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <div className={`${styles.user_window} ${isOpen ? styles.open : ""}`}>
       {user.token && (
@@ -156,6 +160,12 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
               onClick={handleAdminPanelClick}
             >
               {t("superAdminPanel")}
+            </button>
+            <button
+              className={styles.user_window_signIn}
+              onClick={handleProfileClick}
+            >
+              {t("settings")}
             </button>
             <button
               className={styles.user_window_signIn}

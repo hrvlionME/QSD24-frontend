@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { rateProduct } from "../../services/products";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Reviews({id, reviews, totalRating, averageRating}: {id: number, reviews: any[], totalRating: number, averageRating: number}) {

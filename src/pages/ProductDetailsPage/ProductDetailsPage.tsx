@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../redux/cartSlice';
 import { Circles } from 'react-loader-spinner';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {

@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice'; 
 import { useTranslation } from "react-i18next";
 import { BallTriangle } from 'react-loader-spinner';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ForgotPassowrdPage() {

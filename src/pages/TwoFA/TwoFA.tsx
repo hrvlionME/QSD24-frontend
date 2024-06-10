@@ -8,7 +8,7 @@ import { RootState } from '../../redux/store';
 import { login } from '../../redux/userSlice'; 
 import ResetPassword from '../../components/ResetPassword/ResetPassword';
 import { BallTriangle } from 'react-loader-spinner';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

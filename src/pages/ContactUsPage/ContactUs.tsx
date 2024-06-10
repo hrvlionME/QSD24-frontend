@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Footer from '../../components/Footer/Footer';
 import styles from './ContactUs.module.css';
 import { contactUs } from "../../services/contact";
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
