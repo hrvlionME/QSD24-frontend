@@ -27,30 +27,31 @@ export default function APProducts() {
   }, []);
 
   async function formSubmit(selectedValues: any) {
+    const formData = new FormData();
+    formData.append("name", selectedValues.name);
+    formData.append("description", selectedValues.description);
+    formData.append("price", selectedValues.price);
+    formData.append("gender", selectedValues.gender);
+    formData.append("brand_id", selectedValues.brand?.id);
+    formData.append("color_id", selectedValues.color?.id);
+    selectedValues.categories?.forEach((category: any) => formData.append("categories[]", category?.id));
+    selectedValues.sizes?.forEach((size: any, index: number) => {
+      formData.append(`sizes[${index}][size_id]`, size.id);
+      formData.append(`sizes[${index}][amount]`, size.amount);
+    });
+    selectedValues.images?.forEach((image: any, index: number) => {
+      if (image instanceof File) formData.append(`images[${index}]`, image);
+    });
     if (operation === "add") {
-      const req = {
-        name: selectedValues.name,
-        description: selectedValues.description,
-        price: selectedValues.price,
-        gender: selectedValues.gender,
-        brand_id: selectedValues.brands?.id,
-        color_id: selectedValues.colors?.id,
-        categories: selectedValues.categories ? selectedValues.categories.map((category: any) => category?.id) : [],
-        sizes: selectedValues.sizes ? selectedValues.sizes.map((size: any) => ({ size_id: size?.id, amount: size?.amount })) : [],
-        images: selectedValues.images ? selectedValues.images.map((image: any) => image?.name) : [],
-      }
-      try {
-        await addProduct({ ...req });
-        setShowAddEditModal(false);
-      }
+      try { await addProduct(formData) }
       catch (err: any) { setError(err) }
     }
-    // else if (operation === "edit") {
-    //   try { await editProduct({ id: tempId, name: inputValue }) }
-    //   catch (err: any) { setError(err) }
-    // }
+    else if (operation === "edit") {
+      try { await editProduct(formData) }
+      catch (err: any) { setError(err) }
+    }
     else {
-      try { console.log(tempId); await deleteProduct(tempId) }
+      try { await deleteProduct(tempId) }
       catch (err: any) { setError(err) }
     }
     fetchData();
@@ -80,7 +81,7 @@ export default function APProducts() {
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "20px" }}>{item.name}</div>
           <div className={styles.cell} style={{ marginLeft: "-30px" }}>{formatDate(item.created_at)}</div>
-          <div className={styles.cell} style={{ marginLeft: "-30px" }}><img src={item.images.name} alt="" style={{ width: "80px", height: "80px" }} /></div>
+          <div className={styles.cell} style={{ marginLeft: "-30px" }}><img src={`http://127.0.0.1:8000/storage/products/${item.images[0].name}`} alt="" style={{ width: "80px", height: "80px" }} /></div>
           <div className={`${styles.cell} ${styles.cellButtons}`}>
             <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValues(item) }}>
               <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
@@ -139,21 +140,10 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
 
   const handleFileChange = (event: any) => {
     const files = event.target.files;
-    const imagesArray: any = [];
-
-    Array.from(files).forEach((file: any) => {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        imagesArray.push(e.target.result);
-        if (imagesArray.length === files.length) {
-          setSelectedValues((prevValues: any) => ({
-            ...prevValues,
-            images: imagesArray,
-          }));
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+    setSelectedValues((prevValues: any) => ({
+      ...prevValues,
+      images: Array.from(files)
+    }));
   };
 
   return (
@@ -197,14 +187,14 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
         options={brands}
         className={styles.selectInput}
         defaultValue={selectedValues.brand.id && { value: selectedValues.brand.id, label: selectedValues.brand.name }}
-        onChange={(event) => setSelectedValues({ ...selectedValues, brands: { id: event.value, name: event.label } })}
+        onChange={(event) => setSelectedValues({ ...selectedValues, brand: { id: event.value, name: event.label } })}
       />
       <div className={styles.text}>Select color:</div>
       <Select
         options={colors}
         className={styles.selectInput}
         defaultValue={selectedValues.color.id && { value: selectedValues.color.id, label: selectedValues.color.name }}
-        onChange={(event) => setSelectedValues({ ...selectedValues, colors: { id: event.value, name: event.label } })}
+        onChange={(event) => setSelectedValues({ ...selectedValues, color: { id: event.value, name: event.label } })}
       />
       <div className={styles.text}>Select sizes:</div>
       <Select
@@ -235,13 +225,13 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
       <div className={styles.text}>Select images:</div>
       <div className={styles.images}>
         {selectedValues.images && selectedValues.images.map((item: any) => (
-          <img key={item} src={item} alt="product" className={styles.image} />
+          <img key={item} src={item} alt="" className={styles.image} />
         ))}
       </div>
       <input type="file" className={styles.fileInput} onChange={handleFileChange} accept="image/jpeg,image/png,image/jpg,image/webp" multiple />
       <div className={styles.buttons}>
         <button className={styles.button} style={{ backgroundColor: "red" }} onClick={() => setShowModal(false)}>Cancel</button>
-        <button className={styles.button} style={{ backgroundColor: "green" }} onClick={() => { formSubmit(selectedValues) }}>Confirm</button>
+        <button className={styles.button} style={{ backgroundColor: "green" }} onClick={() => { formSubmit(selectedValues); setShowModal(false)}}>Confirm</button>
       </div>
     </div>
   )

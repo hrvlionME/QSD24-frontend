@@ -88,7 +88,7 @@ export default function CartPage() {
                 products.map((product) => (
                     <div className={styles.item}>
                         <div className={styles.imgContainer}>
-                          <img src={`http://127.0.0.1:8000/storage/products/${product.images[0].name}`} alt="product" />
+                          <img src={`http://127.0.0.1:8000/storage/products/${product.images[0].name}`} alt="" />
                         </div>
                         <div className={styles.detailsContainer}>
                             <span>{product.name}</span>

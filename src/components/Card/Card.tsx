@@ -9,7 +9,7 @@ export default function Card({title, description , price, image, numberOfStars} 
   return (
     <div className={styles.card}>
       <div className={styles.cardImageWrapper}>
-        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="product" />
+        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="" />
       </div>
       <div className={styles.cardContent}>
         <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{title ? title : t("title")}</div>

@@ -12,9 +12,9 @@ export const getProducts = async () => {
     }
 }
 
-export const addProduct = async (req: any) => {
+export const addProduct = async (req: FormData) => {
     try {
-        const response = await axiosClient.post("/addProduct", req);
+        const response = await axiosClient.post("/addProduct", req, { headers: { "Content-Type": "multipart/form-data" } });
         return response.data;
     }
     catch (error: any) {
@@ -24,9 +24,9 @@ export const addProduct = async (req: any) => {
     }
 }
 
-export const editProduct = async (req: any) => {
+export const editProduct = async (req: FormData) => {
     try {
-        const response = await axiosClient.put("/updateProduct/", req);
+        const response = await axiosClient.post("/updateProduct/", req, { headers: { "Content-Type": "multipart/form-data" } });
         return response.data;
     }
     catch (error: any) {

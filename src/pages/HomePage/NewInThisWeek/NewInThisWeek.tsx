@@ -39,7 +39,7 @@ export default function NewInThisWeek() {
                 {products.map((item: any) => (
                     <SwiperSlide className={styles.card}>
                         <div className={styles.cardImageWrapper}>
-                            <img src={`http://127.0.0.1:8000/storage/products/${item.images.name}`} className={styles.cardImage} alt="product" />
+                            <img src={`http://127.0.0.1:8000/storage/products/${item.images.name}`} className={styles.cardImage} alt="" />
                             <button className={styles.buttonOnImage}>{t("buy")}</button>
                         </div>
                         <div className={styles.cardContent}>
