@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice';
 import { login } from '../../services/auth';
 import { BallTriangle } from "react-loader-spinner";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -49,6 +51,16 @@ export default function LoginPage() {
     }
     catch (err: any) { 
       setLoading(false);
+      toast.error("There was an error with email or password, please try again", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError(err) }
   }
 
@@ -127,6 +139,7 @@ export default function LoginPage() {
       />
       </div>
       }
+      <ToastContainer />
     </div>
   );
 }

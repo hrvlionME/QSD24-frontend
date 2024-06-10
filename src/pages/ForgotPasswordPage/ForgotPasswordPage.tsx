@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice'; 
 import { useTranslation } from "react-i18next";
 import { BallTriangle } from 'react-loader-spinner';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ForgotPassowrdPage() {
   const { t } = useTranslation();
@@ -56,6 +58,16 @@ export default function ForgotPassowrdPage() {
     }
     catch (error: any) {
       setLoading(false);
+      toast.error("Invald email, please try again", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError(error.response ? error.response.data.message : "User does not exist"); 
       }
   }
@@ -84,6 +96,7 @@ export default function ForgotPassowrdPage() {
       </div>
       }
       </div>
+      <ToastContainer />
     </>
   );
 }

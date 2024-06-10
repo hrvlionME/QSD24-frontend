@@ -14,6 +14,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../../redux/cartSlice';
 import { Circles } from 'react-loader-spinner';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
   id: number;
@@ -112,6 +114,17 @@ export default function ProductDetailsPage()  {
       average_rating: 0,
     }
     dispatch(addProductToCart(productPayload));
+
+    toast.success(`${quantity} x ${product.name} added to cart`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
   
   return (
@@ -164,6 +177,7 @@ export default function ProductDetailsPage()  {
            <Reviews id={Number(id)} reviews={product.rating} totalRating={product.total_rating} averageRating={product.average_rating}/>
         <Footer/>
       </div>}
+      <ToastContainer />
     </>
   );
 };

@@ -5,6 +5,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { rateProduct } from "../../services/product";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Reviews({id, reviews, totalRating, averageRating}: {id: number, reviews: any[], totalRating: number, averageRating: number}) {
   const { t } = useTranslation();
@@ -26,6 +28,17 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
 
     if(rating >= 1 && rating <=5)
       await rateProduct(requestBody)
+
+    toast.success("Successfully rated the item", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const formatDate = (dateString: string) => {
@@ -77,6 +90,7 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 }
