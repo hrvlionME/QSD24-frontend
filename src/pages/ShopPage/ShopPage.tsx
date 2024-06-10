@@ -9,6 +9,8 @@ import { useTranslation } from "react-i18next";
 import Card from "../../components/Card/Card";
 import { filterProducts } from "../../services/products";
 import { Circles } from "react-loader-spinner";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 export default function ShopPage() {
   const { t } = useTranslation();
@@ -22,8 +24,24 @@ export default function ShopPage() {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const fetchData = async () => setProducts(await filterProducts(priceRange[0], priceRange[1], selectedCategories, selectedBrands, selectedSizes, selectedColors, category))
   const [error, setError] = useState(false);
+  const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
+
+  const fetchData = async () => {
+    const fetchedProducts = await filterProducts(
+      priceRange[0],
+      priceRange[1],
+      selectedCategories,
+      selectedBrands,
+      selectedSizes,
+      selectedColors,
+      category
+    );
+    const filteredProducts = fetchedProducts.filter((product: any) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setProducts(filteredProducts);
+  }
   
   useEffect(() => {
     setLoading(true);
@@ -33,7 +51,7 @@ export default function ShopPage() {
     window.addEventListener("resize", resizeListener);
     setLoading(false);
     return () => { window.removeEventListener("resize", resizeListener); }
-  }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors]);
+  }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors, searchTerm]);
 
   return (
     <>
