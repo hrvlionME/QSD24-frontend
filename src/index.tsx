@@ -24,6 +24,8 @@ import "./i18n";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentPage from "./pages/PaymentPage/PaymentPage";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx', {
@@ -54,6 +56,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
       </Elements>
       </PersistGate>
     </Provider>

@@ -177,7 +177,6 @@ export default function ProductDetailsPage()  {
            <Reviews id={Number(id)} reviews={product.rating} totalRating={product.total_rating} averageRating={product.average_rating}/>
         <Footer/>
       </div>}
-      <ToastContainer />
     </>
   );
 };
