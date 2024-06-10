@@ -7,6 +7,9 @@ import bgImg from "../../assets/images/auth_bg.jpg";
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice';
 import { login } from '../../services/auth';
+import { BallTriangle } from "react-loader-spinner";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -15,6 +18,7 @@ export default function LoginPage() {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +36,7 @@ export default function LoginPage() {
   }
 
   async function formSubmit() {
+    setLoading(true);
     try {
       await login({ email: email, password: password });
       dispatch(loginAction({
@@ -44,7 +49,19 @@ export default function LoginPage() {
       }));
       navigate("/send-code")
     }
-    catch (err: any) { setError(err) }
+    catch (err: any) { 
+      setLoading(false);
+      toast.error("There was an error with email or password, please try again", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setError(err) }
   }
 
   return (
@@ -110,6 +127,19 @@ export default function LoginPage() {
           </Link>
         </div>
       </div>
+      {loading && 
+      <div className={styles.loader}>
+      <BallTriangle
+        height={80}
+        width={80}
+        radius={5}
+        color="#2573E7"
+        ariaLabel="ball-triangle-loading"
+        visible={true}
+      />
+      </div>
+      }
+      <ToastContainer />
     </div>
   );
 }

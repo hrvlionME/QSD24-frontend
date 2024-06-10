@@ -11,6 +11,9 @@ i18n.use(initReactI18next).init({
   resources: {
     English: {
       translation: {
+        logOut: "Log out",
+        superAdminPanel: "Super admin panel",
+        profile: "Profile",
         phone: "Phone:",
         send_email: "Send Email",
         settings: "Settings",
@@ -49,7 +52,7 @@ i18n.use(initReactI18next).init({
           "Our mission is to provide our customers with a seamless online shopping experience for high-quality, stylish clothing that empowers them to look and feel their best. We are committed to offering a wide range of modern clothing options that are both functional and fashionable, and we aim to make our customers' lives easier by delivering exceptional service and exceptional products at affordable prices.",
         vision:
           "Our vision is to become the go-to online destination for quality and modern clothing that inspires confidence and individuality. We strive to be a trusted source for fashion-forward individuals who value style and substance in their clothing choices. By continuously innovating and adapting to changing fashion trends, we aim to remain at the forefront of the online fashion industry, while maintaining our commitment to providing excellent customer service and high-quality products.",
-        new_in_this_week: "NEW IN THIS WEEK",
+        new_in_this_week: " • NEW IN THIS WEEK • ",
         buy: "BUY",
         brand: "Brand",
         title: "Title",
@@ -211,6 +214,9 @@ i18n.use(initReactI18next).init({
     },
     Hrvatski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
         phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
@@ -248,7 +254,7 @@ i18n.use(initReactI18next).init({
           "Naša misija je pružiti našim kupcima besprekorno iskustvo online kupovine visokokvalitetne, moderne odeće koja im omogućava da izgledaju i osećaju se najbolje. Obavezali smo se da nudimo širok asortiman modernih odećih opcija koje su funkcionalne i modne, i težimo olakšavanju života našim kupcima pružanjem izvanredne usluge i izvanrednih proizvoda po pristupačnim cenama.",
         vision:
           "Naša vizija je postati glavna destinacija na internetu za kvalitetnu i modernu odeću koja inspiriše samopouzdanje i individualnost. Težimo da budemo pouzdan izvor za ljude koji prate modu, a cene stil i suštinu u svojim odevnim izborima. Neprestano inovirajući i prilagođavajući se promenama modnih trendova, ciljamo ostati na čelu online industrije mode, zadržavajući pritom našu posvećenost pružanju izvrsne korisničke usluge i visokokvalitetnih proizvoda.",
-        new_in_this_week: "NOVO OVE NEDELJE",
+        new_in_this_week: " • NOVO OVE NEDELJE • ",
         buy: "KUPI",
         brand: "Brend",
         title: "Naslov",
@@ -409,6 +415,9 @@ i18n.use(initReactI18next).init({
     },
     Bosanski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile:"Profil",
         phone: "Telefon:",
         settings: "Postavke",
         faq: "FAQ",
@@ -446,7 +455,7 @@ i18n.use(initReactI18next).init({
           "Naša misija je pružiti našim kupcima besprekorno iskustvo online kupovine visokokvalitetne, moderne odeće koja im omogućava da izgledaju i osećaju se najbolje. Obavezali smo se da nudimo širok asortiman modernih odećih opcija koje su funkcionalne i modne, i težimo olakšavanju života našim kupcima pružanjem izvanredne usluge i izvanrednih proizvoda po pristupačnim cenama.",
         vision:
           "Naša vizija je postati glavna destinacija na internetu za kvalitetnu i modernu odeću koja inspiriše samopouzdanje i individualnost. Težimo da budemo pouzdan izvor za ljude koji prate modu, a cene stil i suštinu u svojim odevnim izborima. Neprestano inovirajući i prilagođavajući se promenama modnih trendova, ciljamo ostati na čelu online industrije mode, zadržavajući pritom našu posvećenost pružanju izvrsne korisničke usluge i visokokvalitetnih proizvoda.",
-        new_in_this_week: "NOVO OVE NEDELJE",
+        new_in_this_week: " • NOVO OVE NEDELJE • ",
         buy: "KUPI",
         brand: "Brend",
         title: "Naslov",
@@ -607,6 +616,9 @@ i18n.use(initReactI18next).init({
     },
     Srpski: {
       translation: {
+        logOut: "Odjavi se",
+        superAdminPanel: "Super admin panel",
+        profile: "Profil",
         phone: "Telefon:",
         settings: "Podešavanja",
         faq: "FAQ",
@@ -644,7 +656,7 @@ i18n.use(initReactI18next).init({
           "Naša misija je pružiti našim kupcima besprekorno iskustvo online kupovine visokokvalitetne, moderne odeće koja im omogućava da izgledaju i osećaju se najbolje. Obavezali smo se da nudimo širok asortiman modernih odećih opcija koje su funkcionalne i modne, i težimo olakšavanju života našim kupcima pružanjem izvanredne usluge i izvanrednih proizvoda po pristupačnim cenama.",
         vision:
           "Naša vizija je postati glavna destinacija na internetu za kvalitetnu i modernu odeću koja inspiriše samopouzdanje i individualnost. Težimo da budemo pouzdan izvor za ljude koji prate modu, a cene stil i suštinu u svojim odevnim izborima. Neprestano inovirajući i prilagođavajući se promenama modnih trendova, ciljamo ostati na čelu online industrije mode, zadržavajući pritom našu posvećenost pružanju izvrsne korisničke usluge i visokokvalitetnih proizvoda.",
-        new_in_this_week: "NOVO OVE NEDELJE",
+        new_in_this_week: " • NOVO OVE NEDELJE • ",
         buy: "KUPI",
         brand: "Brend",
         title: "Naslov",

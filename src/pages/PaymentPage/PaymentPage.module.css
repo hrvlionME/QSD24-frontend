@@ -1,0 +1,217 @@
+.main{
+    background-color: var(--home-bg);
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 100vh;
+    position: relative;
+    transition: all .5s ease;
+}
+
+.content{
+    align-items: center;
+    display: flex;
+    margin: 0 50px;
+}
+
+.left{
+    align-items: center;
+    background-color: var(--payment-background);
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex: 3 1;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    transition: all .5s ease;
+}
+
+.cartContainer{
+    width: 90%;
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+}
+
+.total h3{
+    color: var(--primary-text);
+}
+
+.total h3 span{
+    font-size:16px;
+}
+
+.item{
+    border-top: 1px solid var(--dark-transparent-3);
+    display: flex;
+    padding: 20px 0;
+}
+.imgContainer{
+    flex: 1 1;
+}
+.detailsContainer{
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: center;
+}
+.priceContainer{
+    align-items: flex-end;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}   
+
+.imgContainer img {
+    height: 100px;
+}
+
+.detailsContainer span {
+    color: var(--primary-text);
+    font-weight: 600;
+}
+
+.amountContainer{
+    align-items: center;
+    border: 1px solid var(--dark-transparent-3);
+    border-radius: 5px;
+    color: var(--primary-text);
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    padding: 5px 0;
+    width: 100px;
+}
+
+.selectContainer{
+    color: var(--primary-text);
+    margin-top: 15px;
+}
+.priceContainer span {
+    color: var(--primary-text);
+    font-weight: 700;
+}
+
+.right{
+    box-sizing: border-box;
+    display: flex;
+    flex: 2 1;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.demo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-top: 48px;
+    padding-bottom: 40%;
+}
+.demoWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100vh;
+    margin: 0;
+    max-width: 500px;
+    padding: 48px 24px 0;
+    width: 100%;
+}
+.formBack{
+    background-color: var(--logo-purple) !important;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    margin-right: 10px;
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    height: 40px;
+    letter-spacing: .025em;
+    line-height: 40px;
+    margin-top: 10px;
+    outline: 0;
+    padding: 0 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .15s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.formNext{
+    background-color: var(--logo-purple);
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    color: var(--primary-color);
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    height: 40px;
+    letter-spacing: .025em;
+    line-height: 40px;
+    margin-top: 10px;
+    outline: 0;
+    padding: 0 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all .15s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.formNext:disabled{
+    opacity:0.5;
+}
+
+.selectContainer select {
+    background-color: var(--primary-color-3);
+    border: 1px solid var(--dark-transparent-3);
+    border-radius: 5px;
+    color: var(--primary-text);
+    padding: 5px 0 5px 10px;
+    transition: all .5s ease;
+    width: 100px;
+}
+.address {
+    background-color: var(--payment-background) !important;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .149), 0 1px 0 rgba(0, 0, 0, .02);
+    display: block;
+    font-family: Source Code Pro, monospace;
+    font-size: 1em;
+    margin: 10px 0 20px;
+    max-width: 500px;
+    outline: 0;
+    padding: 10px 14px;
+}
+.demo label {
+    color: var(--payment-text);
+    font-weight: 300;
+    letter-spacing: .025em;
+}
+.cardNumber, .cardCvc, .cardExpiry{
+    background-color: var(--payment-background) !important;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(50, 50, 93, .149), 0 1px 0 rgba(0, 0, 0, .02);
+    display: block;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1em;
+    margin: 10px 0 20px;
+    max-width: 500px;
+    outline: 0;
+    padding: 10px 14px;
+}

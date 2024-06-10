@@ -5,6 +5,7 @@
 .admin_content {
   margin-left: 230px;
   padding: 30px;
+  padding-top: 0px;
   flex: 1;
   background-color: var(--primary-color-2);
   height: 100vh;
@@ -13,8 +14,6 @@
   display: flex;
   justify-content: space-between;
   padding: 0 5px;
-  padding-bottom: 15px;
-  border-bottom: rgba(0, 0, 0, 0.4) 1.5px solid;
 }
 .admin_content_headerTitle {
   font-size: 20px;
@@ -82,4 +81,10 @@
   padding: 7px 0;
   width: 70%;
   margin-top: 10px;
+}
+
+.admin_content_line{
+  background-color: rgba(0, 0, 0, .4);
+  height: 1px;
+  margin: 15px 0;
 }

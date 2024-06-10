@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { login } from '../../redux/userSlice'; 
 import ResetPassword from '../../components/ResetPassword/ResetPassword';
+import { BallTriangle } from 'react-loader-spinner';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function TwoFA() {
@@ -17,6 +20,7 @@ export default function TwoFA() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const { isFromForgotPassword } = location.state || {};
@@ -24,6 +28,19 @@ export default function TwoFA() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    toast.success("2FA code sent to your email.", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }, []);
 
   function handleCodeChange(event: React.ChangeEvent<HTMLInputElement>, index: number) {
     const { value } = event.target;
@@ -47,6 +64,7 @@ export default function TwoFA() {
   }
   
   async function handleSubmit(event: any){
+    setLoading(true);
     const codeAsString = code.join("");
     const validationKey = parseInt(codeAsString, 10);
 
@@ -85,7 +103,20 @@ export default function TwoFA() {
 
       navigate('/'); 
     }
-    catch (error: any) { setError(error.response ? error.response.data.message : "Login failed"); }
+    catch (error: any) { 
+      setLoading(false);
+      toast.error("Validation key is not valid.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setError(error.response ? error.response.data.message : "Login failed"); 
+    }
   }
   }
 
@@ -125,6 +156,19 @@ export default function TwoFA() {
           {isFromForgotPassword ?<ResetPassword password={password} passwordConfirm={passwordConfirm} setPassword={setPassword} setPasswordConfirm={setPasswordConfirm}/> : <div></div>}
           <button className={styles.btn} onClick={handleSubmit} disabled={isButtonDisabled}>Confirm</button>
         </div>
+        {loading && 
+      <div className={styles.loader}>
+      <BallTriangle
+        height={80}
+        width={80}
+        radius={5}
+        color="#2573E7"
+        ariaLabel="ball-triangle-loading"
+        visible={true}
+      />
+      </div>
+      }
+      <ToastContainer/>
     </>
   );
 }

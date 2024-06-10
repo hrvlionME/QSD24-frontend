@@ -9,6 +9,8 @@ import i18n from "../../../i18n";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage, toggleThemeReducer } from "../../../redux/settingsSlice";
 import { RootState } from "../../../redux/store";
+import { logout } from "../../../redux/userSlice"; // Import the logout action
+import userImg from "../../../assets/images/user-icon.png";
 
 interface UserWindowProps {
   isOpen: boolean;
@@ -20,9 +22,9 @@ type Language = "English" | "Bosanski" | "Hrvatski" | "Srpski";
 
 const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
-
   const settings = useSelector((state: RootState) => state.settings);
-  console.log(settings);
+  const user = useSelector((state: RootState) => state.user);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [theme, setTheme] = useState(settings.theme); // Default to "light" theme
   const [selectedItem, setSelectedItem] = useState<Language>(settings.language); // Default to "English"
@@ -58,15 +60,36 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   };
 
   const handleSignInClick = () => {
-    navigate("/login"); // Navigate to the login page
+    navigate("/login");
+  };
+
+  const handleLogOutClick = () => {
+    dispatch(logout());
+    navigate("");
   };
 
   const handleFaqClick = () => {
-    navigate("/faq"); // Navigate to the FAQ page
+    navigate("/faq");
+  };
+
+  const handleAdminPanelClick = () => {
+    navigate("/admin/users");
   };
 
   return (
     <div className={`${styles.user_window} ${isOpen ? styles.open : ""}`}>
+      {user.token && (
+        <>
+          <p className={styles.user_window_profileTitle}>{t("profile")}</p>
+          <div className={styles.user_window_profileInfo}>
+            <img className={styles.user_window_profileInfo_image} src={userImg} alt="User image" />
+            <div>
+              <p className={styles.user_window_profileInfo_name}>{user.first_name} {user.last_name}</p>
+              <p className={styles.user_window_profileTitle_email}>{user.email}</p>
+            </div>
+          </div>
+        </>
+      )}
       <div className={styles.user_window_settings}>
         <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
@@ -119,12 +142,29 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
       <div>
-        <button
-          className={styles.user_window_signIn}
-          onClick={handleSignInClick}
-        >
-          {t("signIn")}
-        </button>
+        {!user.token ? (
+          <button
+            className={styles.user_window_signIn}
+            onClick={handleSignInClick}
+          >
+            {t("signIn")}
+          </button>
+        ) : (
+          <>
+            <button
+              className={styles.user_window_signIn}
+              onClick={handleAdminPanelClick}
+            >
+              {t("superAdminPanel")}
+            </button>
+            <button
+              className={styles.user_window_signIn}
+              onClick={handleLogOutClick}
+            >
+              {t("logOut")}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

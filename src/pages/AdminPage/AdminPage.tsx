@@ -20,7 +20,7 @@ const componentsMap: { [key: string]: React.ComponentType } = {
   "categories": APCategories,
   "brands": APBrands,
   "colors": APColors,
-  "sizes": APSizes
+  "sizes": APSizes,
 };
 
 function capitalizeFirstLetter(string: string) {
@@ -113,6 +113,7 @@ export default function AdminPage() {
             </div>
           </div>
         </div>
+        <div></div>
         <Component />
       </div>
     </div>

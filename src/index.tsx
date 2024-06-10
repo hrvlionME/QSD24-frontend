@@ -21,11 +21,19 @@ import { PersistGate } from 'redux-persist/integration/react';
 import CartPage from "./pages/CartPage/CartPage";
 import UserPanel from "./pages/UserPanel/UserPanel";
 import "./i18n";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
 
 function App() {
+  const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx', {
+    locale: 'en',
+  });
+  
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+      <Elements stripe={stripePromise}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />}>
@@ -42,9 +50,11 @@ function App() {
             <Route path="/product/:id" element={<ProductDetailsPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/admin/:category?" element={<AdminPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
+      </Elements>
       </PersistGate>
     </Provider>
   );

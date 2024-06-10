@@ -14,11 +14,18 @@ export default function UPUserDataPage() {
   const fetchData = async () => setData(await getUser(userId));
   const [error, setError] = useState("");
   const { t } = useTranslation();
-  
+
   useEffect(() => {
-    try { fetchData() }
-    catch(err: any) { setError(err) }
+    fetchData();
   }, []);
+
+  // async function fetchData() {
+  //   try { setData(await getUser(userId)) }
+  //   catch (err: any) { setError(err) }
+  // }
+  //   try { fetchData() }
+  //   catch(err: any) { setError(err) }
+  // }, []);
 
   return (
     <div className={styles.content}>
