@@ -33,7 +33,7 @@ const userSlice = createSlice({
             state.password = action.payload.password;
             state.email = action.payload.email;
             state.token = action.payload.token;
-            state.loggedIn = true;
+            state.loggedIn = action.payload.id !== 0;
             state.role = action.payload.role;
         },
         logout: (state) => {
