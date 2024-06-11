@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import styles from './PaymentPage.module.css'
 import { useEffect, useState } from 'react';
@@ -10,8 +10,12 @@ import {
     CardExpiryElement,
     CardCvcElement,
   } from '@stripe/react-stripe-js';
-  import { StripeAddressElementOptions, PaymentIntentResult } from '@stripe/stripe-js';
+  import { StripeAddressElementOptions, PaymentIntentResult, StripeCardNumberElement } from '@stripe/stripe-js';
 import { useNavigate } from 'react-router-dom';
+import { pay } from '../../services/products';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { clearCart } from '../../redux/cartSlice';
 
 export default function PaymentPage(){
 
@@ -25,9 +29,14 @@ export default function PaymentPage(){
     const [step, setStep] = useState<number>(0);
     const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
     const [address, setAddress] = useState<any>({});
+    const [name, setName] = useState<string>('')
+    const [phone, setPhone] = useState<string>('')
     const [isCardNumberComplete, setIsCardNumberComplete] = useState<boolean>(false);
     const [isExpiryComplete, setIsExpiryComplete] = useState<boolean>(false);
     const [isCvcComplete, setIsCvcComplete] = useState<boolean>(false);
+    const user = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false)
     
     
     const addressElementOptions : StripeAddressElementOptions = {
@@ -49,28 +58,80 @@ export default function PaymentPage(){
     }, [initialProductsState]);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        setLoading(true)
         event.preventDefault();
+
         if (!stripe || !elements) {
-          return;
-        }
+
+            return;
+          }
+          const {error, paymentMethod} = await stripe.createPaymentMethod({
+            type: 'card',
+            card: elements.getElement(CardNumberElement) as StripeCardNumberElement,
+          });
+          console.log(paymentMethod);
     
-        const { error, paymentIntent }: PaymentIntentResult = await stripe.confirmPayment({
-          elements,
-          confirmParams: {
-            return_url: 'your-return-url',
-          },
-        });
-    
-        if (error) {
-          console.error(error);
-          return;
-        }
-    
-        if (paymentIntent && paymentIntent.status === 'succeeded') {
-          console.log('Payment succeeded!');
-        }
+          if (!error) {
+            try {
+              const payload = {
+                payment_method: paymentMethod.id,
+                full_name: name,
+                address: address.line1,
+                city: address.city,
+                zip: address.postal_code,
+                phone: phone
+                  ? '00' + phone.substring(1)
+                  : '00000000000',
+                total_price: subTotal,
+                email: user.email,
+                token: "tok_visa"
+                };
+
+              console.log(payload)
+              try {
+                await pay(payload);
+                toast.success("Thank you for your purchase!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                  dispatch(clearCart());
+                  navigate('/');
+
+              } catch (error) {
+                toast.error("There has been a problem with your payment", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                  setLoading(false)
+              }
+            }catch(error) {
+                toast.error("There has been a problem with your payment", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                  setLoading(false)
+            } 
       };
-    
+    }
+
       const nextStep = () => setStep((prevStep) => prevStep + 1);
       const prevStep = () => setStep((prevStep) => prevStep - 1);
 
@@ -79,8 +140,9 @@ export default function PaymentPage(){
       }
 
       const handleAddressChange = (event: any) => {
-        const address = event.value.address;
-        setAddress(address);
+        setAddress(event.value.address);
+        setName(event.value.name);
+        setPhone(event.value.phone);
         setIsFormComplete(
             event.value.name &&
             event.value.phone &&
@@ -180,8 +242,8 @@ export default function PaymentPage(){
                                     <button className={styles.formBack} type="button" onClick={prevStep}>
                                         Go Back
                                     </button>
-                                    <button className={styles.formNext} type="submit" onClick={nextStep} disabled={!isCardNumberComplete || !isExpiryComplete || !isCvcComplete}>
-                                        Pay
+                                    <button className={styles.formNext} type="submit" disabled={!isCardNumberComplete || !isExpiryComplete || !isCvcComplete || loading}>
+                                        {loading ? "Processing..." : "Pay"}
                                     </button>
                                     </div>
                                 )}

@@ -28,7 +28,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx', {
+  const stripePromise = loadStripe('pk_test_51PMQchKZoDCpubn2bI9WLY1IXjMt4KUV16IvFKRFXAMmXQGdV1XS7DjzdxFNr4lYD8ZDPMcHMfWGfuVEYdxvWSod002MraW1y6', {
     locale: 'en',
   });
 
