@@ -28,6 +28,7 @@ export default function APProducts() {
 
   async function formSubmit(selectedValues: any) {
     const formData = new FormData();
+    formData.append("id", tempId.toString());
     formData.append("name", selectedValues.name);
     formData.append("description", selectedValues.description);
     formData.append("price", selectedValues.price);
@@ -81,7 +82,8 @@ export default function APProducts() {
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "20px" }}>{item.name}</div>
           <div className={styles.cell} style={{ marginLeft: "-30px" }}>{formatDate(item.created_at)}</div>
-          <div className={styles.cell} style={{ marginLeft: "-30px" }}><img src={`http://127.0.0.1:8000/storage/products/${item.images[0].name}`} alt="" style={{ width: "80px", height: "80px" }} /></div>
+          <div className={styles.cell} style={{ marginLeft: "-30px" }}>
+            <img src={`http://127.0.0.1:8000/storage/products/${item.images[0]?.name}`} alt="" style={{ width: "80px", height: "80px" }} /></div>
           <div className={`${styles.cell} ${styles.cellButtons}`}>
             <div className={styles.actionButton} style={{ backgroundColor: "green" }} onClick={() => { setShowAddEditModal(true); setOperation("edit"); setTempId(item.id); setTempValues(item) }}>
               <div className={styles.buttonIcon} style={{ color: "green" }}><LuPenLine /></div>
@@ -114,14 +116,15 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
     sizes: (operation === "edit") ? values.sizes : [],
     color: (operation === "edit") ? values.color : 0,
     description: (operation === "edit") ? values.description : "",
-    images: (operation === "edit") ? values.images : []
+    images: []
   });
   const [categories, setCategories] = useState<any>([]);
   const [brands, setBrands] = useState<any>([]);
   const [sizes, setSizes] = useState<any>([]);
   const [colors, setColors] = useState<any>([]);
   const genders = ([{ value: 1, label: "Men" }, { value: 2, label: "Women" }, { value: 3, label: "Children" }]);
-  const [error, setError] = useState<any>(null);
+  const [images, setImages] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     try { fetchData() }
@@ -138,13 +141,29 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
     catch (err: any) { setError(err) }
   };
 
-  const handleFileChange = (event: any) => {
+  function handleFileChange(event: any) {
     const files = event.target.files;
     setSelectedValues((prevValues: any) => ({
       ...prevValues,
       images: Array.from(files)
     }));
+    const imagesArray: any = [];
+    Array.from(files).forEach((file: any) => {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        imagesArray.push(e.target.result);
+        if (imagesArray.length === files.length) {
+          setImages(imagesArray);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
   };
+
+  function handleDeleteImage(index: number) {
+    setSelectedValues((prevValues: any) => ({ ...prevValues, images: prevValues.images.filter((_: any, i: number) => i !== index) }));
+    setImages((prevImages: any) => prevImages.filter((_: any, i: number) => i !== index));
+  }
 
   return (
     <div className={styles.modal}>
@@ -218,14 +237,14 @@ function APAddEditModal ({ values, formSubmit, operation, setShowModal }: any) {
         {selectedValues.sizes.map((item: any) => (
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "250px", margin: "10px 0" }}>
             <div style={{ fontWeight: "600" }}>{item.name}:</div>
-            <input type="number" className={styles.amoutInput} value={item.amount} onChange={(event) => setSelectedValues({ ...selectedValues, sizes: selectedValues.sizes.map((size: any) => size.id === item.id ? { ...size, amount: event.target.value } : size) })} />
+            <input type="number" className={styles.amoutInput} onChange={(event) => setSelectedValues({ ...selectedValues, sizes: selectedValues.sizes.map((size: any) => size.id === item.id ? { ...size, amount: event.target.value } : size) })} />
           </div>
         ))}
       </div>}
       <div className={styles.text}>Select images:</div>
       <div className={styles.images}>
-        {selectedValues.images && selectedValues.images.map((item: any) => (
-          <img key={item} src={item} alt="" className={styles.image} />
+        {images && images?.map((item: any, index: number) => (
+          <img key={index} src={item} alt="" onClick={() => handleDeleteImage(index)} className={styles.image} />
         ))}
       </div>
       <input type="file" className={styles.fileInput} onChange={handleFileChange} accept="image/jpeg,image/png,image/jpg,image/webp" multiple />
