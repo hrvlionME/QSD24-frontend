@@ -11,11 +11,12 @@ import { getProduct } from '../../services/products';
 import { useParams } from 'react-router-dom';
 import { getFavorites, handleFavorite } from '../../services/favorite';
 import { useTranslation } from "react-i18next";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../../redux/cartSlice';
 import { Circles } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RootState } from '../../redux/store';
 
 interface Product {
   id: number;
@@ -47,7 +48,7 @@ export default function ProductDetailsPage()  {
   const [favorite, setFavorite] = useState(false);
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
-
+  const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export default function ProductDetailsPage()  {
   
         const response = await getFavorites();
         const favorites = response[0];
-        const isFavorite = favorites.some((fav: any) => {console.log (fav.product_ID); return fav.product_id === Number(id)})
+        const isFavorite = favorites.some((fav: any) => fav.product_id === Number(id) && fav.user_id === user.id);
         setFavorite(isFavorite);
 
     } 
