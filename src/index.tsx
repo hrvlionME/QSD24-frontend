@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, useLocation, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Outlet, Navigate } from "react-router-dom";
 import NavbarPage from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/ShopPage/ShopPage";
@@ -53,6 +53,7 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/admin/:category?" element={<AdminPage />} />
             <Route path="/payment" element={<PaymentPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </BrowserRouter>

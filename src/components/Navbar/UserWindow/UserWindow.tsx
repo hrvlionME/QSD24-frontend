@@ -157,13 +157,14 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
             {t("signIn")}
           </button>
         ) : (
-          <>
+          <>{user.role === "1" &&
             <button
               className={styles.user_window_signIn}
               onClick={handleAdminPanelClick}
             >
               {t("superAdminPanel")}
             </button>
+            }
             <button
               className={styles.user_window_signIn}
               onClick={handleProfileClick}

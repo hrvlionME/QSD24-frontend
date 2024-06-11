@@ -99,6 +99,7 @@ export default function TwoFA() {
         email: requestBody.email,
         password: requestBody.password,
         token: response.access_token,
+        role: response.user.role,
       }));
 
       navigate('/'); 
