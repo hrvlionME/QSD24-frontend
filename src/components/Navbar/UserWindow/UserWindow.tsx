@@ -166,6 +166,12 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
             </button>
             <button
               className={styles.user_window_signIn}
+              onClick={handleProfileClick}
+            >
+              {t("settings")}
+            </button>
+            <button
+              className={styles.user_window_signIn}
               onClick={handleLogOutClick}
             >
               {t("logOut")}

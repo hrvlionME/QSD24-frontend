@@ -8,12 +8,16 @@ import { requestValidationKey } from '../../services/auth';
 import { useDispatch } from 'react-redux';
 import { login as loginAction } from '../../redux/userSlice'; 
 import { useTranslation } from "react-i18next";
+import { BallTriangle } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ForgotPassowrdPage() {
   const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,6 +31,7 @@ export default function ForgotPassowrdPage() {
   }
   
   async function handleSubmit(event: any){
+    setLoading(true);
 
     if (!isValidEmail(event.target.value)) {
       setError(t("invalid_email_format"));
@@ -51,7 +56,20 @@ export default function ForgotPassowrdPage() {
 
       navigate('/send-code', {state: {isFromForgotPassword: true}})
     }
-    catch (error: any) { setError(error.response ? error.response.data.message : "User does not exist"); }
+    catch (error: any) {
+      setLoading(false);
+      toast.error("Invald email, please try again", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setError(error.response ? error.response.data.message : "User does not exist"); 
+      }
   }
 
   
@@ -65,6 +83,18 @@ export default function ForgotPassowrdPage() {
           {error && <p className={styles.errorText}>{error}</p>}
           <button className={styles.btn} disabled={!isValidEmail(email)} onClick={handleSubmit}>{t("send_email")}</button>
         </div>
+        {loading && 
+      <div className={styles.loader}>
+      <BallTriangle
+        height={80}
+        width={80}
+        radius={5}
+        color="#2573E7"
+        ariaLabel="ball-triangle-loading"
+        visible={true}
+      />
+      </div>
+      }
       </div>
     </>
   );

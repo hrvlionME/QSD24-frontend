@@ -8,12 +8,14 @@ interface Product {
     sizes: { name: string }[];
     color: string;
     selectedSize: any;
-    brand: string[];
+    brands: { name: string };
     gender: string;
     description: string;
     amount: number;
     totalPrice: number;
     rating: any[];
+    total_rating: number;
+    average_rating: number;
   }
   
 

@@ -2,14 +2,16 @@ import styles from './Card.module.css'
 import { RiStarSFill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import { IoTerminal } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
-export default function Card({title, description , price, image, numberOfStars} : any) {
+export default function Card({id, title, description , price, image, numberOfStars} : any) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => {navigate(`/product/${id}`)}}>
       <div className={styles.cardImageWrapper}>
-        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="product" />
+        <img src={`http://127.0.0.1:8000/storage/products/${image}`} className={styles.cardImage} alt="" />
       </div>
       <div className={styles.cardContent}>
         <div className={styles.cardText} style={{ fontSize: "1.4rem" }}>{title ? title : t("title")}</div>

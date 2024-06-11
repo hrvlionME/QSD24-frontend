@@ -195,7 +195,6 @@
 .dropdownItem {
   cursor: pointer;
 }
-
 .dropdownItem:hover {
   background-color: var(--dropdown-hover);
 }

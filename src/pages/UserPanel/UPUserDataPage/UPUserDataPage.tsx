@@ -16,16 +16,9 @@ export default function UPUserDataPage() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    fetchData();
+    try { fetchData() }
+    catch (err: any) { setError(err) }
   }, []);
-
-  // async function fetchData() {
-  //   try { setData(await getUser(userId)) }
-  //   catch (err: any) { setError(err) }
-  // }
-  //   try { fetchData() }
-  //   catch(err: any) { setError(err) }
-  // }, []);
 
   return (
     <div className={styles.content}>

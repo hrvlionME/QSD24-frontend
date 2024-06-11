@@ -42,9 +42,12 @@ const userSlice = createSlice({
             state.token = '';
             state.loggedIn = false;
         },
+        updateToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload;
+        },
     },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, updateToken } = userSlice.actions;
 
 export default userSlice.reducer;
