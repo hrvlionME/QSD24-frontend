@@ -42,6 +42,7 @@
 .user_window_faq {
   font-size: 14px;
   padding: 12px 10px;
+  margin-bottom: 8px;
   color: var(--primary-color-1);
 }
 
@@ -60,7 +61,6 @@
   margin: 0;
   padding: 0 10px;
   text-decoration: none;
-  margin-bottom: 10px;
 }
 
 .user_window_theme:hover {
@@ -220,7 +220,7 @@
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin: 0 0 20px 10px;
+    margin: 10px 0 0px 10px;
     text-transform: uppercase;
 }
 .user_window_profileInfo_name{

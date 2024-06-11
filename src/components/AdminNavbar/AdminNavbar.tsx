@@ -13,7 +13,8 @@ import { IoIosColorPalette } from "react-icons/io";
 import { SiZenn } from "react-icons/si";
 import { useTranslation } from "react-i18next";
 
-export default function AdminNavbar() {
+export default function AdminNavbar({ handleExpand }: { handleExpand: (state: boolean) => void }) {
+
   const { t } = useTranslation();
 
   const categories = [
@@ -42,13 +43,13 @@ export default function AdminNavbar() {
 
   const toggleDrawer = () => {
     setIsDrawerCollapsed(!isDrawerCollapsed);
+    handleExpand(isDrawerCollapsed);
   };
 
   return (
     <div
-      className={`${styles.navbar} ${
-        isDrawerCollapsed ? styles.collapsed : ""
-      }`}
+      className={`${styles.navbar} ${isDrawerCollapsed ? styles.collapsed : ""
+        }`}
     >
       <div className={styles.navbar_title}>
         <Link to="/admin/users" className={styles.navbar_title_container}>
@@ -75,9 +76,8 @@ export default function AdminNavbar() {
         {categories.map((category) => (
           <Link
             to={category.path}
-            className={`${styles.navbar_category} ${
-              selectedCategory === category.path ? styles.selected : ""
-            }`}
+            className={`${styles.navbar_category} ${selectedCategory === category.path ? styles.selected : ""
+              }`}
             key={category.name}
             onClick={() => {
               setSelectedCategory(category.path);
