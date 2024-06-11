@@ -97,7 +97,7 @@ export default function ShopPage() {
           </div>
           <div className={styles.cards}>
             {products.map((item: any) => (
-              <Card key={item?.id} id={item?.id} title={item?.name} description={item?.description} price={item?.price} numberOfStars={item?.average_rating} image={item?.images?.name} />)
+              <Card key={item?.id} id={item?.id} title={item?.name} description={item?.description} price={item?.price} numberOfStars={item?.average_rating} image={item?.images[0]?.name} />)
             )}
           </div>
         </div>
