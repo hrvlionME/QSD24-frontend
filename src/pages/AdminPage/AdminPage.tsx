@@ -15,29 +15,16 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
 import { IoMdSunny } from "react-icons/io";
 import { useTranslation } from "react-i18next";
-<<<<<<< HEAD
 import { RootState } from "../../redux/store";
+import APProducts from "./APProducts/APProducts";
 
 const componentsMap: { [key: string]: React.ComponentType } = {
   users: APUsers,
+  products: APProducts,
   categories: APCategories,
   brands: APBrands,
   colors: APColors,
   sizes: APSizes,
-=======
-import APBrands from "./APBrands/APBrands";
-import APSizes from "./APSizes/APSizes";
-import APColors from "./APColors/APColors";
-import APProducts from "./APProducts/APProducts";
-
-const componentsMap: { [key: string]: React.ComponentType } = {
-  "users": APUsers,
-  "products": APProducts,
-  "categories": APCategories,
-  "brands": APBrands,
-  "colors": APColors,
-  "sizes": APSizes,
->>>>>>> ab8e9eeda20fd8651b3eace8ac6ee4a875ba10de
 };
 
 function capitalizeFirstLetter(string: string) {

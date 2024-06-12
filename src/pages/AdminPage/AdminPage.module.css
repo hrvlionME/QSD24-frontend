@@ -21,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 5px;
+  margin-top: 15px;
 }
 
 .admin_content_headerTitle {

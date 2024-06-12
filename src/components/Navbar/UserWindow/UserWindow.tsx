@@ -97,9 +97,11 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
       <div className={styles.user_window_settings}>
         <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
-          <p className={styles.user_window_faq} onClick={handleProfileClick}>
-            {t("personalSettings")}
-          </p>
+          {user.token && (
+            <p className={styles.user_window_faq} onClick={handleProfileClick}>
+              {t("personalSettings")}
+            </p>
+          )}
           <div className={styles.dropdownContainer}>
             <div className={styles.dropdownHeader} onClick={toggleDropdown}>
               <span className={styles.dropdownSelected}>{selectedItem}</span>
@@ -163,12 +165,6 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
               onClick={handleAdminPanelClick}
             >
               {t("superAdminPanel")}
-            </button>
-            <button
-              className={styles.user_window_signIn}
-              onClick={handleProfileClick}
-            >
-              {t("settings")}
             </button>
             <button
               className={styles.user_window_signIn}
