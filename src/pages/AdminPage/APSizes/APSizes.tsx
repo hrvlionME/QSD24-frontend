@@ -13,13 +13,16 @@ export default function APSizes() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
-  const fetchData = async () => setData(await getSizes());
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try { fetchData() }
-    catch (err: any) { setError(err) }
+    fetchData();
   }, []);
+
+  async function fetchData() {
+    try { setData(await getSizes()) }
+    catch (err: any) { setError(err) }
+  }
 
   async function formSubmit(inputValue: string) {
     if (operation === "add") {
@@ -55,8 +58,8 @@ export default function APSizes() {
           <div className={styles.cell} style={{ marginLeft: "-40px" }}>Created at</div>
           <div className={styles.cell}>Options</div>
         </div>
-        {data.map((item: any) => (
-          <div className={styles.row}>
+        {data.map((item: any, index: number) => (
+          <div className={styles.row} key={index}>
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "40px" }}>{item.name}</div>
           <div className={styles.cell} style={{ marginLeft: "-40px" }}>{formatDate(item.created_at)}</div>

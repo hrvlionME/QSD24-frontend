@@ -34,6 +34,7 @@
 .nav_left_logo {
   height: 35px;
   margin-left: 16px;
+  margin-top: 5px;
 }
 
 .nav_left_logo_container {
@@ -57,6 +58,7 @@
 
 .nav_left_text_container {
   display: flex;
+  margin-left: 10px;
 }
 
 .nav_left_text_selected {
@@ -78,7 +80,7 @@
   display: flex;
   color: var(--logo-purple);
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 4px;
   padding: 0;
   width: 40px;
 }
@@ -179,6 +181,10 @@ ul {
   background-color: var(--nav-collapsed-list-hover);
   color: var(--logo-purple);
   border-bottom: none;
+}
+
+.nav_left_text_link {
+  font-family: Glory, sans-serif;
 }
 
 /* Media Queries */

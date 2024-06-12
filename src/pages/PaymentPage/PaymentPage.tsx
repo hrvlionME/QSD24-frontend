@@ -205,8 +205,8 @@ export default function PaymentPage(){
                                     <span>Total (with tax): ${subTotal.toFixed(2)}</span>
                                 </h3>
                             </div>
-                                {products.map((product) => (
-                                <div className={styles.item}>
+                                {products.map((product, index) => (
+                                <div className={styles.item} key={index}>
                                     <div className={styles.imgContainer}>
                                     <img src={`http://127.0.0.1:8000/storage/products/${product.images[0].name}`} alt="product" />
                                     </div>

@@ -16,7 +16,8 @@
   font-size: 1rem;
 }
 .table {
-  background-color: var(--primary-color-3);
+  background-color: var(--primary-color);
+  color: var(--primary-text);
   padding: 5px 30px 30px 30px;
   border-radius: 10px;
 }
@@ -33,7 +34,7 @@
   text-align: center;
 }
 .cell {
-  width:200px;
+  width:180px;
   text-align: center;
 }
 .cellButtons {

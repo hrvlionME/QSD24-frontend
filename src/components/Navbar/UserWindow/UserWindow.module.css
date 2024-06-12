@@ -30,7 +30,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
-  margin: 0 0 20px 10px;
+  margin: 0 0 15px 10px;
   text-transform: uppercase;
 }
 
@@ -204,7 +204,8 @@
   padding-left: 10px;
   color: var(--primary-color-1);
   border-bottom: 1.5px solid var(--search-border-bottom);
-
+  margin: 0;
+  padding: 7px;
 }
 .user_window_profileInfo_image{
   border-radius: 50%;
@@ -225,8 +226,10 @@
 .user_window_profileInfo_name{
   color: var(--primary-text);
   font-size: 14px;
+  margin: 5px;
 }
 .user_window_profileTitle_email{
   color: var(--dropdown-header-text);
   font-size: 12px;
+  margin: 5px;
 }

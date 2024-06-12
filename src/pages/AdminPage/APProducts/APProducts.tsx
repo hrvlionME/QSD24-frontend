@@ -18,13 +18,16 @@ export default function APProducts() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValues, setTempValues] = useState({});
-  const fetchData = async () => setData(await getProducts());
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try { fetchData() }
-    catch (err: any) { setError(err) }
+    fetchData();
   }, []);
+
+  async function fetchData() {
+    try { setData(await getProducts()) }
+    catch (err: any) { setError(err) }
+  }
 
   async function formSubmit(selectedValues: any) {
     const formData = new FormData();
@@ -77,8 +80,8 @@ export default function APProducts() {
           <div className={styles.cell} style={{ marginLeft: "-30px" }}>First image</div>
           <div className={styles.cell}>Options</div>
         </div>
-        {data.map((item: any) => (
-          <div className={styles.row}>
+        {data.map((item: any, index: number) => (
+          <div className={styles.row} key={index}>
           <div className={styles.cellId}>{item.id}</div>
           <div className={styles.cell} style={{ marginLeft: "20px" }}>{item.name}</div>
           <div className={styles.cell} style={{ marginLeft: "-30px" }}>{formatDate(item.created_at)}</div>

@@ -13,13 +13,16 @@ export default function APUsers() {
   const [operation, setOperation] = useState("");
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
-  const fetchData = async () => setData(await getUsers());
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try { fetchData() }
-    catch (err: any) { setError(err) }
+    fetchData();
   }, []);
+
+  async function fetchData() {
+    try { setData(await getUsers()) }
+    catch (err: any) { setError(err) }
+  }
 
   async function formSubmit(inputValue: string) {
     if (operation === 'delete') {
@@ -39,15 +42,15 @@ export default function APUsers() {
       <div className={styles.table}>
         <div className={styles.row} style={{ fontWeight: "700" }}>
           <div className={styles.cellId}>ID</div>
-          <div className={styles.cell}>Email</div>
-          <div className={styles.cell}>Created at</div>
-          <div className={styles.cell}>Role</div>
-          <div className={styles.cell}>Activate/Deactivate</div>
+          <div className={styles.cell} style={{ marginLeft: "25px" }}>Email</div>
+          <div className={styles.cell} style={{ marginLeft: "-15px" }}>Created at</div>
+          <div className={styles.cell} style={{ marginLeft: "-5px" }}>Role</div>
+          <div className={styles.cell} style={{ marginLeft: "-5px" }}>Activate/Deactivate</div>
           <div className={styles.cell}>Options</div>
 
         </div>
-        {data.map((item: any) => (
-          <div className={styles.row}>
+        {data.map((item: any, index: number) => (
+          <div className={styles.row} key={index}>
             <div className={styles.cellId}>{item.id}</div>
             <div className={styles.cell} style={{ marginLeft: "25px" }}>{item.email}</div>
             <div className={styles.cell} style={{ marginLeft: "-15px" }}>{formatDate(item.created_at)}</div>

@@ -105,9 +105,9 @@ const NavbarPage = () => {
 
   const renderNavLinks = () => {
     const categories = ["women", "men", "children", "all"];
-    return categories.map((category) => (
+    return categories.map((category, index) => (
       <NavLink
-        key={category}
+        key={index}
         label={t(category).toUpperCase()} // Translate category label
         to={`/shop/${category}/1`}
         selected={selectedCategory === category}

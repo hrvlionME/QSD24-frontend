@@ -14,14 +14,18 @@ export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const user = useSelector((state: RootState) => state.user);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
 
     const fetchFavorites = async () => {
+      try {
         const response = await getFavorites();
         const fav = response[0].filter((fav: any) => fav.user_id === user.id);
         setFavorites(fav);
+      }
+      catch(err: any) { setError(err) }
     } 
 
     fetchFavorites();

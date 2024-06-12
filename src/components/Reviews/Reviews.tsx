@@ -76,8 +76,8 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
               </button>
             </div>
             <div style={{margin: "30px 0"}}>
-              {reviews.map((review: any) => (
-                <div style={{marginTop: "20px"}}>
+              {reviews.map((review: any, index: number) => (
+                <div style={{marginTop: "20px"}} key={index}>
                 <div>
                 <span><Rating initialValue={review.value} size={18} fillColor={"#000000"} readonly={true}/></span>
                 <span style={{paddingLeft: "15px"}}>{review.user.first_name + " " + review.user.last_name}</span>
