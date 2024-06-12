@@ -69,12 +69,13 @@ const RoleChangeModal: React.FC<RoleChangeModalProps> = ({ currentRole, onClose,
                     )}
                 </div>
                 <div className={styles.modalButtons}>
-                    <button className={`${styles.actionButton} ${styles.confirmButton}`} onClick={handleSubmit}>
-                        <div className={styles.buttonText}>Confirm</div>
-                    </button>
                     <button className={`${styles.actionButton} ${styles.cancelButton}`} onClick={onClose}>
                         <div className={styles.buttonText}>Cancel</div>
                     </button>
+                    <button className={`${styles.actionButton} ${styles.confirmButton}`} onClick={handleSubmit}>
+                        <div className={styles.buttonText}>Confirm</div>
+                    </button>
+
                 </div>
             </div>
         </div>

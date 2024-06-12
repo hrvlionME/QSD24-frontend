@@ -45,7 +45,6 @@ export default function LoginPage() {
         last_name: "",
         email: email,
         password: password,
-        role: '',
         token: "",
         role: "0",
       }));
