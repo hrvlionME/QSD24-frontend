@@ -45,12 +45,13 @@ export default function LoginPage() {
         last_name: "",
         email: email,
         password: password,
+        role: '',
         token: "",
         role: "0",
       }));
       navigate("/send-code")
     }
-    catch (err: any) { 
+    catch (err: any) {
       setLoading(false);
       toast.error("There was an error with email or password, please try again", {
         position: "top-right",
@@ -62,7 +63,8 @@ export default function LoginPage() {
         progress: undefined,
         theme: "colored",
       });
-      setError(err) }
+      setError(err)
+    }
   }
 
   return (
@@ -128,17 +130,17 @@ export default function LoginPage() {
           </Link>
         </div>
       </div>
-      {loading && 
-      <div className={styles.loader}>
-      <BallTriangle
-        height={80}
-        width={80}
-        radius={5}
-        color="#2573E7"
-        ariaLabel="ball-triangle-loading"
-        visible={true}
-      />
-      </div>
+      {loading &&
+        <div className={styles.loader}>
+          <BallTriangle
+            height={80}
+            width={80}
+            radius={5}
+            color="#2573E7"
+            ariaLabel="ball-triangle-loading"
+            visible={true}
+          />
+        </div>
       }
     </div>
   );

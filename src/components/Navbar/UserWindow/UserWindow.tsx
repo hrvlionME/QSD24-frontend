@@ -97,10 +97,18 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
       <div className={styles.user_window_settings}>
         <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
+<<<<<<< HEAD
+          {user.token && (
+            <p className={styles.user_window_faq} onClick={handleProfileClick}>
+              {t("personalSettings")}
+            </p>
+          )}
+=======
         {user.loggedIn &&
           <p className={styles.user_window_faq} onClick={handleProfileClick}>
             {t("personalSettings")}
           </p>}
+>>>>>>> 6a305ca938b714eb794325c3c719a6b964a2ac08
           <div className={styles.dropdownContainer}>
             <div className={styles.dropdownHeader} onClick={toggleDropdown}>
               <span className={styles.dropdownSelected}>{selectedItem}</span>
