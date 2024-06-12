@@ -13,6 +13,7 @@ const roles = ["Superadmin", "Admin", "Customer", "Delivery"];
 const RoleChangeModal: React.FC<RoleChangeModalProps> = ({ currentRole, onClose, onRoleChange }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedRole, setSelectedRole] = useState(roles[parseInt(currentRole) - 1]);
+    const [selectedRoleName, setSelectedRoleName] = useState(roles[parseInt(currentRole) - 1]);
     const modalRef = useRef<HTMLDivElement>(null);
 
     const toggleDropdown = () => {
@@ -20,7 +21,18 @@ const RoleChangeModal: React.FC<RoleChangeModalProps> = ({ currentRole, onClose,
     };
 
     const handleRoleClick = (role: string) => {
-        setSelectedRole(role);
+        setSelectedRoleName(role);
+        if(role === "Superadmin") {
+            setSelectedRole("1");
+        } else if(role === "Admin") {
+            setSelectedRole("2");
+        }
+        else if(role === "Customer") {
+            setSelectedRole("3");
+        }
+        else if(role === "Delivery") {
+            setSelectedRole("4");
+        }
         setDropdownOpen(false);
     };
 
@@ -48,7 +60,7 @@ const RoleChangeModal: React.FC<RoleChangeModalProps> = ({ currentRole, onClose,
                 <h4 style={{ marginTop: "40px" }}>Select new role</h4>
                 <div className={styles.dropdownContainer}>
                     <div className={styles.dropdownHeader} onClick={toggleDropdown}>
-                        <span className={styles.dropdownSelected}>{selectedRole}</span>
+                        <span className={styles.dropdownSelected}>{selectedRoleName}</span>
                         <span className={styles.dropdownHyphen}>|</span>
                         <span className={styles.dropdownArrow}>
                             <IoIosArrowDown />

@@ -44,6 +44,17 @@ export const updateRole = async (userData: any) => {
   }
 };
 
+export const banUser = async (userData: any) => {
+  try {
+    const response = await axiosClient.post("/banUser", userData);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) throw new Error(error.response.data.message);
+    else if (error.request) throw new Error("No response received from server");
+    else throw new Error("Failed to change user status");
+  }
+};
+
 
 export const deleteUser = async (id: number) => {
   try {

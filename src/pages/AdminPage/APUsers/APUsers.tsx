@@ -4,14 +4,14 @@ import { LuTrash } from 'react-icons/lu';
 import APAddEditModal from '../APAddEditModal/APAddEditModal';
 import APDeleteModal from '../APDeleteModal/APDeleteModal';
 import RoleChangeModal from './RoleChangeModal/RoleChangeModal';
-import { getUsers, deleteUser, updateRole } from '../../../services/users';
+import { getUsers, deleteUser, updateRole, banUser } from '../../../services/users';
 
 type User = {
   id: number;
   email: string;
   created_at: string;
   role: 'superadmin' | 'admin' | 'customer';
-  isActive: boolean;
+  status: number;
 };
 
 export default function APUsers() {
@@ -23,6 +23,7 @@ export default function APUsers() {
   const [tempId, setTempId] = useState(0);
   const [tempValue, setTempValue] = useState("");
   const [tempRole, setTempRole] = useState<User['role']>("customer");
+  const [refresh, setRefresh] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const roles = ['Superadmin', 'Admin', 'Customer', 'Delivery'];
@@ -38,6 +39,14 @@ export default function APUsers() {
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      fetchData();
+    } catch (err: any) {
+      setError(err.message);
+    }
+  }, [refresh]);
+
   async function formSubmit(inputValue: string) {
     if (operation === 'delete') {
       try {
@@ -49,12 +58,19 @@ export default function APUsers() {
     fetchData();
   }
 
-  const toggleActivation = (user: User) => {
+  console.log(data)
+  const toggleActivation = async (user: User) => {
     setData(prevData =>
       prevData.map(item =>
-        item.id === user.id ? { ...item, isActive: !item.isActive } : item
+        item.id === user.id ? { ...item, status: item.status === 1 ? 0 : 1 } : item
       )
     );
+
+    const payload = {
+      id: user.id
+    }
+
+    await banUser(payload);
   };
 
   const isButtonDisabled = (userRole: User['role']) => {
@@ -66,9 +82,13 @@ export default function APUsers() {
     return `${d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()}.${(d.getMonth() < 9) ? `0${d.getMonth() + 1}` : d.getMonth() + 1}.${d.getFullYear()} ${d.getHours() < 10 ? `0${d.getHours()}` : d.getHours()}:${d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes()}`;
   }
 
-  const handleRoleChange = (newRole: string) => {
-    // updateRole()
-    console.log(`Changing role of user ${tempId} to ${newRole}`);
+  const handleRoleChange = async (newRole: string) => {
+    const payload = {
+      id: tempId,
+      role: newRole
+    };
+    setRefresh(!refresh);
+    await updateRole(payload)
   };
 
   return (
@@ -102,7 +122,7 @@ export default function APUsers() {
                 onClick={() => toggleActivation(item)}
                 disabled={isButtonDisabled(item.role)}
               >
-                {item.isActive ? 'Deactivate' : 'Activate'}
+                {item.status === 1 ? 'Deactivate' : 'Activate'}
               </button>
             </div>
             <div className={`${styles.cell} ${styles.cellButtons}`} style={{ marginLeft: "-5px" }}>
