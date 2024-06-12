@@ -5,12 +5,14 @@ import APAddEditModal from '../APAddEditModal/APAddEditModal';
 import APDeleteModal from '../APDeleteModal/APDeleteModal';
 import RoleChangeModal from './RoleChangeModal/RoleChangeModal';
 import { getUsers, deleteUser, updateRole, banUser } from '../../../services/users';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 type User = {
   id: number;
   email: string;
   created_at: string;
-  role: 'superadmin' | 'admin' | 'customer';
+  role: string;
   status: number;
 };
 
@@ -27,6 +29,7 @@ export default function APUsers() {
   const [error, setError] = useState<string | null>(null);
 
   const roles = ['Superadmin', 'Admin', 'Customer', 'Delivery'];
+  const loggedUser = useSelector((state: RootState) => state.user);
 
 
   const fetchData = async () => setData(await getUsers());
@@ -73,8 +76,16 @@ export default function APUsers() {
     await banUser(payload);
   };
 
-  const isButtonDisabled = (userRole: User['role']) => {
-    return false;
+  const isButtonDisabled = (userRole: string) => {
+      if(loggedUser.role === "1" && userRole === "1") {
+        return true;
+      } else if(loggedUser.role === "2" && userRole === "2") {
+        return true;
+      }
+      else if (loggedUser.role === "2" && userRole === "1") {
+        return true;
+      } else 
+      return false;
   };
 
   function formatDate(date: string) {
@@ -111,7 +122,7 @@ export default function APUsers() {
               <button
                 className={styles.adminButton}
                 onClick={() => { setShowRoleChangeModal(true); setTempId(item.id); setTempRole(item.role); }}
-
+                disabled={isButtonDisabled(item.role)}
               >
                 {roles[parseInt(item.role) - 1]}
               </button>
@@ -126,10 +137,10 @@ export default function APUsers() {
               </button>
             </div>
             <div className={`${styles.cell} ${styles.cellButtons}`} style={{ marginLeft: "-5px" }}>
-              <div className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id); }}>
+              <button className={styles.actionButton} style={{ backgroundColor: "red" }} onClick={() => { setShowDeleteModal(true); setOperation("delete"); setTempId(item.id); }} disabled={isButtonDisabled(item.role)}>
                 <div className={styles.buttonIcon} style={{ color: "red" }}><LuTrash /></div>
                 <div className={styles.buttonText}>Delete</div>
-              </div>
+              </button>
             </div>
           </div>
         ))}

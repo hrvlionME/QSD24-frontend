@@ -54,6 +54,9 @@
 .actionButton:hover {
   opacity: 0.9;
 }
+.actionButton:disabled{
+  opacity: 0.7;
+}
 .buttonIcon {
   background-color: #1d1e42;
   padding: 9px 9px 7px 9px;
@@ -85,4 +88,7 @@
   letter-spacing: 1px;
   padding: 0 15px;
   width: 110px;
+}
+.adminButton:disabled{
+  opacity: 0.7;
 }
