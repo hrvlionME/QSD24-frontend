@@ -37,8 +37,11 @@ export default function PaymentPage(){
     const user = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false)
+    const [guestEmail, setGuestEmail] = useState<string>('');
+    const [showGuestModal, setShowGuestModal] = useState<boolean>(!user.loggedIn);
+    const [isValidEmail, setIsValidEmail] = useState(true);
     
-    
+    console.log(showGuestModal)
     const addressElementOptions : StripeAddressElementOptions = {
         mode: 'billing',
         fields: {
@@ -83,7 +86,7 @@ export default function PaymentPage(){
                   ? '00' + phone.substring(1)
                   : '00000000000',
                 total_price: subTotal,
-                email: user.email,
+                email: user.loggedIn ? user.email : guestEmail,
                 token: "tok_visa"
                 };
 
@@ -165,6 +168,30 @@ export default function PaymentPage(){
         setIsCvcComplete(event.complete);
     };
 
+
+    const handleGuestEmailSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (guestEmail) {
+            setShowGuestModal(false);
+        } else {
+            toast.error("Please enter a valid email address", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+    };
+
+    function validateEmail(event: any) {
+        setGuestEmail(event.target.value);
+        const re = /\S+@\S+\.\S+/;
+        setIsValidEmail(re.test(event.target.value));
+    }
 
     return (
         <>
@@ -253,6 +280,22 @@ export default function PaymentPage(){
                     </div>
                 </div>
             </div>
+            {showGuestModal && (
+                <div className={styles.guestModal}>
+                    <div className={styles.guestModalContent}>
+                        <form onSubmit={handleGuestEmailSubmit}>
+                            <label>Enter email</label>
+                            <input type="email" value={guestEmail} onChange={validateEmail} placeholder='Email address' required className={!isValidEmail ? `${styles.invalidEmail}` : `${styles.guestEmail}`}/>
+                                {!isValidEmail && (
+                                    <p className={styles.errorMessage}>
+                                        Required field, invalid email format.
+                                    </p>
+                                )}
+                            <button type="submit" disabled={!isValidEmail}>Confirm Email</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </>
     )
 }
