@@ -76,8 +76,8 @@ export default function NewInThisWeek() {
                     slidesPerView={cardsPerRow}
                     autoplay={{ delay: 5000, disableOnInteraction: false }}
                 >
-                {products.map((item: any) => (
-                    <SwiperSlide className={styles.card}>
+                {products.map((item: any, index: number) => (
+                    <SwiperSlide className={styles.card} key={index}>
                         <div className={styles.cardImageWrapper} onClick={() => {navigate(`/product/${item.id}`)}}>
                             <img src={`http://127.0.0.1:8000/storage/products/${item.images[0]?.name}`} className={styles.cardImage} alt="" />
                             <button className={styles.buttonOnImage}>{t("buy")}</button>

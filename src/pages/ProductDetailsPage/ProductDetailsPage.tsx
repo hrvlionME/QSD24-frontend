@@ -49,28 +49,33 @@ export default function ProductDetailsPage()  {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const user = useSelector((state: RootState) => state.user);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
 
     setLoading(true);
     const fetchProduct = async () => {
-      const product = await getProduct(Number(id));
-      setProduct(product);
-      setSizes(product.sizes);
-      if (product.sizes.length > 0) {
-        setGender(product.gender);
-        setImages(product.images);
+      try {
+        const product = await getProduct(Number(id));
+        setProduct(product);
+        setSizes(product.sizes);
+        if (product.sizes.length > 0) {
+          setGender(product.gender);
+          setImages(product.images);
+        }
       }
+      catch(err: any) { setError(err) }
     }
 
     const fetchFavorites = async () => {
-  
+      try {
         const response = await getFavorites();
         const favorites = response[0];
         const isFavorite = favorites.some((fav: any) => fav.product_id === Number(id) && fav.user_id === user.id);
         setFavorite(isFavorite);
-
+      }
+      catch (err: any) { setError(err) }
     } 
 
     fetchProduct();
@@ -91,9 +96,11 @@ export default function ProductDetailsPage()  {
       product_id: Number(id),
     };
     
-    await handleFavorite(requestBody)
-    setFavorite(!favorite)
-    
+    try {
+      await handleFavorite(requestBody)
+      setFavorite(!favorite)
+    }
+    catch (err: any) { setError(err) }
   }
 
   const addToCart = async () => {

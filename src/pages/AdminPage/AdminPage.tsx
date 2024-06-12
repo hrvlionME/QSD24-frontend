@@ -103,13 +103,13 @@ export default function AdminPage() {
                 <button onClick={toggleTheme}>
                   {theme === "light" ? (
                     <>
-                      <IoMdSunny style={{ color: "orange", paddingRight: "5px" }} />
-                      {t("Light")}
+                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
+                      {t("Dark")}
                     </>
                   ) : (
                     <>
-                      <IoMoon style={{ color: "black", paddingRight: "5px" }} />
-                      {t("Dark")}
+                      <IoMdSunny style={{ color: "orange", paddingRight: "5px" }} />
+                      {t("Light")}
                     </>
                   )}
                 </button>

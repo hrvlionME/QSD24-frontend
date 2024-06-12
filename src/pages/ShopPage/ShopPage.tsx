@@ -86,8 +86,8 @@ export default function ShopPage() {
             <FaFilter className={styles.filterIcon} onClick={() => setShowFilter(!showFilter)} />
           </div>
           <div className={styles.filterItems}>
-          {filterItems.map((item: any) => (
-            <div className={styles.filterItem} onClick={() => setFilterItems(filterItems.filter((i: any) => i !== item))}>
+          {filterItems.map((item: any, index: number) => (
+            <div key={index} className={styles.filterItem} onClick={() => setFilterItems(filterItems.filter((i: any) => i !== item))}>
               <div className={styles.xButton}>
                 <div>{item}</div>
                 <FiXCircle />

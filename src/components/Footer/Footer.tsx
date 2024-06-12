@@ -41,10 +41,10 @@ export default function Footer() {
         <div className={styles.infoColumn}>
           <strong>{t("qsdBiH")}</strong>
           <div style={{ marginTop: "7px" }}>hello@qsd.ba</div>
-          <div>{t("address")}</div>
-          <div>{t("phoneBH")}</div>
-          <div>{t("phoneUSA")}</div>
-          <div>{t("phoneUK")}</div>
+          <div>Dr. Ante Starčevića bb, Mostar, Bosnia and Herzegovina</div>
+          <div>direct +387 36 446 089 (BH)</div>
+          <div>USA +1 347 352 8633 (NY)</div>
+          <div>UK +44 20 3290 1563 (LND)</div>
         </div>
         <div className={styles.infoColumn}>
           <strong>{t("customerSupport")}</strong>

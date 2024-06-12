@@ -9,18 +9,7 @@ export default function UPMyOrdersPage() {
 
   return (
     <>
-      {orders.length === 0 && <div className={styles.text}>{t("noOrders")}</div>}
-      {orders.length > 0 && <div className={styles.content}>
-        {orders.map((item: any) => (
-          <Card 
-            image={"test"}
-            title={"Title"}
-            description={"Description"}
-            price={100}
-            numberOfStars={item.average_rating}
-          />
-        ))}
-      </div>}
+      <div className={styles.text}>{t("noOrders")}</div>
     </>
   );
 }

@@ -19,14 +19,7 @@ export default function AdminNavbar({ handleExpand }: { handleExpand: (state: bo
 
   const categories = [
     { name: t("Users"), path: "/admin/users", icon: <LuUsers /> },
-    { name: t("Orders"), path: "/admin/orders", icon: <LuInbox /> },
-    { name: t("Analytics"), path: "/admin/analytics", icon: <IoMdAnalytics /> },
     { name: t("Products"), path: "/admin/products", icon: <FaProductHunt /> },
-    {
-      name: t("Discounts"),
-      path: "/admin/discounts",
-      icon: <TbShoppingCartDiscount />,
-    },
     { name: t("Categories"), path: "/admin/categories", icon: <BiCategory /> },
     { name: t("Brands"), path: "/admin/brands", icon: <TbBrandOpenai /> },
     { name: t("Colors"), path: "/admin/colors", icon: <IoIosColorPalette /> },
@@ -73,12 +66,12 @@ export default function AdminNavbar({ handleExpand }: { handleExpand: (state: bo
         </div>
       </div>
       <div className={styles.navbar_categories}>
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <Link
             to={category.path}
             className={`${styles.navbar_category} ${selectedCategory === category.path ? styles.selected : ""
               }`}
-            key={category.name}
+            key={index}
             onClick={() => {
               setSelectedCategory(category.path);
             }}
