@@ -5,19 +5,22 @@ import { getFavorites } from '../../services/favorite';
 import styles from './FavoritesPage.module.css'
 import { useTranslation } from "react-i18next";
 import { Circles } from 'react-loader-spinner';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 
 export default function FavoritesPage() {
   const { t } = useTranslation();
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
+  const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     setLoading(true);
 
     const fetchFavorites = async () => {
         const response = await getFavorites();
-        const fav = response[0];
+        const fav = response[0].filter((fav: any) => fav.user_id === user.id);
         setFavorites(fav);
     } 
 

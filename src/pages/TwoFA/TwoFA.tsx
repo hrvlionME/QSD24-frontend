@@ -89,8 +89,20 @@ export default function TwoFA() {
         validation_key: validationKey,
       };
 
+<<<<<<< HEAD
       try {
         const response = await sendCode(requestBody);
+=======
+      dispatch(login({
+        id: response.user.id,
+        first_name: response.user.first_name,
+        last_name: response.user.last_name,
+        email: requestBody.email,
+        password: requestBody.password,
+        token: response.access_token,
+        role: response.user.role,
+      }));
+>>>>>>> 6a305ca938b714eb794325c3c719a6b964a2ac08
 
         dispatch(login({
           id: response.user.id,

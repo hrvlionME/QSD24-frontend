@@ -47,6 +47,7 @@ export default function LoginPage() {
         password: password,
         role: '',
         token: "",
+        role: "0",
       }));
       navigate("/send-code")
     }

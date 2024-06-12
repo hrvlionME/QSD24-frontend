@@ -51,8 +51,8 @@ export default function ForgotPassowrdPage() {
         last_name: '',
         email: requestBody.email,
         password: '',
-        role: '',
         token: '',
+        role: '0',
       }));
 
       navigate('/send-code', { state: { isFromForgotPassword: true } })

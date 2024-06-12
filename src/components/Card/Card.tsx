@@ -1,7 +1,6 @@
 import styles from './Card.module.css'
 import { RiStarSFill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
-import { IoTerminal } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
 export default function Card({id, title, description , price, image, numberOfStars} : any) {

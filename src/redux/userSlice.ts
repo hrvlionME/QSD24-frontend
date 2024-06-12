@@ -9,6 +9,7 @@ interface UserState {
     token: string;
     role: string;
     loggedIn: boolean;
+    role: string,
 }
 
 const initialState: UserState = {
@@ -20,6 +21,7 @@ const initialState: UserState = {
     token: '',
     role:'',
     loggedIn: false,
+    role: "0",
 };
 
 const userSlice = createSlice({
@@ -33,8 +35,13 @@ const userSlice = createSlice({
             state.password = action.payload.password;
             state.email = action.payload.email;
             state.token = action.payload.token;
+<<<<<<< HEAD
             state.role = action.payload.role;
             state.loggedIn = true;
+=======
+            state.loggedIn = action.payload.id !== 0;
+            state.role = action.payload.role;
+>>>>>>> 6a305ca938b714eb794325c3c719a6b964a2ac08
         },
         logout: (state) => {
             state.id = 0;
@@ -45,6 +52,7 @@ const userSlice = createSlice({
             state.token = '';
             state.role = '';
             state.loggedIn = false;
+            state.role = "0";
         },
         updateToken: (state, action: PayloadAction<string>) => {
             state.token = action.payload;

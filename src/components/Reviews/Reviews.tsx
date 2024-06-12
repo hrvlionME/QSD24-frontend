@@ -59,7 +59,7 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
         >
           <h4>{t("reviews")}({totalRating})</h4>
           <div>
-            <Rating size={22} initialValue={averageRating} allowHover={false} />
+            <Rating size={22} initialValue={averageRating} allowHover={false} readonly={true} />
             {showReviews ? <MdKeyboardArrowRight /> : <IoIosArrowDown />}
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function Reviews({id, reviews, totalRating, averageRating}: {id: 
               {reviews.map((review: any) => (
                 <div style={{marginTop: "20px"}}>
                 <div>
-                <span><Rating initialValue={review.value} size={18} fillColor={"#000000"}/></span>
+                <span><Rating initialValue={review.value} size={18} fillColor={"#000000"} readonly={true}/></span>
                 <span style={{paddingLeft: "15px"}}>{review.user.first_name + " " + review.user.last_name}</span>
                 <span className={styles.date}>{formatDate(review.created_at)}</span>
                 </div>
