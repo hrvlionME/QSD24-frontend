@@ -4,9 +4,11 @@ import { Rating } from "react-simple-star-rating";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import { rateProduct } from "../../services/product";
+import { rateProduct } from "../../services/products";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
+export default function Reviews({id, reviews, totalRating, averageRating}: {id: number, reviews: any[], totalRating: number, averageRating: number}) {
   const { t } = useTranslation();
   const [showReviews, setShowReviews] = useState(false);
   const [rating, setRating] = useState(0); 
@@ -26,6 +28,17 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
 
     if(rating >= 1 && rating <=5)
       await rateProduct(requestBody)
+
+    toast.success("Successfully rated the item", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const formatDate = (dateString: string) => {
@@ -37,8 +50,6 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
     return new Date(dateString).toLocaleDateString('en-GB', options).replace(/\//g, '.');
 };
 
-  console.log(reviews)
-
   return (
     <>
       <div className={styles.container}>
@@ -46,9 +57,9 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
           className={styles.header}
           onClick={() => setShowReviews(!showReviews)}
         >
-          <h4>{t("reviews")}(0)</h4>
+          <h4>{t("reviews")}({totalRating})</h4>
           <div>
-            <Rating size={22} allowHover={false} fillColor={"#cccccc"} />
+            <Rating size={22} initialValue={averageRating} allowHover={false} readonly={true} />
             {showReviews ? <MdKeyboardArrowRight /> : <IoIosArrowDown />}
           </div>
         </div>
@@ -65,10 +76,10 @@ export default function Reviews({id, reviews}: {id: number, reviews: any[] }) {
               </button>
             </div>
             <div style={{margin: "30px 0"}}>
-              {reviews.map((review: any) => (
-                <div style={{marginTop: "20px"}}>
+              {reviews.map((review: any, index: number) => (
+                <div style={{marginTop: "20px"}} key={index}>
                 <div>
-                <span><Rating initialValue={review.value} size={18} fillColor={"#000000"}/></span>
+                <span><Rating initialValue={review.value} size={18} fillColor={"#000000"} readonly={true}/></span>
                 <span style={{paddingLeft: "15px"}}>{review.user.first_name + " " + review.user.last_name}</span>
                 <span className={styles.date}>{formatDate(review.created_at)}</span>
                 </div>

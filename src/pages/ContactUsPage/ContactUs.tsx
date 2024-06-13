@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import Footer from '../../components/Footer/Footer';
 import styles from './ContactUs.module.css';
 import { contactUs } from "../../services/contact";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function ContactUs() {
@@ -22,9 +24,42 @@ export default function ContactUs() {
     };
       const re = /\S+@\S+\.\S+/;
       if(re.test(email)) 
+        try {
         await contactUs(requestBody)
+        toast.success("Thank you for contacting us. We will answer you as soon as possible.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        }
+        catch (err){
+          toast.error("There has been a problem sending your message", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       else 
-        alert("Invalid email format");
+        toast.error("Invalid email format.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
   }
 
 

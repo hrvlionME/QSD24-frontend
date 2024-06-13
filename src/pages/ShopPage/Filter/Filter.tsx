@@ -19,20 +19,15 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        try {fetchData() }
+        try { fetchData() }
         catch (err: any) { setError(err) }
     }, []);
 
     const fetchData = async () => {
-        try {
-            setCategories(await getCategories());
-            setBrands(await getBrands());
-            setSizes(await getSizes());
-            setColors(await getColors());
-        } 
-        catch (err: any) {
-            setError(err)
-        }
+        setCategories(await getCategories());
+        setBrands(await getBrands());
+        setSizes(await getSizes());
+        setColors(await getColors());
     };
 
     function addItemFilter(id: number, name: string, category: string) {
@@ -70,8 +65,8 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                     {!isExpended[0] && <IoIosArrowDown />}
                 </div>
                 {isExpended[0] && <div className={styles.subCategoryBox}>
-                    {categories.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "category")}>{item.name}</div>
+                    {categories.map((item: any, index: number) => (
+                        <div key={index} className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "category")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -82,8 +77,8 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                 {!isExpended[1] && <IoIosArrowDown />}
             </div>
                 {isExpended[1] && <div className={styles.subCategoryBox}>
-                    {brands.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "brand")}>{item.name}</div>
+                    {brands.map((item: any, index: number) => (
+                        <div key={index} className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "brand")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -94,8 +89,8 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                 {!isExpended[2] && <IoIosArrowDown />}
             </div>
                 {isExpended[2] && <div className={styles.subCategoryBox}>
-                    {sizes.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "size")}>{item.name}</div>
+                    {sizes.map((item: any, index: number) => (
+                        <div key={index} className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "size")}>{item.name}</div>
                     ))}
                 </div>}
             </div>
@@ -106,8 +101,8 @@ export default function Filter({ filterItems, setFilterItems, priceRange, setPri
                 {!isExpended[3] && <IoIosArrowDown />}
             </div>
                 {isExpended[3] && <div className={styles.subCategoryBox}>
-                    {colors.map((item: any) => (
-                        <div className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "color")}>{item.name}</div>
+                    {colors.map((item: any, index: number) => (
+                        <div key={index} className={`${styles.subcategory} ${filterItems.includes(item.name) && styles.active}`} onClick={() => addItemFilter(item.id, item.name, "color")}>{item.name}</div>
                     ))}
                 </div>}
             </div>

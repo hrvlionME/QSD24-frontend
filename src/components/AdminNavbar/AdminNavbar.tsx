@@ -13,19 +13,13 @@ import { IoIosColorPalette } from "react-icons/io";
 import { SiZenn } from "react-icons/si";
 import { useTranslation } from "react-i18next";
 
-export default function AdminNavbar() {
+export default function AdminNavbar({ handleExpand }: { handleExpand: (state: boolean) => void }) {
+
   const { t } = useTranslation();
 
   const categories = [
     { name: t("Users"), path: "/admin/users", icon: <LuUsers /> },
-    { name: t("Orders"), path: "/admin/orders", icon: <LuInbox /> },
-    { name: t("Analytics"), path: "/admin/analytics", icon: <IoMdAnalytics /> },
     { name: t("Products"), path: "/admin/products", icon: <FaProductHunt /> },
-    {
-      name: t("Discounts"),
-      path: "/admin/discounts",
-      icon: <TbShoppingCartDiscount />,
-    },
     { name: t("Categories"), path: "/admin/categories", icon: <BiCategory /> },
     { name: t("Brands"), path: "/admin/brands", icon: <TbBrandOpenai /> },
     { name: t("Colors"), path: "/admin/colors", icon: <IoIosColorPalette /> },
@@ -42,13 +36,13 @@ export default function AdminNavbar() {
 
   const toggleDrawer = () => {
     setIsDrawerCollapsed(!isDrawerCollapsed);
+    handleExpand(isDrawerCollapsed);
   };
 
   return (
     <div
-      className={`${styles.navbar} ${
-        isDrawerCollapsed ? styles.collapsed : ""
-      }`}
+      className={`${styles.navbar} ${isDrawerCollapsed ? styles.collapsed : ""
+        }`}
     >
       <div className={styles.navbar_title}>
         <Link to="/admin/users" className={styles.navbar_title_container}>
@@ -72,13 +66,12 @@ export default function AdminNavbar() {
         </div>
       </div>
       <div className={styles.navbar_categories}>
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <Link
             to={category.path}
-            className={`${styles.navbar_category} ${
-              selectedCategory === category.path ? styles.selected : ""
-            }`}
-            key={category.name}
+            className={`${styles.navbar_category} ${selectedCategory === category.path ? styles.selected : ""
+              }`}
+            key={index}
             onClick={() => {
               setSelectedCategory(category.path);
             }}

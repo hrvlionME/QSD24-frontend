@@ -16,8 +16,7 @@
   font-size: 1rem;
 }
 .table {
-  background-color: var(--primary-color-1);
-  color: var(--admin-text);
+  background-color: var(--primary-color);
   padding: 5px 30px 30px 30px;
   border-radius: 10px;
 }
@@ -28,13 +27,14 @@
   gap: 15px;
   border-bottom: 1px solid lightgray;
   padding: 20px;
+  color: var(--primary-text);
 }
 .cellId {
   width: 50px;
   text-align: center;
 }
 .cell {
-  width:200px;
+  width:180px;
   text-align: center;
 }
 .cellButtons {
@@ -53,6 +53,9 @@
 }
 .actionButton:hover {
   opacity: 0.9;
+}
+.actionButton:disabled{
+  opacity: 0.7;
 }
 .buttonIcon {
   background-color: #1d1e42;
@@ -85,4 +88,7 @@
   letter-spacing: 1px;
   padding: 0 15px;
   width: 110px;
+}
+.adminButton:disabled{
+  opacity: 0.7;
 }

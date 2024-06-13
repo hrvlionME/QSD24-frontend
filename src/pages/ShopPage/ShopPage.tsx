@@ -8,6 +8,10 @@ import { FiXCircle } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import Card from "../../components/Card/Card";
 import { filterProducts } from "../../services/products";
+import { Circles } from "react-loader-spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { setSearchTerm } from "../../redux/searchSlice";
 
 export default function ShopPage() {
   const { t } = useTranslation();
@@ -20,19 +24,44 @@ export default function ShopPage() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
-  const fetchData = async () => setProducts(await filterProducts(priceRange[0], priceRange[1], selectedCategories, selectedBrands, selectedSizes, selectedColors, category))
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const searchTerm = useSelector((state: RootState) => state.search.searchTerm);
+  const dispatch = useDispatch();
+
+  const fetchData = async () => {
+    const fetchedProducts = await filterProducts(
+      priceRange[0],
+      priceRange[1],
+      selectedCategories,
+      selectedBrands,
+      selectedSizes,
+      selectedColors,
+      category
+    );
+    const filteredProducts = fetchedProducts.filter((product: any) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setProducts(filteredProducts);
+  }
   
   useEffect(() => {
+    setLoading(true);
     try { fetchData() }
     catch (err: any) { setError(err) }
     const resizeListener = () => { window.innerWidth > 768 ? setShowFilter(true) : setShowFilter(false) }
     window.addEventListener("resize", resizeListener);
+    setLoading(false);
     return () => { window.removeEventListener("resize", resizeListener); }
-  }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors]);
+  }, [category, priceRange, selectedCategories, selectedBrands, selectedSizes, selectedColors, searchTerm]);
+
+  useEffect(() => {
+    dispatch(setSearchTerm(""));
+  }, [])
 
   return (
     <>
+       {loading ? <div className={styles.loader}><Circles color="#6C63FF" height={60} width={60}/></div> : <div>
       <div className={styles.page}>
         <div style={{ display: showFilter ? "flex" : "none" }}>
           <Filter
@@ -57,8 +86,8 @@ export default function ShopPage() {
             <FaFilter className={styles.filterIcon} onClick={() => setShowFilter(!showFilter)} />
           </div>
           <div className={styles.filterItems}>
-          {filterItems.map((item: any) => (
-            <div className={styles.filterItem} onClick={() => setFilterItems(filterItems.filter((i: any) => i !== item))}>
+          {filterItems.map((item: any, index: number) => (
+            <div key={index} className={styles.filterItem} onClick={() => setFilterItems(filterItems.filter((i: any) => i !== item))}>
               <div className={styles.xButton}>
                 <div>{item}</div>
                 <FiXCircle />
@@ -68,12 +97,13 @@ export default function ShopPage() {
           </div>
           <div className={styles.cards}>
             {products.map((item: any) => (
-              <Card key={item?.id} title={item?.name} description={item?.description} price={item?.price} numberOfStars={item?.average_rating} image={item?.images?.name} />)
+              <Card key={item?.id} id={item?.id} title={item?.name} description={item?.description} price={item?.price} numberOfStars={item?.average_rating} image={item?.images[0]?.name} />)
             )}
           </div>
         </div>
       </div>
       <Footer />
+      </div>}
     </>
   );
 };

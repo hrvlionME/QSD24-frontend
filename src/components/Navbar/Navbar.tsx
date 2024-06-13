@@ -11,6 +11,8 @@ import { MdAccountCircle } from "react-icons/md";
 import SearchBar from "./SearchBar/SearchBar";
 import UserWindow from "./UserWindow/UserWindow";
 import { useTranslation } from "react-i18next"; // Import useTranslation
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 interface NavLinkProps {
   label: string;
@@ -47,10 +49,22 @@ const NavbarPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [isUserWindowOpen, setIsUserWindowOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+  const initialProductsState = useSelector((state: RootState) => state.cart.products);
   const location = useLocation();
   const navigate = useNavigate();
 
   const isHomePage = location.pathname === "/";
+
+
+  useEffect(() => {
+
+    let total: number = 0;
+    initialProductsState.forEach(product => {
+        total += product.amount;
+    });
+    setCartCount(total);
+}, [initialProductsState]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
@@ -91,9 +105,9 @@ const NavbarPage = () => {
 
   const renderNavLinks = () => {
     const categories = ["women", "men", "children", "all"];
-    return categories.map((category) => (
+    return categories.map((category, index) => (
       <NavLink
-        key={category}
+        key={index}
         label={t(category).toUpperCase()} // Translate category label
         to={`/shop/${category}/1`}
         selected={selectedCategory === category}
@@ -148,6 +162,7 @@ const NavbarPage = () => {
             </button>
             <button className={styles.nav_right_icon} onClick={handleCartClick}>
               <HiOutlineShoppingBag />
+            {cartCount > 0 && <span className={styles.cartCount}>{cartCount}</span>}
             </button>
             <div className={styles.nav_right_img} onClick={toggleUserWindow}>
               <MdAccountCircle className={styles.nav_right_profile} />

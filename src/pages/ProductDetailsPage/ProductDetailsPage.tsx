@@ -7,12 +7,16 @@ import { FiPlus, FiMinus, FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { PiShoppingCartLight } from "react-icons/pi";
 import Reviews from '../../components/Reviews/Reviews';
-import { getProduct } from '../../services/product';
+import { getProduct } from '../../services/products';
 import { useParams } from 'react-router-dom';
 import { getFavorites, handleFavorite } from '../../services/favorite';
 import { useTranslation } from "react-i18next";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../../redux/cartSlice';
+import { Circles } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RootState } from '../../redux/store';
 
 interface Product {
   id: number;
@@ -22,12 +26,14 @@ interface Product {
   color: string;
   selectedSize: any;
   sizes: { name: string }[];
-  brand: string[];
+  brands: { name: string };
   gender: string;
   description: string;
   amount: number;
   totalPrice: number;
   rating: any[];
+  total_rating: number;
+  average_rating: number;
 }
 
 export default function ProductDetailsPage()  {
@@ -40,33 +46,42 @@ export default function ProductDetailsPage()  {
   const [selectedSize, setSelectedSize] = useState(null);
   const [product, setProduct] = useState<Product>({} as Product);
   const [favorite, setFavorite] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
-
+  const user = useSelector((state: RootState) => state.user);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
 
+    setLoading(true);
     const fetchProduct = async () => {
-      const product = await getProduct(Number(id));
-      setProduct(product);
-      setSizes(product.sizes);
-      if (product.sizes.length > 0) {
-        setGender(product.gender);
-        setImages(product.images);
+      try {
+        const product = await getProduct(Number(id));
+        setProduct(product);
+        setSizes(product.sizes);
+        if (product.sizes.length > 0) {
+          setGender(product.gender);
+          setImages(product.images);
+        }
       }
+      catch(err: any) { setError(err) }
     }
 
     const fetchFavorites = async () => {
-  
+      try {
         const response = await getFavorites();
         const favorites = response[0];
-        const isFavorite = favorites.some((fav: any) => {console.log (fav.product_ID); return fav.product_id === Number(id)})
+        const isFavorite = favorites.some((fav: any) => fav.product_id === Number(id) && fav.user_id === user.id);
         setFavorite(isFavorite);
-
+      }
+      catch (err: any) { setError(err) }
     } 
 
     fetchProduct();
     fetchFavorites();
+
+    setLoading(false);
 
   }, [id])
 
@@ -81,9 +96,11 @@ export default function ProductDetailsPage()  {
       product_id: Number(id),
     };
     
-    await handleFavorite(requestBody)
-    setFavorite(!favorite)
-    
+    try {
+      await handleFavorite(requestBody)
+      setFavorite(!favorite)
+    }
+    catch (err: any) { setError(err) }
   }
 
   const addToCart = async () => {
@@ -95,20 +112,32 @@ export default function ProductDetailsPage()  {
       sizes: product.sizes,
       color: product.color,
       selectedSize: selectedSize,
-      brand: product.brand,
+      brands: product.brands,
       gender: product.gender,
       description: product.description,
       amount: quantity,
       totalPrice: 0,
       rating: product.rating,
+      total_rating: 0,
+      average_rating: 0,
     }
     dispatch(addProductToCart(productPayload));
+
+    toast.success(`${quantity} x ${product.name} added to cart`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
   
-  console.log(product)
-
   return (
     <>
+    {loading ? <div className={styles.loader}><Circles color="#6C63FF" height={60} width={60}/></div> : <div>
         <div className={styles.container}>
             <div className={styles.left}>
               <ImageProduct productImages={images}/>
@@ -116,7 +145,7 @@ export default function ProductDetailsPage()  {
             <div className={styles.right}>
               <div>
                 <h3 className={styles.text}>{product.name || t("productName")}</h3>
-                <h4 className={styles.text}>{product.brand || t("brandName")}</h4>
+                <h4 className={styles.text}>{product.brands?.name || t("brandName")}</h4>
               </div>
               <div className={styles.priceContainer}>
                 <h4 className={styles.text}>${product.price ? `${(product.price).toFixed(2)}` : "0.00"}</h4>
@@ -153,8 +182,9 @@ export default function ProductDetailsPage()  {
               </div>
             </div>
            </div>
-           <Reviews id={Number(id)} reviews={product.rating}/>
+           <Reviews id={Number(id)} reviews={product.rating} totalRating={product.total_rating} averageRating={product.average_rating}/>
         <Footer/>
+      </div>}
     </>
   );
 };

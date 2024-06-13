@@ -30,7 +30,7 @@
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1px;
-  margin: 0 0 20px 10px;
+  margin: 0 0 15px 10px;
   text-transform: uppercase;
 }
 
@@ -42,6 +42,7 @@
 .user_window_faq {
   font-size: 14px;
   padding: 12px 10px;
+  margin-bottom: 8px;
   color: var(--primary-color-1);
 }
 
@@ -60,7 +61,6 @@
   margin: 0;
   padding: 0 10px;
   text-decoration: none;
-  margin-bottom: 10px;
 }
 
 .user_window_theme:hover {
@@ -195,7 +195,6 @@
 .dropdownItem {
   cursor: pointer;
 }
-
 .dropdownItem:hover {
   background-color: var(--dropdown-hover);
 }
@@ -205,7 +204,8 @@
   padding-left: 10px;
   color: var(--primary-color-1);
   border-bottom: 1.5px solid var(--search-border-bottom);
-
+  margin: 0;
+  padding: 7px;
 }
 .user_window_profileInfo_image{
   border-radius: 50%;
@@ -220,14 +220,16 @@
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
-    margin: 0 0 20px 10px;
+    margin: 10px 0 0px 10px;
     text-transform: uppercase;
 }
 .user_window_profileInfo_name{
   color: var(--primary-text);
   font-size: 14px;
+  margin: 5px;
 }
 .user_window_profileTitle_email{
   color: var(--dropdown-header-text);
   font-size: 12px;
+  margin: 5px;
 }

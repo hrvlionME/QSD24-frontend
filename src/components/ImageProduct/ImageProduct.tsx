@@ -26,11 +26,11 @@ export default function ImageProduct({ productImages } : {productImages : any}) 
         <div className={styles.container}>      
             <div className={styles.smallImageContainer}>
                 {images.map((image: any, index: number) => (
-                    <img className={styles.smallImage} key={index}  src={`http://127.0.0.1:8000/storage/products/${image.name}`} alt="product" onMouseOver={(event) => switchImg(event, index)}/>
+                    <img className={styles.smallImage} key={index}  src={`http://127.0.0.1:8000/storage/products/${image.name}`} alt="" onMouseOver={(event) => switchImg(event, index)}/>
                 ))}
             </div>
             <div className={styles.bigImageContainer}>
-                <img className={styles.bigImage}  src={`http://127.0.0.1:8000/storage/products/${currentImage.name}`} alt="product"/>
+                <img className={styles.bigImage}  src={`http://127.0.0.1:8000/storage/products/${currentImage.name}`} alt=""/>
             </div>
         </div>
     </>

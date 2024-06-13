@@ -1,6 +1,7 @@
 :root {
   --white: rgb(255, 255, 255);
-  --primary-text: rgb(40, 40, 40);
+  --primary-text: rgb(0, 0, 0);
+  --admin-text: rgb(0,0,0);
   --primary-color: rgb(255, 255, 255);
   --primary-color-1: rgb(40, 40, 40);
   --primary-color-2: rgb(246, 246, 246);
@@ -104,7 +105,8 @@
 
 [data-theme="dark"] {
   --white: rgb(255, 255, 255);
-  --primary-text: rgb(224, 221, 221);
+  --primary-text: rgb(225, 225, 225);
+  --admin-text: rgb(255, 255, 255);
   --primary-color: rgb(40, 40, 40);
   --primary-color-1: rgb(255, 255, 255);
   --primary-color-2: rgb(224, 224, 224);

@@ -9,7 +9,7 @@ import i18n from "../../../i18n";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage, toggleThemeReducer } from "../../../redux/settingsSlice";
 import { RootState } from "../../../redux/store";
-import { logout } from "../../../redux/userSlice"; // Import the logout action
+import { logout } from "../../../redux/userSlice";
 import userImg from "../../../assets/images/user-icon.png";
 
 interface UserWindowProps {
@@ -17,7 +17,6 @@ interface UserWindowProps {
   onClose: () => void;
 }
 
-// Define a type for the language keys
 type Language = "English" | "Bosanski" | "Hrvatski" | "Srpski";
 
 const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
@@ -26,14 +25,13 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
   const user = useSelector((state: RootState) => state.user);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [theme, setTheme] = useState(settings.theme); // Default to "light" theme
-  const [selectedItem, setSelectedItem] = useState<Language>(settings.language); // Default to "English"
+  const [theme, setTheme] = useState(settings.theme);
+  const [selectedItem, setSelectedItem] = useState<Language>(settings.language);
 
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Apply the selected theme to the document
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
@@ -76,6 +74,10 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
     navigate("/admin/users");
   };
 
+  const handleProfileClick = () => {
+    navigate("/profile");
+  };
+
   return (
     <div className={`${styles.user_window} ${isOpen ? styles.open : ""}`}>
       {user.token && (
@@ -93,6 +95,10 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
       <div className={styles.user_window_settings}>
         <p className={styles.user_window_title}>{t("settings")}</p>
         <div className={styles.user_window_container}>
+          {user.loggedIn &&
+            <p className={styles.user_window_faq} onClick={handleProfileClick}>
+              {t("personalSettings")}
+            </p>}
           <div className={styles.dropdownContainer}>
             <div className={styles.dropdownHeader} onClick={toggleDropdown}>
               <span className={styles.dropdownSelected}>{selectedItem}</span>
@@ -150,13 +156,14 @@ const UserWindow: React.FC<UserWindowProps> = ({ isOpen, onClose }) => {
             {t("signIn")}
           </button>
         ) : (
-          <>
+          <>{user.role === "1" &&
             <button
               className={styles.user_window_signIn}
               onClick={handleAdminPanelClick}
             >
               {t("superAdminPanel")}
             </button>
+          }
             <button
               className={styles.user_window_signIn}
               onClick={handleLogOutClick}
